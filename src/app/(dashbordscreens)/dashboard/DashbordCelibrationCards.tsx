@@ -1,10 +1,10 @@
 import React from 'react';
 import { GrAnnounce } from "react-icons/gr";
-import { RiErrorWarningFill } from "react-icons/ri";
+
 
 const DashbordCelibrationCards = () => {
     return (
-        <div className="border border-[#E5E5E5] min-h-[100%] max-h-[250px] bg-white rounded-lg shadow-md overflow-hidden">
+        <div className=" hover:shadow-xl border border-[#E5E5E5] min-h-[100%] max-h-[250px] bg-white rounded-lg shadow-md overflow-hidden">
             <h1 className="px-3 py-2 font-semibold text-sm  tracking-wide flex items-center space-x-2">
                 <span className='font-sans font-medium'>Celebration This Month </span>
 

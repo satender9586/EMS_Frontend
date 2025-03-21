@@ -4,7 +4,7 @@ import { LuPartyPopper } from "react-icons/lu";
 
 const AttendencePunchCards = () => {
   return (
-    <div className='border border-[#E5E5E5] rounded-lg p-3'>
+    <div className=' hover:shadow-xl border border-[#E5E5E5] bg-[#F2F3F6] rounded-lg p-3'>
       <h1 className=" font-semibold text-sm  tracking-wide flex items-center space-x-2">
         <LuPartyPopper className="text-[#EDA02B]" size={40} />
         <span className='font-sans font-[400]'>Every great day starts with a single punch. Let's make today count!</span>
