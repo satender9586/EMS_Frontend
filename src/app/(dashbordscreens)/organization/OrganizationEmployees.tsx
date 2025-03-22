@@ -21,7 +21,7 @@ import { PiWarning } from "react-icons/pi"
 
 const OrganizationEmployees = () => {
     return (
-        <div className="grid grid-cols-3 gap-1 ">
+        <div className="grid grid-cols-3 gap-3  ">
             <div className="shadow border p-3 rounded-sm bg-white hover:shadow-xl transition-all">
                 <div className="flex gap-2 ">
                     <div className="min-w-[40px] py-2">

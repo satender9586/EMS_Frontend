@@ -2,7 +2,7 @@ import React from 'react'
 
 const MyProfileCards = () => {
     return (
-        <div className='p-3  '>
+        <div className=''>
             <div className='shadow rounded-sm bg-white'>
                 <div className='flex gap-1 items-center  hover:shadow-xl '>
                     <div className='min-w-[80px] p-2.5'>
@@ -117,7 +117,7 @@ const MyProfileCards = () => {
                     </div>                
                 </div>
             </div>
-            <div className='grid grid-cols-2 my-3 gap-3 '>
+            <div className='grid grid-cols-2  gap-3 '>
                 <div className='shadow p-3 hover:shadow-xl bg-white rounded-sm'>
                     <h1 className='font-[popplins]   text-[18px] font-[600] text-[#212121]'>Other Details</h1>
                     <div className='flex mt-1 items-center'>

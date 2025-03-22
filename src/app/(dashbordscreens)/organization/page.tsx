@@ -15,7 +15,7 @@ const Organization = () => {
             <TabsTrigger value="addemployee" className='text-sm font-[popplins] rounded-none'>Add New Employee</TabsTrigger>
           </TabsList>
           <TabsContent value="employees">
-            <div className='border bg-white rounded-sm p-3 border-[#E5E5E5] w-full'>
+            <div className='border bg-[#F2F3F6] rounded-sm p-3 border-[#E5E5E5] w-full'>
               <OrganizationEmployees />
             </div>
           </TabsContent>
