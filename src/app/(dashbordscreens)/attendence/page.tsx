@@ -1,22 +1,20 @@
 import React from 'react'
-import Layout from '@/app/common/Layout'
-import AttendencePunchCards from '@/app/reused/AttendencePunchCards'
-import ShowMonthAttendenceCart from '@/app/reused/ShowMonthAttendenceCart'
-
+import Layout from '@/components/common_layout/Layout'
+import AttendencePunchCards from './AttendencePunchCards'
+import ShowMonthAttendenceCart from './ShowMonthAttendenceCart'
 
 const MarkAttendence = () => {
     return (
         <Layout>
-            <div className='grid grid-cols-3 gap-4 border  border-[#E5E5E5] bg-[#FAFAFA] rounded-sm h-[100%] p-3'>
+            <div className='grid grid-cols-3 gap-4  h-[100%] '>
                 <div>
                     <AttendencePunchCards />
-                  
+
                 </div>
                 <div>
-                <ShowMonthAttendenceCart />
+                    <ShowMonthAttendenceCart />
                 </div>
                 <div >
-                   
                 </div>
             </div>
         </Layout>

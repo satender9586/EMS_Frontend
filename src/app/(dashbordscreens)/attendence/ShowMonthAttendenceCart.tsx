@@ -11,7 +11,7 @@ import React from 'react'
 
 const ShowMonthAttendenceCart = () => {
   return (
-    <div className='border border-[#E5E5E5] rounded-lg p-3 '>
+    <div className='bg-[#F2F3F6]   hover:shadow-xl border border-[#E5E5E5] rounded-lg p-3 '>
       <div className='flex'>
         <h1 className="font-semibold text-sm  tracking-wide flex items-center space-x-2">
           Monthly Attendence

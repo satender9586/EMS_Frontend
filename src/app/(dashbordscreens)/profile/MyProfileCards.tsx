@@ -2,9 +2,9 @@ import React from 'react'
 
 const MyProfileCards = () => {
     return (
-        <div className='p-3'>
-            <div className='shadow '>
-                <div className='flex gap-1 items-center'>
+        <div className=''>
+            <div className='shadow rounded-sm bg-white'>
+                <div className='flex gap-1 items-center  hover:shadow-xl '>
                     <div className='min-w-[80px] p-2.5'>
                         <div className='bg-[#CCCCCC] w-full min-h-[60px] rounded-full'></div>
                     </div>
@@ -24,7 +24,7 @@ const MyProfileCards = () => {
 
             </div>
             <div className='grid grid-cols-2 my-3 gap-3 '>
-                <div className='shadow p-3'>
+                <div className='shadow p-3 hover:shadow-xl bg-white rounded-sm'>
                     <h1 className='font-[popplins]   text-[18px] font-[600] text-[#212121]'>Personal Details</h1>
                     <div className='flex mt-1 items-center'>
                         <div className='min-w-[35%]'>
@@ -70,7 +70,7 @@ const MyProfileCards = () => {
                         <div><h1 className='text-[14px] font-[popplins] font-[600] text-[#333232] '>Anamika Thakur</h1></div>
                     </div>                
                 </div>
-                <div className='shadow p-3'>
+                <div className='shadow p-3 hover:shadow-xl bg-white rounded-sm'>
                     <h1 className='font-[popplins]   text-[18px] font-[600] text-[#212121]'>Address</h1>
                     <div className='flex mt-1 items-center'>
                         <div className='min-w-[35%]'>
@@ -117,8 +117,8 @@ const MyProfileCards = () => {
                     </div>                
                 </div>
             </div>
-            <div className='grid grid-cols-2 my-3 gap-3 '>
-                <div className='shadow p-3'>
+            <div className='grid grid-cols-2  gap-3 '>
+                <div className='shadow p-3 hover:shadow-xl bg-white rounded-sm'>
                     <h1 className='font-[popplins]   text-[18px] font-[600] text-[#212121]'>Other Details</h1>
                     <div className='flex mt-1 items-center'>
                         <div className='min-w-[35%]'>
@@ -146,7 +146,7 @@ const MyProfileCards = () => {
                     </div>
                         
                 </div>
-                <div className='shadow p-3'>
+                <div className='shadow p-3 hover:shadow-xl bg-white rounded-sm'>
                     <h1 className='font-[popplins]   text-[18px] font-[600] text-[#212121]'>Identity Information</h1>
                     <div className='flex mt-1 items-center'>
                         <div className='min-w-[35%]'>

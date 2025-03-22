@@ -3,7 +3,7 @@ import { GrAnnounce } from "react-icons/gr";
 
 const AnnouncementsCards = () => {
     return (
-        <div className="min-h-[120px] max-h-[250px] bg-white rounded-lg shadow-md overflow-hidden">
+        <div className=" hover:shadow-xl transition-all min-h-[120px] max-h-[250px] bg-white rounded-lg shadow-md overflow-hidden">
             <h1 className="px-3 py-2 font-semibold text-xl text-[#465FFF] tracking-wide flex items-center space-x-2">
                 <GrAnnounce className="text-[#465FFF]" />
                 <span className='font-sans font-medium'>Announcements </span>

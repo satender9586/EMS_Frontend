@@ -2,9 +2,9 @@ import React from 'react';
 import { FaRegCalendarCheck } from 'react-icons/fa'; 
 import { MdCheckCircleOutline } from 'react-icons/md'; 
 
-const DashboardCards = () => {
+const TopCards = () => {
   return (
-    <div className="bg-white border border-[#E5E5E5] rounded-lg shadow-lg p-4">
+    <div className= " hover:shadow-xl transition-all bg-white border border-[#E5E5E5] rounded-lg shadow-lg p-4">
       <div className="flex justify-between items-center mb-4">
         <h1 className="font-semibold text-xl text-green-600 tracking-wide flex items-center space-x-2">
           <FaRegCalendarCheck className="text-green-600" />
@@ -35,4 +35,4 @@ const DashboardCards = () => {
   );
 };
 
-export default DashboardCards;
+export default TopCards;
