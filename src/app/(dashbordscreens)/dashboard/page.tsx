@@ -8,26 +8,27 @@ import DashbordCelibrationCards from './DashbordCelibrationCards'
 const Dashboard = () => {
     return (
         <Layout>
-            <div className='grid grid-cols-5  gap-2 '>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2'>
                 <TopCards />
                 <TopCards />
                 <TopCards />
                 <TopCards />
                 <TopCards />
-                <div className='col-start-1 col-end-5'>
-                    <div className='   bg-white border border-[#E5E5E5] rounded-lg shadow-lg '>
+                
+                <div className='col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4'>
+                    <div className='bg-white border border-[#E5E5E5] rounded-lg shadow-lg'>
                         <AnnouncementsCards />
                     </div>
-                    <div className='mt-2 bg-white border border-[#E5E5E5] rounded-lg shadow-lg '>
+                    <div className='mt-2 bg-white border border-[#E5E5E5] rounded-lg shadow-lg'>
                         <LeaverequestCards />
                     </div>
                 </div>
-                <div>
+                
+                <div className='col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-1'>
                     <DashbordCelibrationCards />
                 </div>
             </div>
         </Layout>
-
     )
 }
 
