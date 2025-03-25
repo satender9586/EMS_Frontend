@@ -22,14 +22,14 @@ import { PiWarning } from "react-icons/pi";
 // Memoize OrganizationEmployees component to avoid unnecessary re-renders
 const OrganizationEmployees = React.memo(() => {
     return (
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
             {/* Employee 1 */}
             <div className="shadow border p-3 rounded-sm bg-white hover:shadow-xl transition-all">
                 <div className="flex gap-2">
                     <div className="min-w-[40px] py-2">
                         <div className="bg-[#CCCCCC] w-full min-h-[40px] rounded-full"></div>
                     </div>
-                    <div className="w-[160px] ">
+                    <div className="w-[160px]">
                         <h1 className="font-[popplins] text-sm font-bold">Raj Kumar</h1>
                         <h1 className="text-[#777777] text-[13px] font-[400] leading-[16px] break-words">
                             Information Technologies Department
@@ -97,14 +97,14 @@ const OrganizationEmployees = React.memo(() => {
                     </h1>
                 </div>
             </div>
-            
+
             {/* Employee 2 */}
             <div className="shadow border p-3 rounded-sm bg-white hover:shadow-xl transition-all">
                 <div className="flex gap-2">
                     <div className="min-w-[40px] py-2">
                         <div className="bg-[#CCCCCC] w-full min-h-[40px] rounded-full"></div>
                     </div>
-                    <div className="w-[160px] ">
+                    <div className="w-[160px]">
                         <h1 className="font-[popplins] text-sm font-bold">Raj Kumar</h1>
                         <h1 className="text-[#777777] text-[13px] font-[400] leading-[16px] break-words">
                             Information Technologies Department
