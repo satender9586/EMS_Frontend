@@ -75,14 +75,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <SidebarFooter>
         </SidebarFooter>
       </Sidebar>
-      <main className="w-[100%] ">
-        <Navbaar />
-        <div className="p-5">
-          <div className="bg-[#FAFAFA] border  rounded-sm border-[#E5E5E5] p-3">
-            {children}
-          </div>
-        </div>
-      </main>
+      <main className="w-full h-full">
+  <Navbaar />
+  <div className="p-0 md:p-5">
+    <div className=" sm:border rounded-sm border-[#E5E5E5] p-2 md:p-3">
+      {children}
+    </div>
+  </div>
+</main>
+
     </SidebarProvider>
   )
 }

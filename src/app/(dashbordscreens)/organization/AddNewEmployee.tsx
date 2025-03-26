@@ -10,88 +10,68 @@ import {
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 
-
-
 const AddNewEmployee = () => {
     return (
         <div>
-            <div className='grid grid-cols-3 gap-3 w-full'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full'>
                 <div>
                     <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee ID*</h1>
-                    <Input type='text'></Input>
+                    <Input type='text' />
                 </div>
                 <div>
-                    <div>
-                        <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Leave Request Type*</h1>
-                        <Select>
-                            <SelectTrigger className="w-full">
-                                <SelectValue placeholder="Theme" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="light">Light</SelectItem>
-                                <SelectItem value="dark">Dark</SelectItem>
-                                <SelectItem value="system">System</SelectItem>
-                            </SelectContent>
-                        </Select>
-                    </div>
+                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Leave Request Type*</h1>
+                    <Select>
+                        <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select Leave Type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="light">Light</SelectItem>
+                            <SelectItem value="dark">Dark</SelectItem>
+                            <SelectItem value="system">System</SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
                 <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee ID*</h1>
-                    <Input type='text'></Input>
+                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee Name*</h1>
+                    <Input type='text' />
                 </div>
                 <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee ID*</h1>
-                    <Input type='text'></Input>
+                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Department*</h1>
+                    <Input type='text' />
                 </div>
                 <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee ID*</h1>
-                    <Input type='text'></Input>
+                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Position*</h1>
+                    <Input type='text' />
                 </div>
                 <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee ID*</h1>
-                    <Input type='text'></Input>
+                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Salary*</h1>
+                    <Input type='text' />
                 </div>
                 <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee ID*</h1>
-                    <Input type='text'></Input>
+                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Contact Number*</h1>
+                    <Input type='text' />
                 </div>
                 <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee ID*</h1>
-                    <Input type='text'></Input>
+                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Email Address*</h1>
+                    <Input type='email' />
                 </div>
                 <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee ID*</h1>
-                    <Input type='text'></Input>
+                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Date of Birth*</h1>
+                    <Input type='date' />
                 </div>
                 <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee ID*</h1>
-                    <Input type='text'></Input>
+                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Joining Date*</h1>
+                    <Input type='date' />
                 </div>
                 <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee ID*</h1>
-                    <Input type='text'></Input>
+                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Emergency Contact*</h1>
+                    <Input type='text' />
                 </div>
                 <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee ID*</h1>
-                    <Input type='text'></Input>
+                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Address*</h1>
+                    <Input type='text' />
                 </div>
-                <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee ID*</h1>
-                    <Input type='text'></Input>
-                </div>
-                <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee ID*</h1>
-                    <Input type='text'></Input>
-                </div>
-                <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee ID*</h1>
-                    <Input type='text'></Input>
-                </div>
-                <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee ID*</h1>
-                    <Input type='text'></Input>
-                </div>
-                <div className=' '>
+                <div className='col-span-1 sm:col-span-2 lg:col-span-3'>
                     <div className="items-top flex space-x-2">
                         <Checkbox id="terms1" />
                         <div className="grid gap-1.5 leading-none">
@@ -101,11 +81,10 @@ const AddNewEmployee = () => {
                             >
                                Onboard employee with probation
                             </label>
-                            
                         </div>
                     </div>
                 </div>
-                <div className=' flex justify-end items-center pt-7 '>
+                <div className='flex justify-end items-center pt-7 col-span-1 sm:col-span-2 lg:col-span-3'>
                     <Button className='rounded-sm'>Submit</Button>
                 </div>
             </div>

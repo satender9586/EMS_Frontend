@@ -4,29 +4,46 @@ import AttendenceApplyforleave from './AttendenceApplyforleave'
 
 const ProfileAttendenceTabs = () => {
   return (
-
-    <div className='  rounded-sm h-[100%]  border p-3'>
-      <Tabs defaultValue="account" className="w-[100%] ">
-        <TabsList>
-          <TabsTrigger value="account" className='text-sm font-[popplins] '>Summary</TabsTrigger>
-          <TabsTrigger value="attendence" className='text-sm font-[popplins] '>Daily Attendence</TabsTrigger>
-          <TabsTrigger value="leave" className='text-sm font-[popplins] '>Leave</TabsTrigger>
-          <TabsTrigger value="documents" className='text-sm font-[popplins] '>Holidays</TabsTrigger>
+    <div className='rounded-sm h-[100%] border p-3'>
+      <Tabs defaultValue="account" className="w-full">
+        <TabsList className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
+          <TabsTrigger value="account" className='text-sm font-[popplins] rounded-none'>
+            Summary
+          </TabsTrigger>
+          <TabsTrigger value="attendence" className='text-sm font-[popplins] rounded-none'>
+            Daily Attendence
+          </TabsTrigger>
+          <TabsTrigger value="leave" className='text-sm font-[popplins] rounded-none'>
+            Leave
+          </TabsTrigger>
+          <TabsTrigger value="documents" className='text-sm font-[popplins] rounded-none'>
+            Holidays
+          </TabsTrigger>
         </TabsList>
+
         <TabsContent value="account">
           <div className='border bg-white rounded-sm p-3 border-[#E5E5E5] w-full'>
+           
           </div>
         </TabsContent>
+
         <TabsContent value="attendence">
           <div className='border bg-white rounded-sm p-3 border-[#E5E5E5] w-full'>
+          
           </div>
         </TabsContent>
+
         <TabsContent value="leave">
           <AttendenceApplyforleave />
         </TabsContent>
+
+        <TabsContent value="documents">
+          <div className='border bg-white rounded-sm p-3 border-[#E5E5E5] w-full'>
+          
+          </div>
+        </TabsContent>
       </Tabs>
     </div>
-
   )
 }
 
