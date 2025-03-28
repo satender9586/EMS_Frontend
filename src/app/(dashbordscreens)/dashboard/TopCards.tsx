@@ -6,8 +6,8 @@ const TopCards = () => {
   return (
     <div className= " hover:shadow-xl transition-all bg-white border border-[#E5E5E5] rounded-lg shadow-lg p-4">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="font-semibold text-xl text-green-600 tracking-wide flex items-center space-x-2">
-          <FaRegCalendarCheck className="text-green-600" />
+        <h1 className="font-semibold text-xl text-[#008AFF] tracking-wide flex items-center space-x-2">
+          <FaRegCalendarCheck className="text-[#008AFF]" />
           <span className='font-["sans-serif"] font-[100] '>Casual Leave</span>
         </h1>
 
@@ -21,14 +21,14 @@ const TopCards = () => {
 
         <div className="flex flex-col items-center">
           <h2 className="text-sm font-medium text-gray-600">Used</h2>
-          <div className="text-3xl font-semibold text-gray-600">0</div>
+          <div className="text-3xl font-semibold text-red-500">0</div>
         </div>
       </div>
 
       <div className="mt-4 flex justify-between items-center text-sm text-gray-500">
         <div className="flex items-center">
-          <MdCheckCircleOutline className="text-gray-600 mr-2" />
-          <span>Leave Status : Available</span>
+          {/* <MdCheckCircleOutline className="text-gray-600 mr-1" /> */}
+          <p>Leave Status : <span className='text-[#008AFF]'>Available</span></p>
         </div>
       </div>
     </div>
