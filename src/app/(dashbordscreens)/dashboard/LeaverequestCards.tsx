@@ -8,8 +8,8 @@ const   LeaverequestCards = () => {
     return (
         <div className=" hover:shadow-xl transition-all min-h-[145px] max-h-[250px] bg-white rounded-lg shadow-md overflow-hidden">
             <h1 className="px-3 py-2 font-semibold text-xl text-[grey] tracking-wide flex items-center space-x-2">
-                <RiErrorWarningFill className="text-[grey]" />
-                <span className='font-sans font-medium'>Leave Request </span>
+                <RiErrorWarningFill className="text-[#008AFF]" />
+                <span className='font-sans font-medium text-[#008AFF]'>Leave Request </span>
 
             </h1>
             <div className="border-b"></div>
