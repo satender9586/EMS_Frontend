@@ -1,8 +1,8 @@
-import { instance } from "@/lib/Axis.interceptor";
+import { instance } from "@/lib/Axios.interceptor";
 const Auth_Base = "/auth"
 
-//  Add_New user API
 
+//  Add_New user API
 export const AddNewUserApi = async () => {
     const response = await instance.post(`${Auth_Base}/register`);
     if (response.status !== 200) {
