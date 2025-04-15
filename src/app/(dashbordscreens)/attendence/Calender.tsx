@@ -112,7 +112,7 @@ const Calendar: React.FC = () => {
         ))}
         {daysInMonth.map((day, index) => {
           if (day === 0) {
-            return <div key={index}></div>; // Empty slot for days before the 1st
+            return <div key={index}></div>; 
           }
 
           const isToday =
