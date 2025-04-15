@@ -8,25 +8,21 @@ import Calendar from './Calender';
 const MarkAttendence = () => {
     return (
         <Layout>
-
-
-<div className='' >
-      <h1 className=" font-semibold text-sm  tracking-wide flex items-center space-x-2">
-        <LuPartyPopper className="text-[#EDA02B]" size={40} />
-        <span className='font-sans font-[400]'>Every great day starts with a single punch. Let's make today count!</span>
-      </h1>
-      </div>
-            
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 h-full'>
-
-            
+            <div className='' >
+                <h1 className=" font-semibold text-sm  tracking-wide flex items-center space-x-2">
+                    <LuPartyPopper className="text-[#EDA02B]" size={40} />
+                    <span className='font-sans font-[400]'>Every great day starts with a single punch. Let's make today count!</span>
+                </h1>
+            </div>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-full'>
                 <div>
                     <AttendencePunchCards />
                 </div>
                 <div>
                     <ShowMonthAttendenceCart />
                 </div>
-               
+                <div>
+                </div>
             </div>
 
 
