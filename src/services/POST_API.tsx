@@ -1,4 +1,5 @@
 import { instance } from "@/lib/Axios.interceptor";
+import { LoginPayload } from "@/types/auth";
 const Auth_Base = "/auth"
 
 
@@ -11,8 +12,10 @@ export const AddNewUserApi = async () => {
     return response;
 };
 
-export const loginApi  = async ()=>{
-    const response = await instance.post(`${Auth_Base}/login`)
+// User Login API
+
+export const loginApi  = async (data:LoginPayload)=>{
+    const response = await instance.post(`${Auth_Base}/login`,data)
     if(response.status !==200){
         throw new Error("something is wrong!")
     }
