@@ -5,11 +5,13 @@ import loginimg from "../../../assests/auth/login-img.jpg"
 import { Input } from "@/components/ui/input"
 import { useState } from 'react'
 import { loginApi } from '@/services/POST_API'
+import { LoginPayload } from '@/types/auth'
+
 
 
 
 const Login = () => {
-  const [inputFieldsFormData,setInputFieldFormData]=useState({username:"sdf",password:"sdf"})
+  const [inputFieldsFormData,setInputFieldFormData]=useState<LoginPayload>({email:"satender@paytelgroup.com",password:"1234"})
 
   const formHandler = async ()=>{
     try {

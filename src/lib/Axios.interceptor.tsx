@@ -3,9 +3,9 @@ import axios from "axios"
 const API_URL = process.env.NEXT_DEVELOPMENT_API_URL
 
 export const instance = axios.create({
-    baseURL: API_URL,
+    baseURL: "http://localhost:8080/api/v1",
     timeout: 10000,
-    headers: { 'Content-Type': "applicaiton/json" }
+    headers: { 'Content-Type': "application/json" }
 })
 
 
