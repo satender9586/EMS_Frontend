@@ -1,46 +1,87 @@
-"use client"
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+"use client";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-import { Button } from "@/components/ui/button"
-import loginimg from "../../../assests/auth/login-img.jpg"
-import { Input } from "@/components/ui/input"
-import { useState } from 'react'
-import { loginApi } from '@/services/POST_API'
-import { LoginPayload } from '@/types/auth'
-
-
-
+import { Button } from "@/components/ui/button";
+import loginimg from "../../../assests/auth/login-img.jpg";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { loginApi } from "@/services/POST_API";
+import { LoginPayload } from "@/types/auth";
 
 const Login = () => {
-  const [inputFieldsFormData,setInputFieldFormData]=useState<LoginPayload>({email:"satender@paytelgroup.com",password:"1234"})
+  const router = useRouter();
 
-  const formHandler = async ()=>{
+  const [inputFieldsFormData, setInputFieldFormData] = useState<LoginPayload>({
+    email: "",
+    password: "",
+  });
+
+  const formHandler = async () => {
     try {
-        const response = await loginApi(inputFieldsFormData)
-        console.log(response)
-    } catch (error) {
-      console.log("Error in login Api : ",error)
-    }
-  }
+      const response = await loginApi(inputFieldsFormData);
 
+      console.log("Login successful:", response);
+
+      
+      router.push("/dashboard");
+    } catch (error) {
+      console.log("Error in login API:", error);
+    }
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen pt-[400px]">
       <div className="flex w-full max-w-3xl p-8 space-x-8 bg-white rounded-lg shadow-lg">
         {/* Form Section */}
         <div className="w-full max-w-md space-y-8">
-          <h2 className="text-3xl font-semibold text-center text-gray-800">Paytel-EMS</h2>
-          <form onSubmit={(e)=>{e.preventDefault(),formHandler()}}>
+          <h2 className="text-3xl font-semibold text-center text-gray-800">
+            Paytel-EMS
+          </h2>
+
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              formHandler();
+            }}
+          >
             <div>
-              <label>Username</label>
-              <Input placeholder="username" />
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Email
+              </label>
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                value={inputFieldsFormData.email}
+                onChange={(e) =>
+                  setInputFieldFormData((prev) => ({
+                    ...prev,
+                    email: e.target.value,
+                  }))
+                }
+              />
             </div>
-            <div className="mt-2">
-              <label>Password</label>
-              <Input placeholder="username" />
+
+            <div className="mt-4">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Password
+              </label>
+              <Input
+                type="password"
+                placeholder="Enter your password"
+                value={inputFieldsFormData.password}
+                onChange={(e) =>
+                  setInputFieldFormData((prev) => ({
+                    ...prev,
+                    password: e.target.value,
+                  }))
+                }
+              />
             </div>
-            <Button className="mt-2">Submit</Button>
+
+            <Button type="submit" className="mt-6 w-full">
+              Submit
+            </Button>
           </form>
         </div>
 
@@ -57,7 +98,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
