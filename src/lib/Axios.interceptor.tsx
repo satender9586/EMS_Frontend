@@ -1,18 +1,20 @@
 import axios from "axios"
 
+const API_URL = process.env.NEXT_DEVELOPMENT_API_URL
+
 export const instance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
+    baseURL: "http://localhost:8080/api/v1",
     timeout: 10000,
-    headers: { 'Content-Type': "applicaiton/json" }
+    headers: { 'Content-Type': "application/json" }
 })
 
 
 // Add a request interceptor
 instance.interceptors.request.use((config) => {
-    const token = localStorage.getItem("authToken");
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`
-    }
+    // const token = localStorage.getItem("authToken");
+    // if (token) {
+    //     config.headers.Authorization = `Bearer ${token}`
+    // }
     return config
 },
     (error) => {
