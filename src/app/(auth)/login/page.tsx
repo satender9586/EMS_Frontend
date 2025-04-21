@@ -2,7 +2,10 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import axios from "axios"
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+
 import { Button } from "@/components/ui/button"
 import loginimg from "../../../assests/auth/login-img.jpg"
 
@@ -16,7 +19,6 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
-
 const formSchema = z.object({
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
@@ -27,14 +29,32 @@ const formSchema = z.object({
 })
 
 const Login = () => {
+  const router = useRouter()
 
   const form = useForm({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      username: '',
+      password: ''
+    }
   })
 
-  const onSubmit = () => {
-    console.log("form has been submit")
+  const onSubmit = async (values: { username: string; password: string }) => {
+    try {
+      const response = await axios.post("http://localhost:8080/api/v1/auth/login", {
+        email: values.username,  
+        password: values.password
+      })
 
+      if (response.status === 200) {
+        console.log("Login successful:", response.data)
+        router.push('/dashboard')
+      } else {
+        console.error("Login failed:", response)
+      }
+    } catch (error) {
+      console.error("Error during login:", error)
+    }
   }
 
   return (
@@ -90,16 +110,12 @@ const Login = () => {
                 )}
               />
 
-
-
               <Button
-                // onClick={()=>   }
                 type="submit"
                 className="w-full py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
                 Login
               </Button>
-
             </form>
           </Form>
         </div>

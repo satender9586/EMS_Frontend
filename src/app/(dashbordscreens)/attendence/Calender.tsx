@@ -30,6 +30,7 @@ const Calendar: React.FC = () => {
       days.push(i);
     }
 
+    
     // Prepend empty days based on the first day of the month (padding the previous month's days)
     for (let i = 0; i < firstDayIndex; i++) {
       days.unshift(0);
@@ -75,11 +76,10 @@ const Calendar: React.FC = () => {
       const diff = (punchOutTime.getTime() - punchInTime.getTime()) / (1000 * 60 * 60); // in hours
 
       if (diff >= 9) {
-        return 'Present';  // If 9 hours worked, show Present
+        return 'Present';  
       }
 
-      return `${diff.toFixed(2)} hours Halfday`;  // Otherwise, show worked hours
-   
+      return `${diff.toFixed(2)} hours Halfday`;  
     }
 
     return `In/Out`;
