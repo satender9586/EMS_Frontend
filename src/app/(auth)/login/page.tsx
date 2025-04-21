@@ -26,7 +26,7 @@ const Login = () => {
       
       router.push("/dashboard");
     } catch (error) {
-      console.log("Error in login API:", error);
+      console.log("Error:", error);
     }
   };
 
