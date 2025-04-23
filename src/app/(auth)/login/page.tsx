@@ -6,19 +6,39 @@ import { Input } from "@/components/ui/input"
 import { useState } from 'react'
 import { loginApi } from '@/services/POST_API'
 import { LoginPayload } from '@/types/auth'
+import { setToken } from '@/utils/cookies'
 
 
 
 
 const Login = () => {
-  const [inputFieldsFormData,setInputFieldFormData]=useState<LoginPayload>({email:"satender@paytelgroup.com",password:"1234"})
+  const [inputFieldsFormData,setInputFieldFormData]=useState<LoginPayload>({email:"",password:""})
+  
+  // form data 
+  const changeHandler=(e: React.ChangeEvent<HTMLInputElement>)=>{
+    const {name, value}=e.target;
+    setInputFieldFormData({...inputFieldsFormData,[name]:value})
+  }
+
+// Form submit and Login Api integration
 
   const formHandler = async ()=>{
     try {
+       const isFieldEmpty = Object.values(inputFieldsFormData).some((val)=> val=="")
+       if(!isFieldEmpty){
         const response = await loginApi(inputFieldsFormData)
-        console.log(response)
-    } catch (error) {
-      console.log("Error in login Api : ",error)
+        if(response?.status===200){
+          const token = response?.data?.authToken
+          await setToken(token)
+          // console.log(response.data.authToken)
+        }
+        
+       }else{
+        alert("Field are missing!")
+       }
+    } catch (error:any) {
+      const message = error?.response?.data.message;
+      alert(message)
     }
   }
 
@@ -32,13 +52,13 @@ const Login = () => {
           <form onSubmit={(e)=>{e.preventDefault(),formHandler()}}>
             <div>
               <label>Username</label>
-              <Input placeholder="username" />
+              <Input placeholder="username" name='email' value={inputFieldsFormData?.email||""} onChange={changeHandler} />
             </div>
             <div className="mt-2">
               <label>Password</label>
-              <Input placeholder="username" />
+              <Input placeholder="password" type='password' name='password' value={inputFieldsFormData?.password || ""} onChange={changeHandler} />
             </div>
-            <Button className="mt-2">Submit</Button>
+            <Button className="mt-2" type='submit'>Submit</Button>
           </form>
         </div>
 
