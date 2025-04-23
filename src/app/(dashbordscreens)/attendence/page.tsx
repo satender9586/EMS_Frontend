@@ -7,7 +7,7 @@ import { LuPartyPopper } from "react-icons/lu";
 const MarkAttendence = () => {
     return (
         <Layout>
-            <div className='' >
+            <div className=''>
                 <h1 className=" font-semibold text-sm  tracking-wide flex items-center space-x-2">
                     <LuPartyPopper className="text-[#EDA02B]" size={40} />
                     <span className='font-sans font-[400]'>Every great day starts with a single punch. Let's make today count!</span>
@@ -18,7 +18,7 @@ const MarkAttendence = () => {
                     <AttendencePunchCards />
                 </div>
                 <div>
-                    {/* <ShowMonthAttendenceCart /> */}
+                    <ShowMonthAttendenceCart />
                 </div>
                 <div>
                 </div>

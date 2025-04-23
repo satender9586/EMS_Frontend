@@ -33,12 +33,3 @@ export const punchInApi  = async (data:punchInPayload)=>{
     return response;
 }
 
-// Current Day Status check API 
-
-export const punchingStatusApi  = async (userID:string)=>{
-    const response = await instance.post(`${Atten_Base}/punchstatus/${userID}`)
-    if(response.status !==200){
-        throw new Error("something is wrong!")
-    }
-    return response;
-}
