@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import MyProfileCards from './MyProfileCards'
 import ProfileAttendenceTabs from './ProfileAttendenceTabs'
 
+
 const Profile = () => {
   return (
     <Layout>
