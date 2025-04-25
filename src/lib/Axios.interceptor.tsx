@@ -1,6 +1,10 @@
 import axios from "axios"
+import { getAuthToken } from "@/utils/cookies"
 
 const API_URL = process.env.NEXT_DEVELOPMENT_API_URL
+
+
+
 
 export const instance = axios.create({
     baseURL: "http://localhost:8080/api/v1",
@@ -9,9 +13,10 @@ export const instance = axios.create({
 })
 
 
+
 // Add a request interceptor
 instance.interceptors.request.use((config) => {
-    // const token = localStorage.getItem("authToken");
+
     // if (token) {
     //     config.headers.Authorization = `Bearer ${token}`
     // }

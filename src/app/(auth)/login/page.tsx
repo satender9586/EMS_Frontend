@@ -1,32 +1,50 @@
-"use client";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+"use client"
+import Image from 'next/image'
+import { useRouter } from 'next/navigation';
+import { Button } from "@/components/ui/button"
+import loginimg from "../../../assests/auth/login-img.jpg"
+import { Input } from "@/components/ui/input"
+import { useState } from 'react'
+import { loginApi } from '@/services/POST_API'
+import { LoginPayload } from '@/types/auth'
+import { setToken } from '@/utils/cookies'
 
-import { Button } from "@/components/ui/button";
-import loginimg from "../../../assests/auth/login-img.jpg";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { loginApi } from "@/services/POST_API";
-import { LoginPayload } from "@/types/auth";
+
+
+
+
 
 const Login = () => {
+  const [inputFieldsFormData,setInputFieldFormData]=useState<LoginPayload>({email:"",password:""})
   const router = useRouter();
+  
+  // form data 
+  const changeHandler=(e: React.ChangeEvent<HTMLInputElement>)=>{
+    const {name, value}=e.target;
+    setInputFieldFormData({...inputFieldsFormData,[name]:value})
+  }
 
-  const [inputFieldsFormData, setInputFieldFormData] = useState<LoginPayload>({
-    email: "",
-    password: "",
-  });
+// Form submit and Login Api integration
 
   const formHandler = async () => {
     try {
-      const response = await loginApi(inputFieldsFormData);
-
-      console.log("Login successful:", response);
-
-      
-      router.push("/dashboard");
-    } catch (error) {
-      console.log("Error:", error);
+       const isFieldEmpty = Object.values(inputFieldsFormData).some((val)=> val=="")
+       if(!isFieldEmpty){
+        const response = await loginApi(inputFieldsFormData)
+        if(response?.status===200){
+          const token = response?.data?.authToken
+          // await setToken(token)
+          // console.log(response.data.a
+          // uthToken)
+          router.push('/dashboard'); 
+        }
+        
+       }else{
+        alert("Field are missing!")
+       }
+    } catch (error:any) {
+      const message = error?.response?.data.message;
+      alert(message)
     }
   };
 
@@ -46,42 +64,14 @@ const Login = () => {
             }}
           >
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Email
-              </label>
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={inputFieldsFormData.email}
-                onChange={(e) =>
-                  setInputFieldFormData((prev) => ({
-                    ...prev,
-                    email: e.target.value,
-                  }))
-                }
-              />
+              <label>Username</label>
+              <Input placeholder="username" name='email' value={inputFieldsFormData?.email||""} onChange={changeHandler} />
             </div>
-
-            <div className="mt-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Password
-              </label>
-              <Input
-                type="password"
-                placeholder="Enter your password"
-                value={inputFieldsFormData.password}
-                onChange={(e) =>
-                  setInputFieldFormData((prev) => ({
-                    ...prev,
-                    password: e.target.value,
-                  }))
-                }
-              />
+            <div className="mt-2">
+              <label>Password</label>
+              <Input placeholder="password" type='password' name='password' value={inputFieldsFormData?.password || ""} onChange={changeHandler} />
             </div>
-
-            <Button type="submit" className="mt-6 w-full">
-              Submit
-            </Button>
+            <Button className="mt-2" type='submit'>Submit</Button>
           </form>
         </div>
 
