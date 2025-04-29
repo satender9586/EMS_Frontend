@@ -16,7 +16,7 @@ interface punchingResponse {
 const AttendencePunchCards = () => {
 
   const [isPunchIn, setIsPunchIn] = useState<boolean>(false)
-  const [userId, setUserId] = useState<string>("1")
+  const [userId, setUserId] = useState<string>("4")
   const [punchingData, setPuncingData] = useState<punchingResponse>({ punch_date: "", punch_in: "", punch_out: "", hours_worked: "" })
 
   // punch in api integration 

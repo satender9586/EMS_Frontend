@@ -33,3 +33,13 @@ export const punchInApi  = async (data:punchInPayload)=>{
     return response;
 }
 
+
+// user attendence list 
+
+export const AttendenceTableApi  = async ()=>{
+    const response = await instance.post(`${Atten_Base}/retrive_attendence`)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
