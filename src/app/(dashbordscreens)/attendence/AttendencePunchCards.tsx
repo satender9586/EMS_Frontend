@@ -97,7 +97,6 @@ const AttendencePunchCards = () => {
             </Button>
               :
               <Button className='w-full rounded-sm bg-green-600' onClick={punchInHandler}>Punch In</Button>
-
           }
         </div>
       </div>
