@@ -11,3 +11,10 @@ export const punchingStatusApi  = async (userID:string)=>{
     }
     return response;
 }
+export const retriveAttendenceApi  = async (data:string)=>{
+    const response = await instance.get(`${Atten_Base}/retrive_attendence/${data}`)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
