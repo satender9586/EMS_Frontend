@@ -4,7 +4,7 @@ import AttendencePunchCards from './AttendencePunchCards'
 import ShowMonthAttendenceCart from './ShowMonthAttendenceCart'
 import { LuPartyPopper } from "react-icons/lu";
 
-const MarkAttendence = () => {
+const MarkAttendence = () => {  
     return (
         <Layout>
             <div className=''>

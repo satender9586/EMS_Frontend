@@ -33,7 +33,7 @@ const MyAttendence = () => {
 
   const retriveAttendenceHandler=async ()=>{
     try {
-      const response = await retriveAttendenceApi("?userId=1&startDate=2025-06-01&endDate=2025-06-30")
+      const response = await retriveAttendenceApi("?startDate=2025-05-01&endDate=2025-05-30")
       const attenData = response?.data?.data;
       setMyAttendence(attenData)
     } catch (error) {
@@ -41,14 +41,14 @@ const MyAttendence = () => {
     }
   }
 
-  
-  
-
-
+ 
 
   useEffect(()=>{
     retriveAttendenceHandler()
   },[])
+ 
+  
+
 
 
   return (

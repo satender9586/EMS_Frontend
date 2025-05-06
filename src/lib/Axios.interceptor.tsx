@@ -1,45 +1,63 @@
 import axios from "axios"
-import { getAuthToken } from "@/utils/cookies"
-
-const API_URL = process.env.NEXT_DEVELOPMENT_API_URL
-
-
-
+import { getToken, setToken, deleteToken } from "@/utils/cookies"
+import { refreshTokenGenerateApi } from "../services/POST_API"
 
 export const instance = axios.create({
-    baseURL: "http://localhost:8080/api/v1",
-    timeout: 10000,
-    headers: { 'Content-Type': "application/json" }
+  baseURL: "http://localhost:8080/api/v1",
+  timeout: 10000,
+  headers: { 'Content-Type': "application/json" }
 })
 
-
-
-// Add a request interceptor
-instance.interceptors.request.use((config) => {
-
-    // if (token) {
-    //     config.headers.Authorization = `Bearer ${token}`
-    // }
-    return config
-},
-    (error) => {
-        // handle the error
-        return Promise.reject(error)
+// Request interceptor to attach access token
+instance.interceptors.request.use(
+  async (config) => {
+    const token = await getToken("accessToken")
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
     }
+    return config
+  },
+  (error) => {
+    return Promise.reject(error)
+  }
 )
 
-// Add a response interceptor
+// Response interceptor to refresh tokens on 401
+instance.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
 
-instance.interceptors.response.use(function (response) {
-    return response;
-}, (error) => {
-    // Handle the response error
-    if (error.response && error.response.status === 401) {
-        // Handle unauthorized error
-        console.error('Unauthorized, logging out...');
-        // Perform any logout actions or redirect to login page
+    if (error.response && error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      try {
+        const refreshToken = await getToken("refreshToken");
+        if (!refreshToken) throw new Error("Missing refresh token");
+
+        const tokenApi = await refreshTokenGenerateApi(refreshToken);
+
+        const { accessToken, newRefreshToken } = tokenApi.data;
+
+        // Save new tokens
+        await setToken("accessToken", accessToken);
+        await setToken("refreshToken", newRefreshToken);
+
+        // Retry original request with new access token
+        instance.defaults.headers['Authorization'] = `Bearer ${accessToken}`;
+        originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+
+        return instance(originalRequest);
+
+      } catch (tokenRefreshError) {
+        console.error("Token refresh failed:", tokenRefreshError);
+        await deleteToken("accessToken");
+        await deleteToken("refreshToken");
+        window.location.href = '/';
+        return Promise.reject(tokenRefreshError);
+      }
     }
+
     return Promise.reject(error);
-
-})
-
+  }
+);

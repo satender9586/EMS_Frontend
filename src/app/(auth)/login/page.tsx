@@ -7,36 +7,40 @@ import { useState } from 'react'
 import { loginApi } from '@/services/POST_API'
 import { LoginPayload } from '@/types/auth'
 import { setToken } from '@/utils/cookies'
-
-
+import { storeAuthInLocalStorage } from '@/utils/methods'
+import { useRouter } from 'next/navigation'
 
 
 const Login = () => {
-  const [inputFieldsFormData,setInputFieldFormData]=useState<LoginPayload>({email:"",password:""})
-  
-  // form data 
-  const changeHandler=(e: React.ChangeEvent<HTMLInputElement>)=>{
-    const {name, value}=e.target;
-    setInputFieldFormData({...inputFieldsFormData,[name]:value})
+  const [inputFieldsFormData, setInputFieldFormData] = useState<LoginPayload>({ email: "", password: "" })
+  const router = useRouter()
+
+
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setInputFieldFormData({ ...inputFieldsFormData, [name]: value })
   }
 
-// Form submit and Login Api integration
 
-  const formHandler = async ()=>{
+  // Form submit and Login Api integration
+  const formHandler = async () => {
     try {
-       const isFieldEmpty = Object.values(inputFieldsFormData).some((val)=> val=="")
-       if(!isFieldEmpty){
+      const isFieldEmpty = Object.values(inputFieldsFormData).some((val) => val == "")
+      if (!isFieldEmpty) {
         const response = await loginApi(inputFieldsFormData)
-        if(response?.status===200){
-          const token = response?.data?.authToken
-          await setToken(token)
-          // console.log(response.data.authToken)
+        if (response?.status === 200) {
+          const accessToken = response?.data?.accessToken
+          const refreshToken = response?.data?.refreshToken
+          const auth = response?.data?.data
+          storeAuthInLocalStorage(auth)
+          await setToken("accessToken", accessToken)
+          await setToken("refreshToken", refreshToken)
+          router.push("/dashboard")
         }
-        
-       }else{
+      } else {
         alert("Field are missing!")
-       }
-    } catch (error:any) {
+      }
+    } catch (error: any) {
       const message = error?.response?.data.message;
       alert(message)
     }
@@ -49,10 +53,10 @@ const Login = () => {
         {/* Form Section */}
         <div className="w-full max-w-md space-y-8">
           <h2 className="text-3xl font-semibold text-center text-gray-800">Paytel-EMS</h2>
-          <form onSubmit={(e)=>{e.preventDefault(),formHandler()}}>
+          <form onSubmit={(e) => { e.preventDefault(), formHandler() }}>
             <div>
               <label>Username</label>
-              <Input placeholder="username" name='email' value={inputFieldsFormData?.email||""} onChange={changeHandler} />
+              <Input placeholder="username" name='email' value={inputFieldsFormData?.email || ""} onChange={changeHandler} />
             </div>
             <div className="mt-2">
               <label>Password</label>

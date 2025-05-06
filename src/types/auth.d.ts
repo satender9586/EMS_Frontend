@@ -11,3 +11,8 @@ export interface LoginPayload {
     message?: string
   }
   
+  export interface UserAuthPayload {
+    email:string,
+    status:string,
+    role:string,
+}
