@@ -24,9 +24,18 @@ export const loginApi  = async (data:LoginPayload)=>{
     return response;
 }
 
+// Refesh Token Generate API   
+export const refreshTokenGenerateApi  = async (data:string)=>{
+    const response = await instance.post(`${Auth_Base}/refreshtoken`,data)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
+
 // User Attendence Mark API   
-export const punchInApi  = async (data:punchInPayload)=>{
-    const response = await instance.post(`${Atten_Base}/check_in`,data)
+export const punchInApi  = async ()=>{
+    const response = await instance.post(`${Atten_Base}/check_in`)
     if(response.status !==200){
         throw new Error("something is wrong!")
     }

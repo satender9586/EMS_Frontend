@@ -16,14 +16,12 @@ interface punchingResponse {
 const AttendencePunchCards = () => {
 
   const [isPunchIn, setIsPunchIn] = useState<boolean>(false)
-  const [userId, setUserId] = useState<string>("4")
   const [punchingData, setPuncingData] = useState<punchingResponse>({ punch_date: "", punch_in: "", punch_out: "", hours_worked: "" })
 
   // punch in api integration 
   const punchInHandler = async () => {
     try {
-      const id = { users_id: userId }
-      const response = await punchInApi(id)
+      const response = await punchInApi()
       if (response.status == 200) {
         setIsPunchIn(true)
       }
@@ -32,11 +30,11 @@ const AttendencePunchCards = () => {
       setIsPunchIn(true)
     }
   }
+
   // punch out api integration 
   const punchOutHandler = async () => {
     try {
-      const id = { users_id: userId }
-      const response = await punchOutApi(id)
+      const response = await punchOutApi()
       if (response.status == 200) {
         setIsPunchIn(false)
       }
@@ -45,10 +43,11 @@ const AttendencePunchCards = () => {
 
     }
   }
+  
   // punching status check 
   const currentAttendencStatus = async () => {
     try {
-      const response = await punchingStatusApi(userId)
+      const response = await punchingStatusApi()
       if (response?.status === 200) {
         setIsPunchIn(true)
         const { punch_date, punch_in, punch_out, hours_worked } = response.data?.punchData
