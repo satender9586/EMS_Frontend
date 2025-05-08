@@ -1,19 +1,9 @@
+
+'use client'
 import {
-    Cloud,
-    CreditCard,
-    Github,
-    Keyboard,
-    LifeBuoy,
     LogOut,
-    Mail,
-    MessageSquare,
-    Plus,
-    PlusCircle,
     Settings,
     User,
-    UserPlus,
-    Users,
-    Bell,
     ChevronDown
 } from "lucide-react"
 
@@ -28,8 +18,24 @@ import {
     DropdownMenuSubTrigger,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { loggedOutApi } from "@/services/POST_API"
+import { clearLocalStorage } from "@/utils/methods"
+import { deleteToken } from "@/utils/cookies"
+
 
 export function UserDropdownMenu() {
+
+    const loggedOutHandler = async () => {
+        try {
+            const response = await loggedOutApi()
+            clearLocalStorage("user")
+            deleteToken("accessToken")
+            deleteToken("refreshToken")
+        } catch (error) {
+            console.log("something is wrong!")
+        }
+    }
+
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -64,7 +70,7 @@ export function UserDropdownMenu() {
                 </DropdownMenuGroup>
 
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={() => loggedOutHandler()}>
                     <LogOut />
                     <span>Log out</span>
                     <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>

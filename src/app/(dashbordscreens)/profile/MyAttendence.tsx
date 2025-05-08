@@ -13,6 +13,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Eye } from "lucide-react";
 import { retriveAttendenceApi } from '@/services/GET_API';
+import { getMonthStartAndEndDates } from '@/utils/methods';
 
 
 
@@ -33,7 +34,7 @@ const MyAttendence = () => {
 
   const retriveAttendenceHandler=async ()=>{
     try {
-      const response = await retriveAttendenceApi("?startDate=2025-05-01&endDate=2025-05-30")
+      const response = await retriveAttendenceApi(`?startDate=${getMonthStartAndEndDates().start}&endDate=${getMonthStartAndEndDates().end}`)
       const attenData = response?.data?.data;
       setMyAttendence(attenData)
     } catch (error) {

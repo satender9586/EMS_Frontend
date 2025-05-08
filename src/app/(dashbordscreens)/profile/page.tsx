@@ -24,18 +24,18 @@ const Profile = () => {
             >
               My Attendence
             </TabsTrigger>
-            <TabsTrigger
+            {/* <TabsTrigger
               value="assests"
               className="text-sm font-[popplins] rounded-none w-full sm:w-auto"
             >
               Assests
-            </TabsTrigger>
-            <TabsTrigger
+            </TabsTrigger> */}
+            {/* <TabsTrigger
               value="documents"
               className="text-sm font-[popplins] rounded-none w-full sm:w-auto"
             >
               My Documents
-            </TabsTrigger>
+            </TabsTrigger> */}
           </TabsList>
 
           {/* Tab Content */}
@@ -50,8 +50,8 @@ const Profile = () => {
               <MyAttendence />
             </div>
           </TabsContent>
-          <TabsContent value="assests"></TabsContent>
-          <TabsContent value="documents"></TabsContent>
+          {/* <TabsContent value="assests"></TabsContent>
+          <TabsContent value="documents"></TabsContent> */}
         </Tabs>
       </div>
     </Layout>

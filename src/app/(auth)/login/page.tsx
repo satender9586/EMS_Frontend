@@ -12,15 +12,15 @@ import { useRouter } from 'next/navigation'
 
 
 const Login = () => {
+
   const [inputFieldsFormData, setInputFieldFormData] = useState<LoginPayload>({ email: "", password: "" })
   const router = useRouter()
 
-
+  // Form change handler 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputFieldFormData({ ...inputFieldsFormData, [name]: value })
   }
-
 
   // Form submit and Login Api integration
   const formHandler = async () => {
@@ -33,8 +33,8 @@ const Login = () => {
           const refreshToken = response?.data?.refreshToken
           const auth = response?.data?.data
           storeAuthInLocalStorage(auth)
-          await setToken("accessToken", accessToken)
-          await setToken("refreshToken", refreshToken)
+          await setToken("accessToken",accessToken)
+          await setToken("refreshToken",refreshToken)
           router.push("/dashboard")
         }
       } else {
@@ -50,6 +50,7 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-screen pt-[400px]">
       <div className="flex w-full max-w-3xl p-8 space-x-8 bg-white rounded-lg shadow-lg">
+        
         {/* Form Section */}
         <div className="w-full max-w-md space-y-8">
           <h2 className="text-3xl font-semibold text-center text-gray-800">Paytel-EMS</h2>
@@ -82,4 +83,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login  
