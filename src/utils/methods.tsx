@@ -26,8 +26,8 @@ export const getMonthStartAndEndDates = () => {
 
 
 export const storeAuthInLocalStorage = (data: UserAuthPayload) => {
-    const { email, status, role } = data;
-    const userData = { email, status, role };
+    const { email, status, role,employee_id } = data;
+    const userData = { email, status, role ,employee_id};
     window.localStorage.setItem("user", JSON.stringify(userData));
 };
 

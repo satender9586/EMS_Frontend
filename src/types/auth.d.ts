@@ -15,4 +15,5 @@ export interface LoginPayload {
     email:string,
     status:string,
     role:string,
+    employee_id:string
 }
