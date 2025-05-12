@@ -24,13 +24,40 @@ export const loginApi  = async (data:LoginPayload)=>{
     }
     return response;
 }
-
-// User Attendence Mark API   
-export const punchInApi  = async (data:punchInPayload)=>{
-    const response = await instance.post(`${Atten_Base}/check_in`,data)
+// User Login API   
+export const loggedOutApi  = async ()=>{
+    const response = await instance.post(`${Auth_Base}/logout`)
     if(response.status !==200){
         throw new Error("something is wrong!")
     }
     return response;
 }
 
+// Refesh Token Generate API   
+export const refreshTokenGenerateApi  = async (data:string)=>{
+    const response = await instance.post(`${Auth_Base}/refreshtoken`,data)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
+
+// User Attendence Mark API   
+export const punchInApi  = async ()=>{
+    const response = await instance.post(`${Atten_Base}/check_in`)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
+
+
+// user attendence list 
+
+export const AttendenceTableApi  = async ()=>{
+    const response = await instance.post(`${Atten_Base}/retrive_attendence`)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}

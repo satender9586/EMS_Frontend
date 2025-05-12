@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/sidebar"
 import Image from "next/image"
 import Navbaar from "./Navbaar"
+import Link from 'next/link';
 
 
 const items = [
@@ -39,11 +40,7 @@ const items = [
     url: "/organization",
     icon: Calendar,
   },
-  {
-    title: "Logout",
-    url: "#",
-    icon: Search,
-  },
+ 
 
 ]
 
@@ -61,10 +58,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 {items.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton className="hover:text-[#008AFF]" asChild>
-                      <a  href={item.url}>
-                       <item.icon />
-                        <span >{item.title}</span>
-                      </a>
+                      <Link href={item.url}>
+                       
+                          <item.icon />
+                          <span>{item.title}</span>
+                      
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
@@ -76,13 +75,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </SidebarFooter>
       </Sidebar>
       <main className="w-full h-full">
-  <Navbaar />
-  <div className="p-0 md:p-3">
-    <div className=" sm:border rounded-sm border-[#E5E5E5] p-2 md:p-3">
-      {children}
-    </div>
-  </div>
-</main>
+        <Navbaar />
+        <div className="p-0 md:p-3">
+          <div className=" sm:border rounded-sm border-[#E5E5E5] p-2 md:p-3">
+            {children}
+          </div>
+        </div>
+      </main>
 
     </SidebarProvider>
   )

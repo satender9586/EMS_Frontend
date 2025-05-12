@@ -10,20 +10,18 @@ interface punchingResponse {
   punch_date: "",
   punch_in: "",
   punch_out: "",
-  hours_worked:""
+  hours_worked: ""
 }
 
 const AttendencePunchCards = () => {
 
   const [isPunchIn, setIsPunchIn] = useState<boolean>(false)
-  const [userId, setUserId] = useState<string>("4")
-  const [punchingData, setPuncingData] = useState<punchingResponse>({ punch_date: "", punch_in: "", punch_out: "",hours_worked :""})
+  const [punchingData, setPuncingData] = useState<punchingResponse>({ punch_date: "", punch_in: "", punch_out: "", hours_worked: "" })
 
   // punch in api integration 
   const punchInHandler = async () => {
     try {
-      const id = { users_id: userId }
-      const response = await punchInApi(id)
+      const response = await punchInApi()
       if (response.status == 200) {
         setIsPunchIn(true)
       }
@@ -32,55 +30,43 @@ const AttendencePunchCards = () => {
       setIsPunchIn(true)
     }
   }
+
   // punch out api integration 
   const punchOutHandler = async () => {
     try {
-      const id = { users_id: userId }
-      const response = await punchOutApi(id)
+      const response = await punchOutApi()
       if (response.status == 200) {
         setIsPunchIn(false)
       }
     } catch (error) {
       console.log(error)
-     
+
     }
   }
+  
   // punching status check 
   const currentAttendencStatus = async () => {
     try {
-      const response = await punchingStatusApi(userId)
+      const response = await punchingStatusApi()
       if (response?.status === 200) {
         setIsPunchIn(true)
-        const { punch_date, punch_in, punch_out,hours_worked } = response.data?.punchData
-        setPuncingData({ ...punchingData, punch_in, punch_out, punch_date,hours_worked })
-      } 
+        const { punch_date, punch_in, punch_out, hours_worked } = response.data?.punchData
+        setPuncingData({ ...punchingData, punch_in, punch_out, punch_date, hours_worked })
+      }
     } catch (error) {
       console.log(error)
     }
   }
-
+  
   useEffect(() => {
     currentAttendencStatus()
   }, [isPunchIn])
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   return (
     <>
-
       <div className=' hover:shadow-xl border border-[#E5E5E5] bg-[#F2F3F6] rounded-lg p-3'>
-
         <div className='bg-white mt-2 p-2 rounded-sm border border-[#E5E5E5]'>
           <div>
             <h1 className='text-[16px]'>{currentDateAndTime()}</h1>
@@ -101,19 +87,16 @@ const AttendencePunchCards = () => {
         </div>
         <div className='mt-2'>
           {
-            isPunchIn ?<Button
-            // disabled={!!punchingData?.punch_out && punchingData.punch_out !== "00:00:00"}
-            className='w-full rounded-sm'
-            onClick={punchOutHandler}
-          >
-            Punch Out
-          </Button>
-           :
-            <Button className='w-full rounded-sm' onClick={punchInHandler}>Punch In</Button>
-
+            isPunchIn ? <Button
+              disabled={!!punchingData?.punch_out && punchingData.punch_out !== "00:00:00"}
+              className='w-full rounded-sm  bg-red-500'
+              onClick={punchOutHandler}
+            >
+              Punch Out
+            </Button>
+              :
+              <Button className='w-full rounded-sm bg-green-600' onClick={punchInHandler}>Punch In</Button>
           }
-
-
         </div>
       </div>
     </>

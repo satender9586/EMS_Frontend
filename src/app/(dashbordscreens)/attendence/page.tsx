@@ -6,7 +6,7 @@ import { LuPartyPopper } from "react-icons/lu";
 import Calendar from './Calender';
 import Calender from './Calender';
 
-const MarkAttendence = () => {
+const MarkAttendence = () => {  
     return (
         <Layout>
             <div className=''>
@@ -20,7 +20,7 @@ const MarkAttendence = () => {
                     <AttendencePunchCards />
                 </div>
                 <div>
-                    <ShowMonthAttendenceCart />
+                    {/* <ShowMonthAttendenceCart /> */}
                 </div>
                
             </div>

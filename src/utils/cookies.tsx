@@ -2,9 +2,9 @@
 
 import { cookies } from 'next/headers'
  
-export async function setToken(token:string) {
+export async function setToken(key:string, token:string) {
   const cookieStore = await cookies()
-  cookieStore.set('authToken', token, {
+  cookieStore.set(key, token, {
     httpOnly: true,
     // secure: process.env.NODE_ENV === 'production',
     // sameSite: 'lax',
@@ -13,8 +13,13 @@ export async function setToken(token:string) {
   });
 }
 
-export async function getAuthToken(key:string) {
+export async function getToken(key:string) {
     const cookieStore = await cookies()
     const token = await cookieStore.get(key)?.value
     return token
+}
+
+export async function deleteToken(key:string){
+  const clearCookie =  await cookies()
+  return clearCookie.delete(key)
 }
