@@ -2,6 +2,8 @@ import axios from "axios"
 import { getToken, setToken, deleteToken } from "@/utils/cookies"
 import { refreshTokenGenerateApi } from "../services/POST_API"
 
+const dbUrl = process.env.NEXT_PRODUCTION_API_URL;
+
 export const instance = axios.create({
   baseURL: "http://localhost:8080/api/v1",
   timeout: 10000,
