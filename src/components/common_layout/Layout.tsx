@@ -40,11 +40,7 @@ const items = [
     url: "/organization",
     icon: Calendar,
   },
-  {
-    title: "Logout",
-    url: "#",
-    icon: Search,
-  },
+ 
 
 ]
 
