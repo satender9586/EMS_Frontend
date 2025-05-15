@@ -18,7 +18,7 @@ const MarkAttendence = () => {
                     <AttendencePunchCards />
                 </div>
                 <div>
-                    {/* <ShowMonthAttendenceCart /> */}
+                    <ShowMonthAttendenceCart />
                 </div>
                 <div>
                 </div>

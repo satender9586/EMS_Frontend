@@ -7,6 +7,7 @@ export const currentDateAndTime = (): string => {
 
 export const getMonthStartAndEndDates = () => {
     const now = new Date();
+    const currentData = new Date()
     const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
     const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
 
@@ -19,7 +20,8 @@ export const getMonthStartAndEndDates = () => {
 
     return {
         start: formatDate(firstDay),
-        end: formatDate(lastDay)
+        end: formatDate(lastDay),
+        currentDate : formatDate(currentData)
     };
 };
 

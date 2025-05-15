@@ -1,6 +1,35 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
+import { loggedInfoApi } from '@/services/GET_API'
+import { authInfoInterface } from '@/types/profile'
+import { authInfoStateData } from '@/utils/defaultStateValues'
+
 
 const MyProfileCards = () => {
+
+  const [authInfo, setAuthInfo] = useState<authInfoInterface>({ ...authInfoStateData });
+
+
+
+  const loggedInfoHandler = async () => {
+    try {
+      const response = await loggedInfoApi();
+      const resData = response?.data?.data;
+      const {bank_info,contact_info,personal_info,user_info} = resData;
+
+      setAuthInfo({bank_info: { ...bank_info },contact_info: { ...contact_info },personal_info: { ...personal_info },user_info: { ...user_info }});
+    } catch (error) {
+      console.error("Error fetching logged user info:", error);
+    }
+  };
+
+
+  console.log("autifn", authInfo)
+
+  useEffect(() => {
+    loggedInfoHandler()
+  }, [])
+
   return (
     <div className="">
       <div className="shadow rounded-sm bg-white">
@@ -9,28 +38,28 @@ const MyProfileCards = () => {
             <div className="bg-[#CCCCCC] w-full min-h-[60px] rounded-full"></div>
           </div>
           <div>
-            <h1 className="font-[popplins] font-bold text-[#777777]">Raj Kumar</h1>
+            <h1 className="font-[popplins] font-bold text-[#777777]">{authInfo?.personal_info?.first_name + " " + authInfo?.personal_info?.last_name}</h1>
             <div className="flex items-center gap-2">
               <h1 className="font-[popplins] text-[#777777] text-sm border-r border-[#CCCCCC] pr-2">
-                EMP-20240425-001
+                {authInfo?.user_info?.employee_id}
               </h1>
               <h1 className="font-[popplins] text-[#777777] text-sm border-r border-[#CCCCCC] pr-2">
-                Admin Department
+                {authInfo?.user_info?.department == "1" ? "Human Resource" : authInfo?.user_info?.department == "2" ? "Infomation Techonologies" : "none"}
               </h1>
-              <h1 className="font-[popplins] text-[#777777] text-sm">Executive</h1>
+              <h1 className="font-[popplins] text-[#777777] text-sm">React Developer</h1>
             </div>
             <div className="flex items-center gap-2">
               <h1 className="font-[popplins] text-[#777777] text-sm border-r border-[#CCCCCC] pr-2">
-                +919810411755
+                +91{authInfo?.contact_info?.phone_number}
               </h1>
-              <h1 className="font-[popplins] text-[#777777] text-sm">finogel725@erapk.com</h1>
+              <h1 className="font-[popplins] text-[#777777] text-sm">{authInfo?.user_info?.email}</h1>
             </div>
           </div>
         </div>
       </div>
 
       {/* Personal Details Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 my-3 gap-3">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 my-3 gap-3">
         <div className="shadow p-3 hover:shadow-xl bg-white rounded-sm">
           <h1 className="font-[popplins] text-[18px] font-[600] text-[#212121]">Personal Details</h1>
           {[
@@ -53,7 +82,7 @@ const MyProfileCards = () => {
           ))}
         </div>
 
-        {/* Address Section */}
+    
         <div className="shadow p-3 hover:shadow-xl bg-white rounded-sm">
           <h1 className="font-[popplins] text-[18px] font-[600] text-[#212121]">Address</h1>
           {[
@@ -75,10 +104,10 @@ const MyProfileCards = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* Other Details Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div className="shadow p-3 hover:shadow-xl bg-white rounded-sm">
           <h1 className="font-[popplins] text-[18px] font-[600] text-[#212121]">Other Details</h1>
           {[
@@ -98,7 +127,7 @@ const MyProfileCards = () => {
           ))}
         </div>
 
-        {/* Identity Information Section */}
+
         <div className="shadow p-3 hover:shadow-xl bg-white rounded-sm">
           <h1 className="font-[popplins] text-[18px] font-[600] text-[#212121]">Identity Information</h1>
           <div className="flex mt-1 items-center">
@@ -110,7 +139,7 @@ const MyProfileCards = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
