@@ -1,16 +1,8 @@
 
 'use client'
-import {
-    LogOut,
-    Settings,
-    User,
-    ChevronDown
-} from "lucide-react"
-
+import {LogOut,Settings,User,ChevronDown} from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {
-    DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel,
-    DropdownMenuPortal,
+import {DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel,DropdownMenuPortal,
     DropdownMenuSeparator,
     DropdownMenuShortcut,
     DropdownMenuSub,
@@ -21,10 +13,10 @@ import {
 import { loggedOutApi } from "@/services/POST_API"
 import { clearLocalStorage ,getLocalStrageData } from "@/utils/methods"
 import { deleteToken } from "@/utils/cookies"
-
+import { useRouter } from 'next/navigation'
 
 export function UserDropdownMenu() {
-
+    const router = useRouter()
     const datalocalStorage = getLocalStrageData("user")
     const{role}=JSON.parse(datalocalStorage)
 
@@ -35,6 +27,7 @@ export function UserDropdownMenu() {
             clearLocalStorage("user")
             deleteToken("accessToken")
             deleteToken("refreshToken")
+             router.push("/dashboard")
         } catch (error) {
             console.log("something is wrong!")
         }
