@@ -9,22 +9,20 @@ const MyProfileCards = () => {
 
   const [authInfo, setAuthInfo] = useState<authInfoInterface>({ ...authInfoStateData });
 
-
-
   const loggedInfoHandler = async () => {
     try {
       const response = await loggedInfoApi();
       const resData = response?.data?.data;
       const {bank_info,contact_info,personal_info,user_info} = resData;
-
       setAuthInfo({bank_info: { ...bank_info },contact_info: { ...contact_info },personal_info: { ...personal_info },user_info: { ...user_info }});
+    
     } catch (error) {
       console.error("Error fetching logged user info:", error);
     }
   };
 
 
-  console.log("autifn", authInfo)
+  // console.log("autifn", authInfo)
 
   useEffect(() => {
     loggedInfoHandler()

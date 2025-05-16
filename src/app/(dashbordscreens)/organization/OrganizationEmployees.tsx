@@ -2,23 +2,29 @@
 import React, { useEffect, useState } from "react";
 import EmployeeCard from "./EmployeeCard";
 import { allEmployeeListApi } from "@/services/GET_API";
+import { authInfoInterface } from "@/types/profile";
+import { authInfoStateData } from "@/utils/defaultStateValues";
 
 
 
 const OrganizationEmployees = () => {
 
-    const [employeeCardData,setEmployeeCardDate]=useState([])
+    const [employeeCardData,setEmployeeCardDate]=useState<authInfoInterface[]>([])
 
     const employeeListHandler = async ()=>{
         try {
             const response = await allEmployeeListApi()
-            // console.log("res",response.data.data)
-            const data = response?.data?.data
-            setEmployeeCardDate(data)
+             const data = response?.data?.data
+           if (Array.isArray(data)) {
+             setEmployeeCardDate(data); 
+            } else {
+            setEmployeeCardDate([data]); 
+            }
         } catch (error) {
             console.log("errror",error)
         }
     }
+
 
 useEffect(()=>{
     employeeListHandler()
@@ -28,8 +34,8 @@ useEffect(()=>{
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
            {
-            employeeCardData?.map((data)=>(
-                 <EmployeeCard  />
+            employeeCardData?.map((data,index)=>(
+                 <EmployeeCard key={index} cardData={data}/>
             ))
            }
 

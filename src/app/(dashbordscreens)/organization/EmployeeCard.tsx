@@ -17,9 +17,22 @@ import {
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { TiPin } from "react-icons/ti";
 import { PiWarning } from "react-icons/pi";
+import { authInfoInterface } from "@/types/profile";
 
 
-const EmployeeCard = () => {
+interface EmployeeCardPropsInterface{
+    cardData : authInfoInterface
+}
+
+const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData }) => {
+    const {user_info, personal_info, bank_info, contact_info}=cardData
+    const {department,email,employee_id,role,status}=user_info;
+    const {}=personal_info;
+    const {}=bank_info;
+    const {}=contact_info;
+
+
+
   return (
       <div className="shadow border p-3 rounded-sm bg-white hover:shadow-xl transition-all">
                 <div className="flex gap-2">
@@ -71,26 +84,19 @@ const EmployeeCard = () => {
                             </DropdownMenu>
                         </div>
                         <div className="flex items-center mt-2 gap-2">
-                            <HoverCard>
-                                <HoverCardTrigger className="bg-[#FFF2CA] p-2 rounded-full">
-                                    <PiWarning />
-                                </HoverCardTrigger>
-                                <HoverCardContent>
-                                    The React Framework – created and maintained by @vercel.
-                                </HoverCardContent>
-                            </HoverCard>
-                            <h1 className="bg-[#D9EDDA] rounded-full text-green-600 p-1 px-3 text-[12px] font-[500]">
-                                Active
+                     
+                            <h1 className={ `bg-[#D9EDDA] rounded-full ${status=="active"? "text-green-600":"text-red-600" }  p-1 px-3 text-[12px] font-[500]`}>
+                                {status}
                             </h1>
                         </div>
                     </div>
                 </div>
                 <div className="mt-4">
                     <h1 className="text-[#777777] text-[14px] font-[500] leading-[14px] break-words">
-                        EMP-12342123345
+                        {employee_id}
                     </h1>
                     <h1 className="mt-1.5 text-[#777777] text-[14px] font-[500] leading-[14px] break-words">
-                        satender@paytelgroup.com
+                        {email}
                     </h1>
                 </div>
             </div>

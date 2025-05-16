@@ -39,8 +39,8 @@ const Profile = () => {
               <MyAttendence />
             </div>
           </TabsContent>
-          {/* <TabsContent value="assests"></TabsContent>
-          <TabsContent value="documents"></TabsContent> */}
+ 
+ 
         </Tabs>
       </div>
     </Layout>

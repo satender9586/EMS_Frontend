@@ -1,6 +1,7 @@
 import axios from "axios"
 import { getToken, setToken, deleteToken } from "@/utils/cookies"
 import { refreshTokenGenerateApi } from "../services/POST_API"
+import { clearLocalStorage } from "@/utils/methods";
 
 const dbUrl = process.env.NEXT_PRODUCTION_API_URL;
 
@@ -55,6 +56,7 @@ instance.interceptors.response.use(
         console.error("Token refresh failed:", tokenRefreshError);
         await deleteToken("accessToken");
         await deleteToken("refreshToken");
+        clearLocalStorage("user")
         window.location.href = '/';
         return Promise.reject(tokenRefreshError);
       }

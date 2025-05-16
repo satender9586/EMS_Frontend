@@ -33,9 +33,12 @@ export const storeAuthInLocalStorage = (data: UserAuthPayload) => {
     window.localStorage.setItem("user", JSON.stringify(userData));
 };
 
-export const getLocalStrageData = (key:string)=>{
-    window.localStorage.getItem(key)
-}
+export const getLocalStrageData = (key: string): any => {
+  if (typeof window === "undefined") {
+    return null; 
+  }
+  return window.localStorage.getItem(key);
+};
 
 export const clearLocalStorage = (key:string)=>{
     window.localStorage.removeItem(key)
