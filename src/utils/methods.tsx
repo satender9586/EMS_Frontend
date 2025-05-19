@@ -7,6 +7,7 @@ export const currentDateAndTime = (): string => {
 
 export const getMonthStartAndEndDates = () => {
     const now = new Date();
+    const currentData = new Date()
     const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
     const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
 
@@ -19,7 +20,8 @@ export const getMonthStartAndEndDates = () => {
 
     return {
         start: formatDate(firstDay),
-        end: formatDate(lastDay)
+        end: formatDate(lastDay),
+        currentDate : formatDate(currentData)
     };
 };
 
@@ -31,9 +33,12 @@ export const storeAuthInLocalStorage = (data: UserAuthPayload) => {
     window.localStorage.setItem("user", JSON.stringify(userData));
 };
 
-export const getLocalStrageData = (key:string)=>{
-    window.localStorage.getItem(key)
-}
+export const getLocalStrageData = (key: string): any => {
+  if (typeof window === "undefined") {
+    return null; 
+  }
+  return window.localStorage.getItem(key);
+};
 
 export const clearLocalStorage = (key:string)=>{
     window.localStorage.removeItem(key)

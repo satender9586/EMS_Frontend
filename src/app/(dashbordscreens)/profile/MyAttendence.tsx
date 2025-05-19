@@ -19,36 +19,35 @@ import { getMonthStartAndEndDates } from '@/utils/methods';
 
 
 const MyAttendence = () => {
-  interface MyAttendenceResponseInterface{
-    date:string,
+  interface MyAttendenceResponseInterface {
+    date: string,
     type: string,
-    holiday_name:string,
-    punch_in :string,
-    punch_out:string,
-    hours_worked :string,
-    reason:string
-    status:string
+    holiday_name: string,
+    punch_in: string,
+    punch_out: string,
+    hours_worked: string,
+    reason: string
+    status: string
   }
-  
-  const [myAttendence, setMyAttendence]=useState<MyAttendenceResponseInterface[]>([])
+  const [myAttendence, setMyAttendence] = useState<MyAttendenceResponseInterface[]>([])
 
-  const retriveAttendenceHandler=async ()=>{
+  const retriveAttendenceHandler = async () => {
     try {
-      const response = await retriveAttendenceApi(`?startDate=${getMonthStartAndEndDates().start}&endDate=${getMonthStartAndEndDates().end}`)
-      const attenData = response?.data?.data;
+      const response = await retriveAttendenceApi(`?startDate=${getMonthStartAndEndDates().start}&endDate=${getMonthStartAndEndDates().currentDate}`)
+      const attenData = response?.data?.data.reverse();
       setMyAttendence(attenData)
     } catch (error) {
-      console.log("some thing is wrong",error)
+      console.log("some thing is wrong", error)
     }
   }
 
- 
 
-  useEffect(()=>{
+
+  useEffect(() => {
     retriveAttendenceHandler()
-  },[])
- 
-  
+  }, [])
+
+
 
 
 
@@ -62,20 +61,32 @@ const MyAttendence = () => {
             <TableHead>CheckOut</TableHead>
             <TableHead className=" text-center w-[100px]">Hours</TableHead>
             <TableHead className="text-center w-[200px]">Status</TableHead>
-             <TableHead className="text-end pr-6.5">Action</TableHead>
+            <TableHead className="text-end pr-6.5">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {myAttendence.map((invoice,index) => (
-            <TableRow key={index}>
+          {myAttendence?.map((invoice, index) => (
+            <TableRow key={index} >
               <TableCell className="font-medium">{invoice?.date}</TableCell>
               <TableCell>{invoice?.punch_in || "..."}</TableCell>
               <TableCell>{invoice?.punch_out || "..."}</TableCell>
               <TableCell className="text-center">{invoice?.hours_worked || "..."}</TableCell>
-              <TableCell className="text-center">{invoice?.status || "..."}</TableCell>
+              <TableCell
+                className={`text-center ${invoice?.status === "Present"
+                    ? "text-green-500"
+                    : invoice?.status === "Absent"
+                      ? "text-red-600"
+                      : ["Weekend", "Leave", "Holiday"].includes(invoice?.status)
+                        ? "text-blue-500"
+                        : "text-gray-500"
+                  }`}
+              >
+                {invoice?.status || "..."}
+              </TableCell>
+
               <TableCell className="flex justify-end">
-                <Button className="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm px-3 py-1.5 rounded-md h-auto flex items-center gap-1.5 shadow-sm">
-                  <Eye className="w-3.5 h-3.5" />
+                <Button className="bg-gray-100  hover:bg-gray-200 text-gray-800 text-[10px] px-3 py-1 rounded-md h-auto flex items-center gap-1.5 shadow-sm">
+                  <Eye className="w-3 h-3" />
                   View
                 </Button>
               </TableCell>
@@ -88,3 +99,5 @@ const MyAttendence = () => {
 }
 
 export default MyAttendence
+
+// Absent Absent Weekend leave, Holiday 

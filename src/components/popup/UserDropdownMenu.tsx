@@ -1,16 +1,8 @@
 
 'use client'
-import {
-    LogOut,
-    Settings,
-    User,
-    ChevronDown
-} from "lucide-react"
-
+import {LogOut,Settings,User,ChevronDown} from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {
-    DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel,
-    DropdownMenuPortal,
+import {DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel,DropdownMenuPortal,
     DropdownMenuSeparator,
     DropdownMenuShortcut,
     DropdownMenuSub,
@@ -19,11 +11,15 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { loggedOutApi } from "@/services/POST_API"
-import { clearLocalStorage } from "@/utils/methods"
+import { clearLocalStorage ,getLocalStrageData } from "@/utils/methods"
 import { deleteToken } from "@/utils/cookies"
-
+import { useRouter } from 'next/navigation'
 
 export function UserDropdownMenu() {
+    const router = useRouter()
+    const datalocalStorage = getLocalStrageData("user")
+    const{role}=JSON.parse(datalocalStorage)
+
 
     const loggedOutHandler = async () => {
         try {
@@ -31,6 +27,7 @@ export function UserDropdownMenu() {
             clearLocalStorage("user")
             deleteToken("accessToken")
             deleteToken("refreshToken")
+             router.push("/dashboard")
         } catch (error) {
             console.log("something is wrong!")
         }
@@ -46,7 +43,7 @@ export function UserDropdownMenu() {
                     <div className="border p-2 rounded-full">
                         <User />
                     </div>
-                    <h1 className="tracking-[1px] font-normal">Satish</h1>
+                    <h1 className="tracking-[1px] font-normal">{role}</h1>
                     <span>
                         <ChevronDown />
                     </span>

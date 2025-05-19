@@ -1,6 +1,9 @@
 import axios from "axios"
 import { getToken, setToken, deleteToken } from "@/utils/cookies"
 import { refreshTokenGenerateApi } from "../services/POST_API"
+import { clearLocalStorage } from "@/utils/methods";
+
+const dbUrl = process.env.NEXT_PRODUCTION_API_URL;
 
 export const instance = axios.create({
   baseURL: "http://localhost:8080/api/v1",
@@ -8,7 +11,7 @@ export const instance = axios.create({
   headers: { 'Content-Type': "application/json" }
 })
 
-// Request interceptor to attach access token
+
 instance.interceptors.request.use(
   async (config) => {
     const token = await getToken("accessToken")
@@ -22,7 +25,7 @@ instance.interceptors.request.use(
   }
 )
 
-// Response interceptor to refresh tokens on 401
+
 instance.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -39,11 +42,11 @@ instance.interceptors.response.use(
 
         const { accessToken, newRefreshToken } = tokenApi.data;
 
-        // Save new tokens
+
         await setToken("accessToken", accessToken);
         await setToken("refreshToken", newRefreshToken);
 
-        // Retry original request with new access token
+     
         instance.defaults.headers['Authorization'] = `Bearer ${accessToken}`;
         originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
 
@@ -53,6 +56,7 @@ instance.interceptors.response.use(
         console.error("Token refresh failed:", tokenRefreshError);
         await deleteToken("accessToken");
         await deleteToken("refreshToken");
+        clearLocalStorage("user")
         window.location.href = '/';
         return Promise.reject(tokenRefreshError);
       }
