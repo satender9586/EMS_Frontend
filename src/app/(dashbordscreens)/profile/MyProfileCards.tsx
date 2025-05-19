@@ -22,8 +22,6 @@ const MyProfileCards = () => {
   };
 
 
-  // console.log("autifn", authInfo)
-
   useEffect(() => {
     loggedInfoHandler()
   }, [])

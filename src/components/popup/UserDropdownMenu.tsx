@@ -2,12 +2,9 @@
 'use client'
 import {LogOut,Settings,User,ChevronDown} from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel,DropdownMenuPortal,
+import {DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuShortcut,
-    DropdownMenuSub,
-    DropdownMenuSubContent,
-    DropdownMenuSubTrigger,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { loggedOutApi } from "@/services/POST_API"
