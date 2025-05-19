@@ -1,10 +1,13 @@
 import { UserAuthPayload } from "@/types/auth";
 
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CURRENT DATE & MONTH
 export const currentDateAndTime = (): string => {
     const data = Date();
     return data.toLocaleString().split(" ").slice(0,4).join(" "); 
 }
 
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
 export const getMonthStartAndEndDates = () => {
     const now = new Date();
     const currentData = new Date()
@@ -25,14 +28,14 @@ export const getMonthStartAndEndDates = () => {
     };
 };
 
-
-
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
 export const storeAuthInLocalStorage = (data: UserAuthPayload) => {
     const { email, status, role,employee_id } = data;
     const userData = { email, status, role ,employee_id};
     window.localStorage.setItem("user", JSON.stringify(userData));
 };
 
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
 export const getLocalStrageData = (key: string): any => {
   if (typeof window === "undefined") {
     return null; 
@@ -40,6 +43,17 @@ export const getLocalStrageData = (key: string): any => {
   return window.localStorage.getItem(key);
 };
 
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
 export const clearLocalStorage = (key:string)=>{
     window.localStorage.removeItem(key)
 }
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> GET DIFF BETWEEN TWO DATS
+
+export const getDiffInTwoDates = (start: string, end: string): number => {
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    const timeDiff = endDate.getTime() - startDate.getTime();
+    const diffInDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+    return diffInDays;
+};
