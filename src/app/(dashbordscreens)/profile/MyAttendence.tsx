@@ -33,14 +33,9 @@ const MyAttendence = () => {
   }
 
 
-
   useEffect(() => {
     retriveAttendenceHandler()
   }, [])
-
-
-
-
 
   return (
     <>

@@ -1,6 +1,5 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { GrAnnounce } from "react-icons/gr";
 import { RiErrorWarningFill } from "react-icons/ri";
 import LeaverequestCardsTables from './LeaverequestCardsTables';
 import { retriveMyLeavesApi } from '@/services/GET_API';
