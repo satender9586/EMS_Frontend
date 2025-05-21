@@ -24,6 +24,7 @@ const MyProfileCards = () => {
     }
   };
 
+
   useEffect(() => {
     loggedInfoHandler()
   }, [])
@@ -55,7 +56,7 @@ const MyProfileCards = () => {
 
 
       {/* Details Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-1 gap-1 max-w-dvh">
         {/* Personal Details */}
         <Card title="Personal Details">
           <Info label="Name" value={authInfo?.personal_info?.first_name + " " + authInfo?.personal_info?.last_name} />

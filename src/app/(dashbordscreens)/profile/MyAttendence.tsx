@@ -14,21 +14,12 @@ import { Button } from '@/components/ui/button'
 import { Eye } from "lucide-react";
 import { retriveAttendenceApi } from '@/services/GET_API';
 import { getMonthStartAndEndDates } from '@/utils/methods';
-
+import { MyAttendenceResponseInterface } from '@/types/attendence';
 
 
 
 const MyAttendence = () => {
-  interface MyAttendenceResponseInterface {
-    date: string,
-    type: string,
-    holiday_name: string,
-    punch_in: string,
-    punch_out: string,
-    hours_worked: string,
-    reason: string
-    status: string
-  }
+
   const [myAttendence, setMyAttendence] = useState<MyAttendenceResponseInterface[]>([])
 
   const retriveAttendenceHandler = async () => {

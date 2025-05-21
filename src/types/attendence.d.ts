@@ -22,4 +22,13 @@ export interface punchInResponse {
   message?: string
 }
 
-
+ export interface MyAttendenceResponseInterface {
+    date: string,
+    type: string,
+    holiday_name: string,
+    punch_in: string,
+    punch_out: string,
+    hours_worked: string,
+    reason: string
+    status: string
+  }

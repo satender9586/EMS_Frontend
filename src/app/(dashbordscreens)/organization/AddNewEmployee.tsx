@@ -1,5 +1,7 @@
+'use client'
+import React, { useState } from 'react'
 import { Input } from '@/components/ui/input'
-import React from 'react'
+// import { UserDetailsApi } from '@/services/POST_API'
 import {
     Select,
     SelectContent,
@@ -10,7 +12,44 @@ import {
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 
-const AddNewEmployee = () => {
+// TypeScript interface for user details payload
+interface UserDetailsPayload {
+    first_name: string | null
+    last_name: string | null
+    date_of_birth: string | null
+    gender: string | null
+    marital_status: string | null
+    blood_group: string | null
+}
+
+const AddNewEmployee: React.FC = () => {
+    // State for the required API fields
+    const [firstName, setFirstName] = useState<string | null>(null)
+    const [lastName, setLastName] = useState<string | null>(null)
+    const [dob, setDob] = useState<string | null>(null)
+    const [gender, setGender] = useState<string | null>(null)
+    const [maritalStatus, setMaritalStatus] = useState<string | null>(null)
+    const [bloodGroup, setBloodGroup] = useState<string | null>(null)
+
+    // Submit handler
+    const handleSubmit = async () => {
+        const payload: UserDetailsPayload = {
+            first_name: firstName,
+            last_name: lastName,
+            date_of_birth: dob,
+            gender: gender,
+            marital_status: maritalStatus,
+            blood_group: bloodGroup,
+        }
+
+        // try {
+        //     const response = await UserDetailsApi(payload)
+        //     console.log('UserDetailsApi Response:', response)
+        // } catch (error) {
+        //     console.error('UserDetailsApi Error:', error)
+        // }
+    }
+
     return (
         <div>
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full'>
@@ -33,7 +72,11 @@ const AddNewEmployee = () => {
                 </div>
                 <div>
                     <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee Name*</h1>
-                    <Input type='text' />
+                    <Input type='text' onChange={(e) => {
+                        const fullName = e.target.value.split(' ')
+                        setFirstName(fullName[0] || null)
+                        setLastName(fullName.slice(1).join(' ') || null)
+                    }} />
                 </div>
                 <div>
                     <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Department*</h1>
@@ -57,7 +100,7 @@ const AddNewEmployee = () => {
                 </div>
                 <div>
                     <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Date of Birth*</h1>
-                    <Input type='date' />
+                    <Input type='date' onChange={(e) => setDob(e.target.value)} />
                 </div>
                 <div>
                     <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Joining Date*</h1>
@@ -71,6 +114,35 @@ const AddNewEmployee = () => {
                     <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Address*</h1>
                     <Input type='text' />
                 </div>
+                <div>
+                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Gender</h1>
+                    <Select onValueChange={(value) => setGender(value)}>
+                        <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select Gender" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="male">Male</SelectItem>
+                            <SelectItem value="female">Female</SelectItem>
+                            <SelectItem value="other">Other</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Marital Status</h1>
+                    <Select onValueChange={(value) => setMaritalStatus(value)}>
+                        <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select Marital Status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="single">Single</SelectItem>
+                            <SelectItem value="married">Married</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Blood Group</h1>
+                    <Input type='text' placeholder="e.g. O+, A-" onChange={(e) => setBloodGroup(e.target.value)} />
+                </div>
                 <div className='col-span-1 sm:col-span-2 lg:col-span-3'>
                     <div className="items-top flex space-x-2">
                         <Checkbox id="terms1" />
@@ -79,13 +151,13 @@ const AddNewEmployee = () => {
                                 htmlFor="terms1"
                                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                             >
-                               Onboard employee with probation
+                                Onboard employee with probation
                             </label>
                         </div>
                     </div>
                 </div>
                 <div className='flex justify-end items-center pt-7 col-span-1 sm:col-span-2 lg:col-span-3'>
-                    <Button className='rounded-sm'>Submit</Button>
+                    <Button className='rounded-sm' onClick={handleSubmit}>Submit</Button>
                 </div>
             </div>
         </div>
