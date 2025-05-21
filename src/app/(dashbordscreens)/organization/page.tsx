@@ -23,7 +23,7 @@ const Organization = () => {
             </div>
           </TabsContent>
           <TabsContent value="addemployee">
-            <div className='border bg-white rounded-sm p-3 border-[#E5E5E5] w-full'>
+            <div className=' w-full'>
               <AddNewEmployee />
             </div>
           </TabsContent>
