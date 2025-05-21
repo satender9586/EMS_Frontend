@@ -15,7 +15,8 @@ import { useRouter } from 'next/navigation'
 export function UserDropdownMenu() {
     const router = useRouter()
     const datalocalStorage = getLocalStrageData("user")
-    const{role}= JSON.parse(datalocalStorage)
+    const localStorageData= JSON.parse(datalocalStorage)
+    // console.log("roles",localStorageData)
 
 
     const loggedOutHandler = async () => {
@@ -40,7 +41,7 @@ export function UserDropdownMenu() {
                     <div className="border p-2 rounded-full">
                         <User />
                     </div>
-                    <h1 className="tracking-[1px] font-normal">{role}</h1>
+                    {/* <h1 className="tracking-[1px] font-normal">{localStorageData?.role}</h1> */}
                     <span>
                         <ChevronDown />
                     </span>
