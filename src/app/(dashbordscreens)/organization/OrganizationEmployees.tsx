@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import EmployeeCard from "./EmployeeCard";
 import { allEmployeeListApi } from "@/services/GET_API";
 import { authInfoInterface } from "@/types/profile";
-import { authInfoStateData } from "@/utils/defaultStateValues";
+
 
 
 

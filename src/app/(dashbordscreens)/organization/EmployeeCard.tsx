@@ -1,8 +1,6 @@
 import React from 'react'
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
+    DropdownMenu, DropdownMenuContent, DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuSeparator,
@@ -12,12 +10,16 @@ import {
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { TiPin } from "react-icons/ti";
 import { authInfoInterface } from "@/types/profile";
+import Link from 'next/link';
+
+
 
 interface EmployeeCardPropsInterface {
     cardData: authInfoInterface
 }
 
 const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData }) => {
+
     const { user_info, personal_info, bank_info, contact_info } = cardData
     const { department, email, employee_id, role, status } = user_info;
     const { } = personal_info;
@@ -52,10 +54,13 @@ const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData }) => {
                                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuGroup>
-                                    <DropdownMenuItem>
-                                        Edit
-                                        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                                    </DropdownMenuItem>
+                                    <Link href={`/organization/profile-edit/${employee_id}`}>
+                                        <DropdownMenuItem>
+                                            Edit
+                                            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                                        </DropdownMenuItem>
+                                    </Link>
+
                                     <DropdownMenuItem>
                                         Delete
                                         <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
