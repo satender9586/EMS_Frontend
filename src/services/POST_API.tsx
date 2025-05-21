@@ -61,3 +61,31 @@ export const AttendenceTableApi  = async ()=>{
     }
     return response;
 }
+
+// Add employee basic personal details
+
+export const addEmpPersonalApi = async (formData: any) => {
+  const response = await instance.post(`${Auth_Base}/peronal-details`, formData)
+  return response.data
+}   
+
+
+// user contact details
+
+export const addEmpContactApi  = async (formData: any)=>{
+    const response = await instance.post(`${Auth_Base}/contact-details`,formData)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
+
+// user bank details
+
+export const addEmpBankApi  = async (formData:any)=>{
+    const response = await instance.post(`${Auth_Base}/bank-details`,formData)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
