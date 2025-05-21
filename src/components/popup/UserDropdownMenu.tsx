@@ -1,21 +1,21 @@
 
 'use client'
+
+
 import {LogOut,Settings,User,ChevronDown} from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuShortcut,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import {DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel,DropdownMenuSeparator,DropdownMenuShortcut,DropdownMenuTrigger,} from "@/components/ui/dropdown-menu"
 import { loggedOutApi } from "@/services/POST_API"
 import { clearLocalStorage ,getLocalStrageData } from "@/utils/methods"
 import { deleteToken } from "@/utils/cookies"
 import { useRouter } from 'next/navigation'
 
+
+
 export function UserDropdownMenu() {
     const router = useRouter()
     const datalocalStorage = getLocalStrageData("user")
-    const{role}=JSON.parse(datalocalStorage)
+    const{role}= JSON.parse(datalocalStorage)
 
 
     const loggedOutHandler = async () => {

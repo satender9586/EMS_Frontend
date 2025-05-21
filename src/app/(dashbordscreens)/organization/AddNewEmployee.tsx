@@ -1,93 +1,136 @@
-import { Input } from '@/components/ui/input'
-import React from 'react'
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
+"use client"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import InputTextField from "@/components/InputTextField"
+import { basicInputFields, FormSchema } from "@/lib/AddNewEmployee"
+import SelectOptionField from "@/components/SelectOptionField"
+
+
 
 const AddNewEmployee = () => {
+
+    const form = useForm<z.infer<typeof FormSchema>>({
+        resolver: zodResolver(FormSchema),
+        defaultValues: { 
+            first_name: "",
+            last_name: "",
+            gender: "",
+            marital_status: "",
+            blood_group: "",
+            date_of_birth: "",
+            phoneNumber:"",
+            alterEmail:"",
+            emergencyNumber:"",
+            address:"",
+            bank_name:"",
+            bank_number:"",
+            ifsc_number:"",
+            pan_number:"",
+            pf_number:""
+         },
+    })
+
+
+    function onSubmit(data: z.infer<typeof FormSchema>) {
+        console.log("data", data)
+    }
+
+
+
     return (
         <div>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full'>
-                <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee ID*</h1>
-                    <Input type='text' />
-                </div>
-                <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Leave Request Type*</h1>
-                    <Select>
-                        <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Select Leave Type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="light">Light</SelectItem>
-                            <SelectItem value="dark">Dark</SelectItem>
-                            <SelectItem value="system">System</SelectItem>
-                        </SelectContent>
-                    </Select>
-                </div>
-                <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Employee Name*</h1>
-                    <Input type='text' />
-                </div>
-                <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Department*</h1>
-                    <Input type='text' />
-                </div>
-                <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Position*</h1>
-                    <Input type='text' />
-                </div>
-                <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Salary*</h1>
-                    <Input type='text' />
-                </div>
-                <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Contact Number*</h1>
-                    <Input type='text' />
-                </div>
-                <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Email Address*</h1>
-                    <Input type='email' />
-                </div>
-                <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Date of Birth*</h1>
-                    <Input type='date' />
-                </div>
-                <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Joining Date*</h1>
-                    <Input type='date' />
-                </div>
-                <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Emergency Contact*</h1>
-                    <Input type='text' />
-                </div>
-                <div>
-                    <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Address*</h1>
-                    <Input type='text' />
-                </div>
-                <div className='col-span-1 sm:col-span-2 lg:col-span-3'>
-                    <div className="items-top flex space-x-2">
-                        <Checkbox id="terms1" />
-                        <div className="grid gap-1.5 leading-none">
-                            <label
-                                htmlFor="terms1"
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                            >
-                               Onboard employee with probation
-                            </label>
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} >
+                    <div className="border bg-white rounded-sm border-[#E5E5E5] p-3">
+                        <h1 className="text-[14px]">Personal </h1>
+                        <div className="grid mt-2 grid-cols-3 gap-4">
+                            {
+                                basicInputFields?.slice(0,6)?.map(({ name, label, placeholder, type, options }) =>
+                                    type === "text" || type == "date" || type == "number" || type == "email" ? (
+                                        <InputTextField
+                                            key={name}
+                                            form={form}
+                                            name={name}
+                                            label={label}
+                                            type={type}
+                                            placeholder={placeholder}
+                                        />
+                                    ) : type === "select" ? (
+                                        <SelectOptionField
+                                            key={name}
+                                            form={form}
+                                            name={name}
+                                            label={label}
+                                            placeholder={placeholder}
+                                            options={options || []}
+                                        />
+                                    ) : null
+                                )
+                            }
                         </div>
                     </div>
-                </div>
-                <div className='flex justify-end items-center pt-7 col-span-1 sm:col-span-2 lg:col-span-3'>
-                    <Button className='rounded-sm'>Submit</Button>
-                </div>
-            </div>
+                    <div className="border mt-2 bg-white rounded-sm border-[#E5E5E5] p-3">  
+                        <h1 className="text-[14px]">Contact </h1>
+                        <div className="grid mt-2 grid-cols-3 gap-4">
+                            {
+                                basicInputFields.slice(6,10)?.map(({ name, label, placeholder, type, options }) =>
+                                    type === "text" || type == "date" || type == "number" || type == "email" ? (
+                                        <InputTextField
+                                            key={name}
+                                            form={form}
+                                            name={name}
+                                            label={label}
+                                            type={type}
+                                            placeholder={placeholder}
+                                        />
+                                    ) : type === "select" ? (
+                                        <SelectOptionField
+                                            key={name}
+                                            form={form}
+                                            name={name}
+                                            label={label}
+                                            placeholder={placeholder}
+                                            options={options || []}
+                                        />
+                                    ) : null
+                                )
+                            }
+                        </div>
+                    </div>
+                    <div className="border mt-2 bg-white rounded-sm border-[#E5E5E5] p-3">  
+                        <h1 className="text-[14px]">Bank Details </h1>
+                        <div className="grid mt-2 grid-cols-3 gap-4">
+                            {
+                                basicInputFields.slice(10   )?.map(({ name, label, placeholder, type, options }) =>
+                                    type === "text" || type == "date" || type == "number" || type == "email" ? (
+                                        <InputTextField
+                                            key={name}
+                                            form={form}
+                                            name={name}
+                                            label={label}
+                                            type={type}
+                                            placeholder={placeholder}
+                                        />
+                                    ) : type === "select" ? (
+                                        <SelectOptionField
+                                            key={name}
+                                            form={form}
+                                            name={name}
+                                            label={label}
+                                            placeholder={placeholder}
+                                            options={options || []}
+                                        />
+                                    ) : null
+                                )
+                            }
+                        </div>
+                    </div>
+                    <Button type="submit">Submit</Button>
+                </form>
+            </Form>
         </div>
     )
 }
