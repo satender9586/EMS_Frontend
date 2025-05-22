@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { BasicInputFieldsInterface } from "@/types/organaization";
 
-// **************************BASIC PERSONAL DETAILS
+// ************************** UPDATE NEW EMPLOYEE
 
 export const basicInputFields: BasicInputFieldsInterface[] = [
   {

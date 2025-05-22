@@ -6,7 +6,7 @@ import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
 import InputTextField from "@/components/InputTextField"
-import { basicInputFields, FormSchema } from "@/lib/AddNewEmployee"
+import { basicInputFields, FormSchema } from "@/lib/UpdateEmployeeSchema"
 import SelectOptionField from "@/components/SelectOptionField"
 
 
