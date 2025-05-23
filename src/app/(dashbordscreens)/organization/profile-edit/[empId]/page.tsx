@@ -8,11 +8,14 @@ import { Form } from "@/components/ui/form"
 import InputTextField from "@/components/InputTextField"
 import { basicInputFields, FormSchema } from "@/lib/UpdateEmployeeSchema"
 import SelectOptionField from "@/components/SelectOptionField"
+import { editEmployeePersonalApi,editEmployeeContactApi,editEmployeeBankApi } from "@/services/POST_API"
+import { useParams } from 'next/navigation'
 
 
 
+const ProfileEditPage = () => {
+  const {empId} = useParams()
 
-const ProfileEditPage = ({ params }: { params: { empId: string } }) => {
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -23,9 +26,9 @@ const ProfileEditPage = ({ params }: { params: { empId: string } }) => {
       marital_status: "",
       blood_group: "",
       date_of_birth: "",
-      phoneNumber: "",
-      alterEmail: "",
-      emergencyNumber: "",
+      phone_number: "",
+      alternative_email: "",
+      emergency_number: "",
       address: "",
       bank_name: "",
       bank_number: "",
@@ -35,10 +38,29 @@ const ProfileEditPage = ({ params }: { params: { empId: string } }) => {
     },
   })
 
+  
+async function onSubmit(data: z.infer<typeof FormSchema>) {
+  try {
+    const {
+      first_name, last_name, gender, marital_status, blood_group, date_of_birth,
+      address, alternative_email, emergency_number, phone_number,
+      bank_name, bank_number, ifsc_number, pan_number, pf_number
+    } = data;
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log("data", data)
+  
+    const [personalRes, contactRes, bankRes] = await Promise.all([
+      editEmployeePersonalApi({ first_name, last_name, gender, marital_status, blood_group, date_of_birth,employee_id:empId }),
+      editEmployeeContactApi({ address, alternative_email, emergency_number, phone_number,employee_id:empId }),
+      editEmployeeBankApi({ bank_name, bank_number, ifsc_number, pan_number, pf_number,employee_id:empId })
+    ]);
+    console.log("Personal updated:", personalRes);
+    console.log("Contact updated:", contactRes);
+    console.log("Bank updated:", bankRes);
+
+  } catch (error) {
+    console.error("Error updating employee info:", error);
   }
+}
 
 
 
