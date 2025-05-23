@@ -1,14 +1,14 @@
 import { instance } from "@/lib/Axios.interceptor";
-import { LoginPayload } from "@/types/auth";
-import { punchInPayload } from "@/types/attendence";
+import { LoginPayload,addNewUserPayload } from "@/types/auth";
+import { editBankInfoPayload, editContactInfoPayload, editPersonalInfoPayload } from "@/types/profile";
 const Auth_Base = "/auth"
 const Atten_Base = "/attendence"
 
 
-// Add user API     
-export const AddNewUserApi = async () => {
-    const response = await instance.post(`${Auth_Base}/register`);
-    if (response.status !== 200) {
+// create new user API     
+export const AddNewUserApi = async (payloadData:addNewUserPayload) => {
+    const response = await instance.post(`${Auth_Base}/register`,payloadData);
+    if (response.status !== 201) {
         throw new Error("Something is wrong!");
     }
     return response;
@@ -16,8 +16,8 @@ export const AddNewUserApi = async () => {
 
 
 // User Login API   
-export const loginApi  = async (data:LoginPayload)=>{
-    const response = await instance.post(`${Auth_Base}/login`,data)
+export const loginApi  = async (payloadData:LoginPayload)=>{
+    const response = await instance.post(`${Auth_Base}/login`,payloadData)
     if(response.status !==200){
         throw new Error("something is wrong!")
     }
@@ -33,8 +33,8 @@ export const loggedOutApi  = async ()=>{
 }
 
 // Refesh Token Generate API   
-export const refreshTokenGenerateApi  = async (data:string)=>{
-    const response = await instance.post(`${Auth_Base}/refreshtoken`,data)
+export const refreshTokenGenerateApi  = async (payloadData:string)=>{
+    const response = await instance.post(`${Auth_Base}/refreshtoken`,payloadData)
     if(response.status !==200){
         throw new Error("something is wrong!")
     }
@@ -50,11 +50,34 @@ export const punchInApi  = async ()=>{
     return response;
 }
 
-
 // user attendence list 
-
 export const AttendenceTableApi  = async ()=>{
     const response = await instance.post(`${Atten_Base}/retrive_attendence`)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
+// update employee profile details 
+export const editEmployeePersonalApi  = async (payloadData:editPersonalInfoPayload)=>{
+    const response = await instance.put(`${Auth_Base}/peronal-details`,payloadData)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
+// update employee contact details 
+export const editEmployeeContactApi  = async (payloadData: editContactInfoPayload)=>{
+    const response = await instance.put(`${Auth_Base}/contact-details`,payloadData)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
+
+// update employee bank details 
+export const editEmployeeBankApi  = async (payloadData:editBankInfoPayload)=>{
+    const response = await instance.put(`${Auth_Base}/bank-details`,payloadData)
     if(response.status !==200){
         throw new Error("something is wrong!")
     }

@@ -11,6 +11,7 @@ import { HiOutlineDotsVertical } from "react-icons/hi";
 import { TiPin } from "react-icons/ti";
 import { authInfoInterface } from "@/types/profile";
 import Link from 'next/link';
+import { activeInctiveApi } from '@/services/PATCH_API';
 
 
 
@@ -26,6 +27,14 @@ const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData }) => {
     const { } = bank_info;
     const { } = contact_info;
 
+    const activeInactiveHandler = async ()=>{
+        try {
+            const resposne = await activeInctiveApi({employeeId:employee_id})
+            console.log("resposne",resposne)
+        } catch (error) {
+            console.log("error",error)
+        }
+    }
 
 
     return (
@@ -60,23 +69,27 @@ const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData }) => {
                                             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                                         </DropdownMenuItem>
                                     </Link>
-
-                                    <DropdownMenuItem>
+                                    
+                                    <DropdownMenuItem onClick={activeInactiveHandler}>
+                                        status
+                                        <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+                                    </DropdownMenuItem>
+                                    {/* <DropdownMenuItem>
                                         Delete
                                         <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
                                     </DropdownMenuItem>
                                     <DropdownMenuItem>
                                         Login Disable
                                         <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem>
+                                    </DropdownMenuItem> */}
+                                    {/* <DropdownMenuItem>
                                         Mobile Login Disable
                                         <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
                                     </DropdownMenuItem>
                                     <DropdownMenuItem>
                                         Download Profile
                                         <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-                                    </DropdownMenuItem>
+                                    </DropdownMenuItem> */}
                                 </DropdownMenuGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>
