@@ -6,7 +6,7 @@ interface myLeavesProps {
   leaveDataProps: myLeavesInterface[]; 
 }
 
-const LeaverequestCardsTables:React.FC<myLeavesProps> = ({leaveDataProps}) => {
+const LeaveStausTables:React.FC<myLeavesProps> = ({leaveDataProps}) => {
 
   return (
     <div className="overflow-x-auto">
@@ -38,4 +38,4 @@ const LeaverequestCardsTables:React.FC<myLeavesProps> = ({leaveDataProps}) => {
   )
 }
 
-export default LeaverequestCardsTables
+export default LeaveStausTables

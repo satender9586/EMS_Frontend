@@ -8,6 +8,8 @@ import InputTextField from "@/components/InputTextField"
 import { basicInputFields, FormSchema } from "@/lib/AddnewEmployeeSchema"
 import SelectOptionField from "@/components/SelectOptionField"
 import { AddNewUserApi } from "@/services/POST_API"
+import { FcInfo } from "react-icons/fc";
+import { toast } from "react-toastify"
 
 
 
@@ -15,28 +17,38 @@ import { AddNewUserApi } from "@/services/POST_API"
 const AddNewEmp = () => {
 
   const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-      department: "",
-      role: "",
+  resolver: zodResolver(FormSchema),
+  defaultValues: {
+    email: "",
+    password: "",
+    department: "",
+    role: "",
+  },
+});
 
-    },
-  })
+const { reset } = form; 
 
+async function onSubmit(data: z.infer<typeof FormSchema>) {
+  try {
+    const response = await AddNewUserApi(data);
+    const status = response?.status;
 
-  async function onSubmit(data: z.infer<typeof FormSchema>) {
-    try {
-      const response = await AddNewUserApi(data)
-      const status = response?.status
-      if (status === 201) {
+    console.log("Response status:", status);
+    toast.success("User created successfully", { autoClose: 1000 });
+    reset();
+  } catch (error: any) {
+    const status = error?.response?.status;
+    const message = error?.response?.data?.message || "Something went wrong";
 
-      }
-    } catch (error) {
-      console.log("error in create new user API : ", error)
+    if (status === 400) {
+      toast.warning(message, { autoClose: 1000 });
+    } else {
+      toast.error("Failed to create user. Please try again.");
     }
+    console.error("Error in create new user API:", error);
   }
+}
+
 
 
 
@@ -46,7 +58,12 @@ const AddNewEmp = () => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} >
           <div className="border bg-white rounded-sm border-[#E5E5E5] p-3">
-            <h1 className="text-[14px]">Basic Details </h1>
+            <div className="flex items-start space-x-2">
+              <FcInfo size={20} />
+              <span className='font-sans text-sm'>
+                Basic Infomation
+              </span>
+            </div>
             <div className="grid mt-2 grid-cols-3 gap-4">
               {
                 basicInputFields?.map(({ name, label, placeholder, type, options }) =>

@@ -1,12 +1,12 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import { RiErrorWarningFill } from "react-icons/ri";
-import LeaverequestCardsTables from './LeaverequestCardsTables';
+import LeaverequestCardsTables from './LeaveStausTables';
 import { retriveMyLeavesApi } from '@/services/GET_API';
 import { myLeavesInterface } from '@/types/leaves';
 
 
-const LeaverequestCards = () => {
+const ShowLeaveStaus = () => {
     const [leavesData, setLeavesData]=useState<myLeavesInterface[]>([])
 
     const retriveMyLeaves = async ()=>{
@@ -39,4 +39,4 @@ const LeaverequestCards = () => {
     )
 }
 
-export default LeaverequestCards
+export default ShowLeaveStaus

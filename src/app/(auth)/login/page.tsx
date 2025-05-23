@@ -9,7 +9,7 @@ import { LoginPayload } from '@/types/auth'
 import { setToken } from '@/utils/cookies'
 import { storeAuthInLocalStorage } from '@/utils/methods'
 import { useRouter } from 'next/navigation'
-
+  import {toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -24,6 +24,7 @@ const Login = () => {
 
   // Form submit and Login Api integration
   const formHandler = async () => {
+     
     try {
       const isFieldEmpty = Object.values(inputFieldsFormData).some((val) => val == "")
       if (!isFieldEmpty) {
@@ -35,13 +36,16 @@ const Login = () => {
           storeAuthInLocalStorage(auth)
           await setToken("accessToken",accessToken)
           await setToken("refreshToken",refreshToken)
+          toast.success("Login Successfullt!..",{autoClose:500})
           router.push("/dashboard")
+         
         }
       } else {
-        alert("Field are missing!")
+        toast.error("Field are missing!")
       }
     } catch (error: any) {
       const message = error?.response?.data.message;
+       toast.error(message)
       alert(message)
     }
   }
