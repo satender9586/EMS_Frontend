@@ -44,25 +44,10 @@ const ProfileEditPage = () => {
 
 
 
-  async function onSubmit(data: z.infer<typeof FormSchema>) {
+  const onSubmit = async (data: z.infer<typeof FormSchema>)=>{
+    const {first_name,last_name,gender,marital_status,blood_group,date_of_birth,address,alternative_email,emergency_number,phone_number,bank_name,bank_number,ifsc_number,pan_number,pf_number} = data;
+    
     try {
-      const {
-        first_name,
-        last_name,
-        gender,
-        marital_status,
-        blood_group,
-        date_of_birth,
-        address,
-        alternative_email,
-        emergency_number,
-        phone_number,
-        bank_name,
-        bank_number,
-        ifsc_number,
-        pan_number,
-        pf_number
-      } = data;
 
 
       if (!empId || typeof empId !== "string") {

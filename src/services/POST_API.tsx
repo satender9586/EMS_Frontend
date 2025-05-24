@@ -1,6 +1,6 @@
 import { instance } from "@/lib/Axios.interceptor";
 import { EmployeeProfilePayload, LoginPayload,addNewUserPayload } from "@/types/auth";
-import { editBankInfoPayload, editContactInfoPayload, editPersonalInfoPayload } from "@/types/profile";
+
 const Auth_Base = "/auth"
 const Atten_Base = "/attendence"
 
@@ -58,31 +58,7 @@ export const AttendenceTableApi  = async ()=>{
     }
     return response;
 }
-// update employee profile details 
-export const editEmployeePersonalApi  = async (payloadData:editPersonalInfoPayload)=>{
-    const response = await instance.put(`${Auth_Base}/peronal-details`,payloadData)
-    if(response.status !==200){
-        throw new Error("something is wrong!")
-    }
-    return response;
-}
-// update employee contact details 
-export const editEmployeeContactApi  = async (payloadData: editContactInfoPayload)=>{
-    const response = await instance.put(`${Auth_Base}/contact-details`,payloadData)
-    if(response.status !==200){
-        throw new Error("something is wrong!")
-    }
-    return response;
-}
 
-
-export const editEmployeeBankApi  = async (payloadData:editBankInfoPayload)=>{
-    const response = await instance.put(`${Auth_Base}/bank-details`,payloadData)
-    if(response.status !==200){
-        throw new Error("something is wrong!")
-    }
-    return response;
-}
 
 // update complete profile 
 export const EmployeeProfileAddUpdateApi = async (payloadData:EmployeeProfilePayload) => {
