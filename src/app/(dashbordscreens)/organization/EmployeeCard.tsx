@@ -12,14 +12,16 @@ import { TiPin } from "react-icons/ti";
 import { authInfoInterface } from "@/types/profile";
 import Link from 'next/link';
 import { activeInctiveApi } from '@/services/PATCH_API';
+import { toast } from 'react-toastify';
 
 
 
 interface EmployeeCardPropsInterface {
     cardData: authInfoInterface
+    empListcallbackhandler:any
 }
 
-const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData }) => {
+const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData,empListcallbackhandler }) => {
 
     const { user_info, personal_info, bank_info, contact_info } = cardData
     const { department, email, employee_id, role, status } = user_info;
@@ -27,12 +29,16 @@ const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData }) => {
     const { } = bank_info;
     const { } = contact_info;
 
-    const activeInactiveHandler = async ()=>{
+    const activeInactiveHandler = async () => {
         try {
-            const resposne = await activeInctiveApi({employeeId:employee_id})
-            console.log("resposne",resposne)
-        } catch (error) {
-            console.log("error",error)
+            const resposne = await activeInctiveApi({ employeeId: employee_id })
+            console.log("resposne", resposne?.data?.data?.status)
+            const status = resposne?.data?.data?.status
+            toast.success( `update status : ${status}`,{autoClose:1000})
+            empListcallbackhandler()
+        } catch (error:any) {
+            console.log("error", error)
+             toast.error(error,{autoClose:1000})
         }
     }
 
@@ -69,27 +75,17 @@ const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData }) => {
                                             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                                         </DropdownMenuItem>
                                     </Link>
-                                    
+
                                     <DropdownMenuItem onClick={activeInactiveHandler}>
                                         status
                                         <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
                                     </DropdownMenuItem>
-                                    {/* <DropdownMenuItem>
-                                        Delete
-                                        <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem>
-                                        Login Disable
-                                        <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                                    </DropdownMenuItem> */}
-                                    {/* <DropdownMenuItem>
-                                        Mobile Login Disable
-                                        <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem>
-                                        Download Profile
-                                        <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-                                    </DropdownMenuItem> */}
+                                    <Link href={`/organization/profile/${employee_id}`}>
+                                        <DropdownMenuItem >
+                                            Profile
+                                            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+                                        </DropdownMenuItem>
+                                    </Link>
                                 </DropdownMenuGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>

@@ -94,7 +94,7 @@ export const basicInputFields: BasicInputFieldsInterface[] = [
   {
     name: "pf_number",
     label: "Enter PF Number",
-    placeholder: "Please enter pf number",
+    placeholder: "Please enter PF number",
     type: "number",
   },
 

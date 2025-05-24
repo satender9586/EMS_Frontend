@@ -1,6 +1,7 @@
 
 
 //******************************** LOGGED USER DEFAULT STATE OBJECT FOR PROFILE PAGE > MY PROFILE TAB  */
+
 export const authInfoStateData = {
     bank_info: {
         bank_name: "",
@@ -31,3 +32,25 @@ export const authInfoStateData = {
         status: "",
     },
 } 
+
+//******************************** DEFAULT ORGANIZAITON > EDIT PROFILE DEFAULT FORM 
+
+
+export const editProfileDeautlFormField = {
+     first_name: "",
+      last_name: "",
+      gender: "",
+      marital_status: "",
+      blood_group: "",
+      date_of_birth: "",
+      phone_number: "",
+      alternative_email: "",
+      emergency_number: "",
+      address: "",
+      bank_name: "",
+      bank_number: "",
+      ifsc_number: "",
+      pan_number: "",
+      pf_number: ""
+}
+//******************************** DEFAULT ORGANIZAITON > EDIT PROFILE DEFAULT FORM 

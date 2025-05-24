@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "@/components/common_layout/Layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import MyProfileCards from "./MyProfileCards";
+import MyProfiles from "./MyProfiles";
 import MyAttendence from "./MyAttendence";
 
 
@@ -30,7 +30,7 @@ const Profile = () => {
           {/* Tab Content */}
           <TabsContent value="account">
             <div className="border bg-[#F2F3F6] rounded-sm p-3 border-[#E5E5E5] w-full">
-              <MyProfileCards />
+              <MyProfiles />
             </div>
           </TabsContent>
 
