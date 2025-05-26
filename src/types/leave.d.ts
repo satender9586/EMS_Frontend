@@ -14,3 +14,12 @@ export interface leaveActionPayload {
     leaveId : string,
     action : string
 }
+
+//>>>>>>>>>>>>>>>>>>>>>>>> ADD OFFICIAL HOLIDAY PAYLOAD
+
+export interface addOfficialHolidayPayload {
+    holiday_name : string,
+    description : string,
+    start_date : string,
+    end_date : string
+}

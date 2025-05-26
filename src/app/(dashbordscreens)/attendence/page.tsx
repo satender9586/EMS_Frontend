@@ -22,7 +22,7 @@ const MarkAttendence = () => {
                     <ShowMonthAttendenceCart />
                 </div>
                 <div>
-                    <LeaveSummaryCart />
+                    {/* <LeaveSummaryCart /> */}
                 </div>
                 <div>
                 </div>
