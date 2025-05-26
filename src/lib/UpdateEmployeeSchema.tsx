@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { BasicInputFieldsInterface } from "@/types/organaization";
+import { BasicInputFieldsInterface } from "@/types/inputField";
 
-// ************************** UPDATE NEW EMPLOYEE
+// ************************** UPDATE NEW EMPLOYEE INPUT FIELDS
 
 export const basicInputFields: BasicInputFieldsInterface[] = [
   {

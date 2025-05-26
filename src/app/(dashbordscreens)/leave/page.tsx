@@ -1,70 +1,86 @@
+"use client"
 import React from 'react'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "@/components/ui/select"
-import { Input } from '@/components/ui/input'
-import { Textarea } from "@/components/ui/textarea"
-import { Button } from '@/components/ui/button'
 import Layout from '@/components/common_layout/Layout'
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import InputTextField from "@/components/InputTextField"
+import SelectOptionField from "@/components/SelectOptionField"
+import { FcInfo } from "react-icons/fc";
+import { toast } from "react-toastify"
+import { useRouter } from 'next/navigation'
+import { leaveRequestDefaultSchema } from '@/utils/defaultStateValues'
+import { leaveRequestInputFields, LeaveRequestFormSchema } from "@/lib/ApplyLeaveSchema"
+import { LeaveRequestApi } from '@/services/POST_API'
 
 const LeaveRequest = () => {
+
+  const router = useRouter()
+  const form = useForm<z.infer<typeof LeaveRequestFormSchema>>({
+    resolver: zodResolver(LeaveRequestFormSchema),
+    defaultValues: { ...leaveRequestDefaultSchema },
+  })
+
+  const { reset } = form;
+  
+  const onSubmit = async (data: z.infer<typeof LeaveRequestFormSchema>) => {
+    const { leave_type, start_date, end_date, reason } = data;
+    try {
+      const response = await LeaveRequestApi({ leave_type, start_date, end_date, reason });
+      toast("Leave applied successfully!", { autoClose: 500 });
+      router.push("/profile");
+      reset();
+    } catch (error) {
+      console.error("Error updating employee info:", error);
+    }
+  }
+
+
   return (
     <Layout>
-      <div className='border border-[#E5E5E5] rounded-lg p-3'>
-        <div className='flex justify-between items-center'>
-          <h1 className=" font-semibold text-sm  tracking-wide flex items-center space-x-2">
-            Leave Request
-          </h1>
-          <h1 className="text-green-700 font-bold text-[16px] text-sm  tracking-wide flex items-center space-x-2">
-            Available Leave Count : 11
-          </h1>
-        </div>
-        <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 bg-white mt-2 p-2 rounded-sm border border-[#E5E5E5]'>
-          <div>
-            <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Leave Type*</h1>
-            <Select>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select Leave Type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="light">Light</SelectItem>
-                <SelectItem value="dark">Dark</SelectItem>
-                <SelectItem value="system">System</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Leave Request Type*</h1>
-            <Select>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select Request Type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="light">Light</SelectItem>
-                <SelectItem value="dark">Dark</SelectItem>
-                <SelectItem value="system">System</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>From Date*</h1>
-            <Input type='date' />
-          </div>
-          <div>
-            <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>To Date*</h1>
-            <Input type='date' />
-          </div>
-          <div className='col-span-2'>
-            <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Reason of Leave*</h1>
-            <Textarea placeholder="Type your message here." />
-          </div>
-          <div className='col-span-2'>
-            <h1 className='py-1 text-[14px] font-[popplins] font-[500] text-[#656464]'>Supporting Document</h1>
-            <Input type='file' />
-          </div>
-          <div></div>
-          <div className='flex justify-end'>
-            <Button className='rounded-sm min-w-[130px]'>Apply</Button>
-          </div>
-        </div>
+      <div >
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} >
+            <div className="border  rounded-sm border-[#E5E5E5] p-3">
+              <div className="flex items-start space-x-2">
+                <FcInfo size={20} />
+                <span className='font-sans text-sm'>
+                  Leave Request
+                </span>
+              </div>
+              <div className="grid mt-2 grid-cols-3 gap-4">
+                {
+                  leaveRequestInputFields?.map(({ name, label, placeholder, type, options }) =>
+                    type === "text" || type == "date" || type == "number" || type == "email" ? (
+                      <InputTextField
+                        key={name}
+                        form={form}
+                        name={name}
+                        label={label}
+                        type={type}
+                        placeholder={placeholder}
+                      />
+                    ) : type === "select" ? (
+                      <SelectOptionField
+                        key={name}
+                        form={form}
+                        name={name}
+                        label={label}
+                        placeholder={placeholder}
+                        options={options || []}
+                      />
+                    ) : null
+                  )
+                }
+              </div>
+            </div>
+            <div className="mt-2.5 gap-2 flex" >
+              <Button type={"submit"} className="bg-blue-500 hover:bg-none">Submit </Button>
+            </div>
+          </form>
+        </Form>
       </div>
     </Layout>
 

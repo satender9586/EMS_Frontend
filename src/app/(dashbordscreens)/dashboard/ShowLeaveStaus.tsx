@@ -1,9 +1,9 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import { RiErrorWarningFill } from "react-icons/ri";
-import LeaverequestCardsTables from './LeaveStausTables';
+import LeaverequestCardsTables from '../../../components/LeaveStausTables';
 import { retriveMyLeavesApi } from '@/services/GET_API';
-import { myLeavesInterface } from '@/types/leaves';
+import { myLeavesInterface } from '@/types/applyLeave';
 
 
 const ShowLeaveStaus = () => {
@@ -18,7 +18,6 @@ const ShowLeaveStaus = () => {
           console.log("error",error)
         }
     }
-
     useEffect(()=>{
         retriveMyLeaves()
     },[])

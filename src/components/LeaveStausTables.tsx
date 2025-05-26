@@ -1,5 +1,5 @@
 import {Table,TableBody,TableCell,TableHead,TableHeader,TableRow,} from "@/components/ui/table"
-import { myLeavesInterface } from "@/types/leaves"
+import { myLeavesInterface } from "@/types/applyLeave"
 import { getDiffInTwoDates } from "@/utils/methods";
 
 interface myLeavesProps {

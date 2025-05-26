@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { BasicInputFieldsInterface } from "@/types/organaization";
+import { BasicInputFieldsInterface } from "@/types/inputField";
 
 // ************************** ADD NEW EMPLOYEE
 
