@@ -1,7 +1,8 @@
 import { instance } from "@/lib/Axios.interceptor";
+import { leaveActionPayload } from "@/types/leave";
 const Atten_Base = "/attendence"
 const Admin_Base = "/admin"
-
+const Leave_Base = "/leave"
 
 export const punchOutApi = async () => {
     const response = await instance.patch(`${Atten_Base}/check_out`);
@@ -19,3 +20,5 @@ export const activeInctiveApi = async (payloadData:{employeeId:string}) => {
     }
     return response;
 };
+
+

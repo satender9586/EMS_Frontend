@@ -2,6 +2,7 @@ import { instance } from "@/lib/Axios.interceptor";
 const Auth_Base = "/auth"
 const Atten_Base = "/attendence"
 const leave_Base = "leave"
+const Admin_Base = "admin"
 
 // Current Day Status check API 
 // userID:string
@@ -49,3 +50,19 @@ export const retriveMyLeavesApi  = async ()=>{
     }
     return response;
 }
+export const retriveEmployeeProfilesApi  = async (paramsId : string)=>{
+    const response = await instance.get(`/${Admin_Base}/retriveEmployeeProfile/${paramsId}`)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
+
+export const retriveAllRequestedLeavesApi  = async (paramsId : string)=>{
+    const response = await instance.get(`/${leave_Base}/allleaves/${paramsId}`)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
+

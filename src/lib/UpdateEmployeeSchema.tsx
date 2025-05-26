@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { BasicInputFieldsInterface } from "@/types/organaization";
+import { BasicInputFieldsInterface } from "@/types/inputField";
 
-// ************************** UPDATE NEW EMPLOYEE
+// ************************** UPDATE NEW EMPLOYEE INPUT FIELDS
 
 export const basicInputFields: BasicInputFieldsInterface[] = [
   {
@@ -94,7 +94,7 @@ export const basicInputFields: BasicInputFieldsInterface[] = [
   {
     name: "pf_number",
     label: "Enter PF Number",
-    placeholder: "Please enter pf number",
+    placeholder: "Please enter PF number",
     type: "number",
   },
 

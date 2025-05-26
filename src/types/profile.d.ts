@@ -1,5 +1,6 @@
 //******************************** PERSONAL INFO , CONTACT INFO, BANK INFO ADD PAYLOAD
 export interface editPersonalInfoPayload {
+  
   blood_group: string;
   date_of_birth: string;
   first_name: string;

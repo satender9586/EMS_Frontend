@@ -13,33 +13,39 @@ interface InputFieldProps {
   options: string[],
 }
 
-const SelectOptionField: React.FC<InputFieldProps> = ({ form, name, placeholder = "", label, options }) => {
+const SelectOptionField: React.FC<InputFieldProps> = ({
+  form,
+  name,
+  placeholder = "Select an option",
+  label,
+  options,
+}) => {
   return (
     <FormField
       control={form.control}
       name={name}
       render={({ field }) => (
-        <FormItem >
+        <FormItem>
           <FormLabel>{label}</FormLabel>
-          <Select onValueChange={field.onChange} defaultValue={field.value} >
+          <Select value={field.value} onValueChange={field.onChange}  defaultValue={field.value} >
             <FormControl>
               <SelectTrigger className="w-full">
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
             </FormControl>
-            <SelectContent >
-              {
-                options?.map((data) => (
-                  <SelectItem  key={data} value={data}>{data}</SelectItem>
-                ))
-              }
+            <SelectContent>
+              {options?.map((data) => (
+                <SelectItem key={data} value={data}>
+                  {data}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
           <FormMessage />
         </FormItem>
       )}
     />
-  )
-}
+  );
+};
 
 export default SelectOptionField

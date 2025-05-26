@@ -1,6 +1,6 @@
    
 //******************************** ORGANIZATION > ADD NEW EMPLOYEE  */
- 
+
 export interface BasicInputFieldsInterface {
   name: string;
   label: string;
@@ -8,3 +8,5 @@ export interface BasicInputFieldsInterface {
   type: "text" | "select" | "number" | "email" | "password" | "date";
   options?: string[];
 }
+
+//******************************** ORGANIZATION > ADD NEW EMPLOYEE  */

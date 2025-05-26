@@ -1,8 +1,10 @@
 import { instance } from "@/lib/Axios.interceptor";
-import { LoginPayload,addNewUserPayload } from "@/types/auth";
-import { editBankInfoPayload, editContactInfoPayload, editPersonalInfoPayload } from "@/types/profile";
+import { EmployeeProfilePayload, LoginPayload,addNewUserPayload } from "@/types/auth";
+import { leaveActionPayload, leaveRequestPayload, addOfficialHolidayPayload } from "@/types/leave";
+const Leave_Base = "leave"
 const Auth_Base = "/auth"
 const Atten_Base = "/attendence"
+const Holiday_Base = "/holiday"
 
 
 // create new user API     
@@ -13,7 +15,6 @@ export const AddNewUserApi = async (payloadData:addNewUserPayload) => {
     }
     return response;
 };
-
 
 // User Login API   
 export const loginApi  = async (payloadData:LoginPayload)=>{
@@ -58,28 +59,37 @@ export const AttendenceTableApi  = async ()=>{
     }
     return response;
 }
-// update employee profile details 
-export const editEmployeePersonalApi  = async (payloadData:editPersonalInfoPayload)=>{
-    const response = await instance.put(`${Auth_Base}/peronal-details`,payloadData)
-    if(response.status !==200){
-        throw new Error("something is wrong!")
-    }
-    return response;
-}
-// update employee contact details 
-export const editEmployeeContactApi  = async (payloadData: editContactInfoPayload)=>{
-    const response = await instance.put(`${Auth_Base}/contact-details`,payloadData)
-    if(response.status !==200){
-        throw new Error("something is wrong!")
-    }
-    return response;
-}
 
-// update employee bank details 
-export const editEmployeeBankApi  = async (payloadData:editBankInfoPayload)=>{
-    const response = await instance.put(`${Auth_Base}/bank-details`,payloadData)
-    if(response.status !==200){
-        throw new Error("something is wrong!")
+
+// update complete profile 
+export const EmployeeProfileAddUpdateApi = async (payloadData:EmployeeProfilePayload) => {
+    const response = await instance.post(`${Auth_Base}/completeProfile`, payloadData);
+    if (response.status !== 200) {
+        throw new Error("Something is wrong!");
     }
     return response;
-}
+};
+
+// apply for leave request 
+export const LeaveRequestApi = async (payloadData:leaveRequestPayload) => {
+    const response = await instance.post(`${Leave_Base}/leave-request`, payloadData);
+    if (response.status !== 200) {
+        throw new Error("Something is wrong!");
+    }
+    return response;
+};
+
+export const LeaveActionApi = async (payloadData:leaveActionPayload) => {
+    const response = await instance.post(`${Leave_Base}/approve-leave/${payloadData?.leaveId}`,{action:payloadData.action});
+    if (response.status !== 200) {
+        throw new Error("Something is wrong!");
+    }
+    return response;
+};
+export const AddCompanyHolidayApi = async (payloadData:addOfficialHolidayPayload) => {
+    const response = await instance.post(`${Holiday_Base}/addHolidays`,payloadData);
+    if (response.status !== 200) {
+        throw new Error("Something is wrong!");
+    }
+    return response;
+};
