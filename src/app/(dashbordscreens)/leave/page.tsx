@@ -30,9 +30,12 @@ const LeaveRequest = () => {
     try {
       const response = await LeaveRequestApi({ leave_type, start_date, end_date, reason });
       toast("Leave applied successfully!", { autoClose: 500 });
+      console.log("resposne",response)
       router.push("/profile");
       reset();
-    } catch (error) {
+    } catch (error:any) {
+      const errorres = error?.response?.data?.message || "something wrong!"
+      toast.error(errorres,{autoClose:1000})
       console.error("Error updating employee info:", error);
     }
   }

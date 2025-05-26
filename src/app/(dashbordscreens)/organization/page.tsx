@@ -3,6 +3,7 @@ import Layout from '@/components/common_layout/Layout'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import OrganizationEmployees from './OrganizationEmployees'
 import AddNewEmp from './AddNewEmp'
+import RequestedLeaves from './RequestedLeaves'
 
 const Organization = () => {
   return (
@@ -16,6 +17,9 @@ const Organization = () => {
             <TabsTrigger value="addnewemp" className='text-sm font-[popplins] rounded-none py-2 px-4'>
               Add New User
             </TabsTrigger>
+            <TabsTrigger value="leaves" className='text-sm font-[popplins] rounded-none py-2 px-4'>
+              Requested Leaves
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="employees">
             <div className='border bg-[#F2F3F6] rounded-sm p-3 border-[#E5E5E5] w-full'>
@@ -25,6 +29,11 @@ const Organization = () => {
           <TabsContent value="addnewemp">
             <div className='border bg-[#F2F3F6] rounded-sm p-3 border-[#E5E5E5] w-full'>
               <AddNewEmp />
+            </div>
+          </TabsContent>
+          <TabsContent value="leaves">
+            <div className='border  rounded-sm p-3 border-[#E5E5E5] w-full'>
+              <RequestedLeaves />
             </div>
           </TabsContent>
         </Tabs>

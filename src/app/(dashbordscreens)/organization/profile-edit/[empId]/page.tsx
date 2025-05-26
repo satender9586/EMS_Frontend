@@ -48,12 +48,17 @@ const ProfileEditPage = () => {
   const onSubmit = async (data: z.infer<typeof FormSchema>)=>{
     const {first_name,last_name,gender,marital_status,blood_group,date_of_birth,address,alternative_email,emergency_number,phone_number,bank_name,bank_number,ifsc_number,pan_number,pf_number} = data;
     
+    console.log("data",form)
+
     try {
+
 
 
       if (!empId || typeof empId !== "string") {
         throw new Error("Employee ID is required and must be a string");
       }
+
+
 
       const response = await EmployeeProfileAddUpdateApi({
         first_name,

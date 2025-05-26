@@ -7,3 +7,10 @@ export interface leaveRequestPayload {
     end_date : string,
     reason : string
 }
+
+//>>>>>>>>>>>>>>>>>>>>>>>> LEAVE PAYLOAD
+
+export interface leaveActionPayload {
+    leaveId : string,
+    action : string
+}

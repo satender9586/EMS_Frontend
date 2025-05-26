@@ -10,7 +10,7 @@ const MyLeaves = () => {
     const retriveMyLeaves = async () => {
         try {
             const response = await retriveMyLeavesApi()
-            const data = response?.data?.data
+            const data = response?.data?.data?.reverse()
             setLeavesData(data)
         } catch (error) {
             console.log("error", error)

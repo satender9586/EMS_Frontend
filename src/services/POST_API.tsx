@@ -1,6 +1,6 @@
 import { instance } from "@/lib/Axios.interceptor";
 import { EmployeeProfilePayload, LoginPayload,addNewUserPayload } from "@/types/auth";
-import { leaveRequestPayload } from "@/types/leave";
+import { leaveActionPayload, leaveRequestPayload } from "@/types/leave";
 const Leave_Base = "leave"
 const Auth_Base = "/auth"
 const Atten_Base = "/attendence"
@@ -72,6 +72,14 @@ export const EmployeeProfileAddUpdateApi = async (payloadData:EmployeeProfilePay
 // apply for leave request 
 export const LeaveRequestApi = async (payloadData:leaveRequestPayload) => {
     const response = await instance.post(`${Leave_Base}/leave-request`, payloadData);
+    if (response.status !== 200) {
+        throw new Error("Something is wrong!");
+    }
+    return response;
+};
+
+export const LeaveActionApi = async (payloadData:leaveActionPayload) => {
+    const response = await instance.post(`${Leave_Base}/approve-leave/${payloadData?.leaveId}`,{action:payloadData.action});
     if (response.status !== 200) {
         throw new Error("Something is wrong!");
     }

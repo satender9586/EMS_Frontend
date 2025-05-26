@@ -58,3 +58,11 @@ export const retriveEmployeeProfilesApi  = async (paramsId : string)=>{
     return response;
 }
 
+export const retriveAllRequestedLeavesApi  = async (paramsId : string)=>{
+    const response = await instance.get(`/${leave_Base}/allleaves/${paramsId}`)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
+
