@@ -16,10 +16,15 @@ export function UserDropdownMenu() {
     const router = useRouter()
     const datalocalStorage = getLocalStrageData("user")
 <<<<<<< HEAD
+<<<<<<< HEAD
     // const{role}=JSON.parse(datalocalStorage)
 =======
     const{role}= JSON.parse(datalocalStorage)
 >>>>>>> 60dc5c16127d5a31f9c216f208f876e1d6d3d3b7
+=======
+    const localStorageData= JSON.parse(datalocalStorage)
+    // console.log("roles",localStorageData)
+>>>>>>> e5f1e383d1bd1dd909d8fcca790ce3041fb5aa25
 
 
     const loggedOutHandler = async () => {
@@ -44,7 +49,11 @@ export function UserDropdownMenu() {
                     <div className="border p-2 rounded-full">
                         <User />
                     </div>
+<<<<<<< HEAD
                     {/* <h1 className="tracking-[1px] font-normal">{role}</h1> */}
+=======
+                    {/* <h1 className="tracking-[1px] font-normal">{localStorageData?.role}</h1> */}
+>>>>>>> e5f1e383d1bd1dd909d8fcca790ce3041fb5aa25
                     <span>
                         <ChevronDown />
                     </span>

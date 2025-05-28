@@ -1,8 +1,6 @@
 import React from 'react'
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
+    DropdownMenu, DropdownMenuContent, DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuSeparator,
@@ -12,18 +10,37 @@ import {
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { TiPin } from "react-icons/ti";
 import { authInfoInterface } from "@/types/profile";
+import Link from 'next/link';
+import { activeInctiveApi } from '@/services/PATCH_API';
+import { toast } from 'react-toastify';
+
+
 
 interface EmployeeCardPropsInterface {
     cardData: authInfoInterface
+    empListcallbackhandler:any
 }
 
-const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData }) => {
+const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData,empListcallbackhandler }) => {
+
     const { user_info, personal_info, bank_info, contact_info } = cardData
     const { department, email, employee_id, role, status } = user_info;
     const { } = personal_info;
     const { } = bank_info;
     const { } = contact_info;
 
+    const activeInactiveHandler = async () => {
+        try {
+            const resposne = await activeInctiveApi({ employeeId: employee_id })
+            console.log("resposne", resposne?.data?.data?.status)
+            const status = resposne?.data?.data?.status
+            toast.success( `update status : ${status}`,{autoClose:1000})
+            empListcallbackhandler()
+        } catch (error:any) {
+            console.log("error", error)
+             toast.error(error,{autoClose:1000})
+        }
+    }
 
 
     return (
@@ -52,26 +69,23 @@ const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData }) => {
                                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuGroup>
-                                    <DropdownMenuItem>
-                                        Edit
-                                        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem>
-                                        Delete
+                                    <Link href={`/organization/profile-edit/${employee_id}`}>
+                                        <DropdownMenuItem>
+                                            Edit
+                                            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                                        </DropdownMenuItem>
+                                    </Link>
+
+                                    <DropdownMenuItem onClick={activeInactiveHandler}>
+                                        status
                                         <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
                                     </DropdownMenuItem>
-                                    <DropdownMenuItem>
-                                        Login Disable
-                                        <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem>
-                                        Mobile Login Disable
-                                        <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem>
-                                        Download Profile
-                                        <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-                                    </DropdownMenuItem>
+                                    <Link href={`/organization/profile/${employee_id}`}>
+                                        <DropdownMenuItem >
+                                            Profile
+                                            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+                                        </DropdownMenuItem>
+                                    </Link>
                                 </DropdownMenuGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>

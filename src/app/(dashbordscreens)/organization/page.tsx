@@ -2,7 +2,9 @@ import React from 'react'
 import Layout from '@/components/common_layout/Layout'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import OrganizationEmployees from './OrganizationEmployees'
-import AddNewEmployee from './AddNewEmployee'
+import AddNewEmp from './AddNewEmp'
+import RequestedLeaves from './RequestedLeaves'
+import AddHolidays from './AddHolidays'
 
 const Organization = () => {
   return (
@@ -13,8 +15,14 @@ const Organization = () => {
             <TabsTrigger value="employees" className='text-sm font-[popplins] rounded-none py-2 px-4'>
               Employees
             </TabsTrigger>
-            <TabsTrigger value="addemployee" className='text-sm font-[popplins] rounded-none py-2 px-4'>
-              Add New Employee
+            <TabsTrigger value="addnewemp" className='text-sm font-[popplins] rounded-none py-2 px-4'>
+              Add New User
+            </TabsTrigger>
+            <TabsTrigger value="leaves" className='text-sm font-[popplins] rounded-none py-2 px-4'>
+              Requested Leaves
+            </TabsTrigger>
+            <TabsTrigger value="addholiday" className='text-sm font-[popplins] rounded-none py-2 px-4'>
+              Add Holidays
             </TabsTrigger>
           </TabsList>
           <TabsContent value="employees">
@@ -22,9 +30,19 @@ const Organization = () => {
               <OrganizationEmployees />
             </div>
           </TabsContent>
-          <TabsContent value="addemployee">
-            <div className=' w-full'>
-              <AddNewEmployee />
+          <TabsContent value="addnewemp">
+            <div className='border bg-[#F2F3F6] rounded-sm p-3 border-[#E5E5E5] w-full'>
+              <AddNewEmp />
+            </div>
+          </TabsContent>
+          <TabsContent value="leaves">
+            <div className='border  rounded-sm p-3 border-[#E5E5E5] w-full'>
+              <RequestedLeaves />
+            </div>
+          </TabsContent>
+          <TabsContent value="addholiday">
+            <div className='border  rounded-sm p-3 border-[#E5E5E5] w-full'>
+              <AddHolidays />
             </div>
           </TabsContent>
         </Tabs>

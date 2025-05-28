@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { BasicInputFieldsInterface } from "@/types/organaization";
+import { BasicInputFieldsInterface } from "@/types/inputField";
 
-// **************************BASIC PERSONAL DETAILS
+// ************************** UPDATE NEW EMPLOYEE INPUT FIELDS
 
 export const basicInputFields: BasicInputFieldsInterface[] = [
   {
@@ -44,19 +44,19 @@ export const basicInputFields: BasicInputFieldsInterface[] = [
     type: "date",
   },
   {
-    name: "phoneNumber",
+    name: "phone_number",
     label: "Contact Number",
     placeholder: "Please enter your phone number",
     type: "number",
   },
   {
-    name: "alterEmail",
+    name: "alternative_email",
     label: "Alternative Email",
     placeholder: "Please enter your email",
     type: "email",
   },
   {
-    name: "emergencyNumber",
+    name: "emergency_number",
     label: "Emergency Number",
     placeholder: "Please enter your Emergency Number",
     type: "number",
@@ -94,7 +94,7 @@ export const basicInputFields: BasicInputFieldsInterface[] = [
   {
     name: "pf_number",
     label: "Enter PF Number",
-    placeholder: "Please enter pf number",
+    placeholder: "Please enter PF number",
     type: "number",
   },
 
@@ -120,13 +120,13 @@ export const FormSchema = z.object({
   date_of_birth: z.string().min(2, {
     message: "Select your Date of Birth",
   }),
-  phoneNumber: z.string().min(10, {
+  phone_number: z.string().min(10, {
     message: "Enter your phone number",
   }),
-  alterEmail: z.string().min(5, {
+  alternative_email: z.string().min(5, {
     message: "Enter your email",
   }),
-  emergencyNumber: z.string().min(10, {
+  emergency_number: z.string().min(10, {
     message: "Enter your emergency number",
   }),
   address: z.string().min(10, {

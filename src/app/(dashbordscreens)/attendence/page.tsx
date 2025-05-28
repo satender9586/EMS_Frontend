@@ -1,7 +1,8 @@
-import React from 'react'
-import Layout from '@/components/common_layout/Layout'
-import AttendencePunchCards from './AttendencePunchCards'
-import ShowMonthAttendenceCart from './ShowMonthAttendenceCart'
+import React from 'react';
+import Layout from '@/components/common_layout/Layout';
+import AttendencePunchCards from './AttendencePunchCards';
+import ShowMonthAttendenceCart from './ShowMonthAttendenceCart';
+import LeaveSummaryCart from '../leave/LeaveSummaryCart'; 
 import { LuPartyPopper } from "react-icons/lu";
 
 
@@ -21,16 +22,11 @@ const MarkAttendence = () => {
                 <div>
                     <ShowMonthAttendenceCart />
                 </div>
-               
+                <div>
+                </div>
             </div>
-
-
-            {/* <div className=' pt-14'>
-                  <Calendar/>
-                </div> */}
         </Layout>
     )
 }
 
 export default MarkAttendence
-    
