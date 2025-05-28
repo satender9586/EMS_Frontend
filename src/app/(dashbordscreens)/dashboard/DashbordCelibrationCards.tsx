@@ -1,32 +1,30 @@
 import React from 'react';
 import { GrAnnounce } from "react-icons/gr";
 
-
 const DashbordCelibrationCards = () => {
     return (
-        <div className=" hover:shadow-xl border border-[#E5E5E5] min-h-[100%] max-h-[250px] bg-white rounded-lg shadow-md overflow-hidden">
-            <h1 className="px-3 py-2 font-semibold text-sm  tracking-wide flex items-center space-x-2">
-                <span className='font-sans font-medium text-[#008AFF]'>Celebration This Month </span>
+        <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200 h-full max-h-[300px] overflow-hidden">
+          
+            <div className="flex items-center px-4 py-3 border-b">
+                <h2 className="text-[#008AFF] font-semibold text-sm font-sans">
+                    Celebration This Month
+                </h2>
+            </div>
 
-            </h1>
-            <div className="border-b"></div>
-
-            <div className="max-h-[150px] overflow-y-auto px-3 py-2 space-y-2">
-                <div className="flex items-start justify-between space-x-2">
-                    <span className='font-sans text-sm '>
-                       Amit Birth Day
-                    </span>
-                    <GrAnnounce size={20} className='text-[#008AFF]' />
-                </div>
-                <div className="flex items-start justify-between space-x-2">
-                    <span className='font-sans text-sm '>
-                       Amit Birth Day
-                    </span>
-                    <GrAnnounce size={20} className='text-[#008AFF]' />
-                </div>
+          
+            <div className="max-h-[240px] overflow-y-auto px-4 py-3 space-y-3 scrollbar-thin scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-400">
+                {[...Array(6)].map((_, index) => (
+                    <div
+                        key={index}
+                        className="flex items-center justify-between text-sm font-sans text-gray-700"
+                    >
+                        <span>Amit Birthday</span>
+                        <GrAnnounce className="text-[#008AFF]" size={18} />
+                    </div>
+                ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default DashbordCelibrationCards
+export default DashbordCelibrationCards;

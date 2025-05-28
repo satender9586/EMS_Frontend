@@ -103,18 +103,27 @@ const AttendencePunchCards = () => {
               <Button className='w-full rounded-sm bg-green-600' onClick={punchInHandler}>Punch In</Button>
           }
         </div>
-        <div className="mt-6 p-6 bg-gradient-to-r from-red-100 to-red-200 rounded-2xl shadow-md flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900 mb-1">Need a Break?</h1>
-            <p className="text-sm text-gray-700">Plan your time off and recharge — it's just a click away.</p>
-          </div>
-          <Link href={"/leave"}>
-            <Button className="bg-red-500 hover:bg-red-600 text-white font-semibold px-5 py-2.5 rounded-xl flex items-center gap-2 transition duration-300">
-              <PlaneTakeoff className="w-5 h-5" />
-              Apply Leave
-            </Button>
-          </Link>
-        </div>
+
+
+
+        
+<div className="mt-6 p-6 bg-gradient-to-r from-white via-blue-50 to-blue-100 rounded-2xl shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+  <div className="flex-1">
+    <h2 className="text-2xl font-bold text-gray-800 mb-1">Request Time Off</h2>
+    <p className="text-sm text-gray-600">
+      Easily plan and submit your leave requests. Keep your schedule transparent and ensure smooth workflow coordination with your team.
+    </p>
+  </div>
+
+  <Link href="/leave" passHref>
+    <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-3 rounded-xl flex items-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg">
+      <PlaneTakeoff className="w-5 h-5" />
+      Apply for Leave
+    </Button>
+  </Link>
+</div>
+
+
       </div>
     </>
   )
