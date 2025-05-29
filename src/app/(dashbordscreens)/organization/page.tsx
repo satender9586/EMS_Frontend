@@ -11,17 +11,17 @@ const Organization = () => {
     <Layout>
       <div className='grid h-full'>
         <Tabs defaultValue="employees" className="w-full">
-          <TabsList className="flex flex-wrap">
-            <TabsTrigger value="employees" className='text-sm font-[popplins] rounded-none py-2 px-4'>
+          <TabsList className="grid grid-cols-1 sm:grid-cols-4 gap-3 sm:gap-6 mb-6 bg-white">
+            <TabsTrigger value="employees"  className="text-sm font-medium font-sans rounded-md w-full py-2 transition-all duration-200 bg-white hover:bg-gray-100 border border-gray-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
               Employees
             </TabsTrigger>
-            <TabsTrigger value="addnewemp" className='text-sm font-[popplins] rounded-none py-2 px-4'>
+            <TabsTrigger value="addnewemp"  className="text-sm font-medium font-sans rounded-md w-full py-2 transition-all duration-200 bg-white hover:bg-gray-100 border border-gray-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
               Add New User
             </TabsTrigger>
-            <TabsTrigger value="leaves" className='text-sm font-[popplins] rounded-none py-2 px-4'>
+            <TabsTrigger value="leaves"  className="text-sm font-medium font-sans rounded-md w-full py-2 transition-all duration-200 bg-white hover:bg-gray-100 border border-gray-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
               Requested Leaves
             </TabsTrigger>
-            <TabsTrigger value="addholiday" className='text-sm font-[popplins] rounded-none py-2 px-4'>
+            <TabsTrigger value="addholiday"  className="text-sm font-medium font-sans rounded-md w-full py-2 transition-all duration-200 bg-white hover:bg-gray-100 border border-gray-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
               Add Holidays
             </TabsTrigger>
           </TabsList>
