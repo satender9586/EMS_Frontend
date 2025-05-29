@@ -1,17 +1,16 @@
 import { getToken } from './utils/cookies';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { getLocalStrageData } from './utils/methods';
+
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const protectedRoutes = ['/dashboard', '/profile', '/organization',"/attendence"];
+  const protectedRoutes = ['/dashboard', '/profile','/leave', '/organization',"/attendence","/organization/profile-edit","/organization/profile"];
 
   const isProtectedRoute = protectedRoutes.some(route =>
     pathname.startsWith(route)
   );
-
   const token = await getToken("accessToken");
 
   if (isProtectedRoute && !token) {
@@ -19,7 +18,6 @@ export async function middleware(request: NextRequest) {
   }
 
   if (pathname.startsWith('/about')) {
-    
     return NextResponse.rewrite(new URL('/about-2', request.url));
   }
 
