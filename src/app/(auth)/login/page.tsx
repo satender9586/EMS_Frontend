@@ -18,14 +18,13 @@ const Login = () => {
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({})
   const router = useRouter()
 
-  // Form change handler 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputFieldFormData({ ...inputFieldsFormData, [name]: value })
-    setErrors({ ...errors, [name]: "" }) // clear error on change
+    setErrors({ ...errors, [name]: "" })
   }
 
-  // Form submit and Login Api integration
+
   const formHandler = async () => {
     const newErrors: { email?: string; password?: string } = {};
     if (!inputFieldsFormData.email) newErrors.email = "Email is required";
@@ -55,7 +54,6 @@ const Login = () => {
       alert(message);
     }
   }
-  };
 
   return (
     <div className="flex items-center justify-center min-h-screen pt-[400px]">
@@ -107,5 +105,3 @@ const Login = () => {
 };
 
 export default Login;
-
-export default Login  

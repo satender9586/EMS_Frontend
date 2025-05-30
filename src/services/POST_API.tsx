@@ -61,35 +61,6 @@ export const AttendenceTableApi  = async ()=>{
     return response;
 }
 
-<<<<<<< HEAD
-// Add employee basic personal details
-
-export const addEmpPersonalApi = async (formData: any) => {
-  const response = await instance.post(`${Auth_Base}/peronal-details`, formData)
-  return response.data
-}   
-
-
-// user contact details
-
-export const addEmpContactApi  = async (formData: any)=>{
-    const response = await instance.post(`${Auth_Base}/contact-details`,formData)
-    if(response.status !==200){
-        throw new Error("something is wrong!")
-    }
-    return response;
-}
-
-// user bank details
-
-export const addEmpBankApi  = async (formData:any)=>{
-    const response = await instance.post(`${Auth_Base}/bank-details`,formData)
-    if(response.status !==200){
-        throw new Error("something is wrong!")
-    }
-    return response;
-}
-=======
 
 // update complete profile 
 export const EmployeeProfileAddUpdateApi = async (payloadData:EmployeeProfilePayload) => {
@@ -123,4 +94,3 @@ export const AddCompanyHolidayApi = async (payloadData:addOfficialHolidayPayload
     }
     return response;
 };
->>>>>>> e5f1e383d1bd1dd909d8fcca790ce3041fb5aa25
