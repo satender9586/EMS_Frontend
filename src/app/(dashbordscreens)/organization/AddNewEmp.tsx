@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
-import InputTextField from "@/components/InputTextField"
 import { basicInputFields, FormSchema } from "@/lib/AddnewEmployeeSchema"
+import InputTextField from "@/components/InputTextField"
 import SelectOptionField from "@/components/SelectOptionField"
 import { AddNewUserApi } from "@/services/POST_API"
 import { FcInfo } from "react-icons/fc";
@@ -39,7 +39,6 @@ async function onSubmit(data: z.infer<typeof FormSchema>) {
   } catch (error: any) {
     const status = error?.response?.status;
     const message = error?.response?.data?.message || "Something went wrong";
-
     if (status === 400) {
       toast.warning(message, { autoClose: 1000 });
     } else {
