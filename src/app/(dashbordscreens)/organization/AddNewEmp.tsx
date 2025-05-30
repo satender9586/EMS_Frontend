@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
-import { basicInputFields, FormSchema } from "@/lib/AddnewEmployeeSchema"
+import { NewEmployeeInputFields, NewEmployeeFormSchema } from "@/lib/AddnewEmployeeSchema"
 import InputTextField from "@/components/InputTextField"
 import SelectOptionField from "@/components/SelectOptionField"
 import { AddNewUserApi } from "@/services/POST_API"
@@ -15,9 +15,8 @@ import { toast } from "react-toastify"
 
 
 const AddNewEmp = () => {
-
-  const form = useForm<z.infer<typeof FormSchema>>({
-  resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof NewEmployeeFormSchema>>({
+  resolver: zodResolver(NewEmployeeFormSchema),
   defaultValues: {
     email: "",
     password: "",
@@ -28,11 +27,10 @@ const AddNewEmp = () => {
 
 const { reset } = form; 
 
-async function onSubmit(data: z.infer<typeof FormSchema>) {
+async function onSubmit(data: z.infer<typeof NewEmployeeFormSchema>) {
   try {
     const response = await AddNewUserApi(data);
     const status = response?.status;
-
     console.log("Response status:", status);
     toast.success("User created successfully", { autoClose: 1000 });
     reset();
@@ -65,7 +63,7 @@ async function onSubmit(data: z.infer<typeof FormSchema>) {
             </div>
             <div className="grid mt-2 grid-cols-3 gap-4">
               {
-                basicInputFields?.map(({ name, label, placeholder, type, options }) =>
+                NewEmployeeInputFields?.map(({ name, label, placeholder, type, options }) =>
                   type === "text" || type == "date" || type == "number" || type == "email" || type == "password" ? (
                     <InputTextField
                       key={name}

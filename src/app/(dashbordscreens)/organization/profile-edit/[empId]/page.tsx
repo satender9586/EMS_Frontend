@@ -26,8 +26,9 @@ const ProfileEditPage = () => {
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
-    defaultValues: { ...editProfileDeautlFormField },
+    defaultValues: {...editProfileDeautlFormField },
   })
+
 
   const { reset } = form;
 
@@ -37,38 +38,22 @@ const ProfileEditPage = () => {
     try {
       const response = await retriveEmployeeProfilesApi(empid);
       const resData = response?.data?.data;
-      reset(editProfileSetDeafultFormData(resData))
+       reset(editProfileSetDeafultFormData(resData))
     } catch (error) {
       console.log("Something went wrong while fetching employee profile!", error);
     }
   };
 
 
-
   const onSubmit = async (data: z.infer<typeof FormSchema>)=>{
     const {first_name,last_name,gender,marital_status,blood_group,date_of_birth,address,alternative_email,emergency_number,phone_number,bank_name,bank_number,ifsc_number,pan_number,pf_number} = data;
-    
-    console.log("data",form)
-
+ 
     try {
-
-
-
       if (!empId || typeof empId !== "string") {
         throw new Error("Employee ID is required and must be a string");
       }
 
-
-
-      const response = await EmployeeProfileAddUpdateApi({
-        first_name,
-        last_name,
-        gender,
-        marital_status,
-        blood_group,
-        date_of_birth,
-        address,
-        alternative_email,
+      const response = await EmployeeProfileAddUpdateApi({first_name,last_name,gender,marital_status,blood_group,date_of_birth,address,alternative_email,
         emergency_number,
         phone_number,
         bank_name,
@@ -86,7 +71,6 @@ const ProfileEditPage = () => {
       console.error("Error updating employee info:", error);
     }
   }
-
 
 
   useEffect(() => {

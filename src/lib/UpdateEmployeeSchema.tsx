@@ -101,52 +101,64 @@ export const basicInputFields: BasicInputFieldsInterface[] = [
 ];
 
 
+
+
 export const FormSchema = z.object({
   first_name: z.string().min(2, {
-    message: "Firstname must be at least 2 characters.",
+    message: "First name must be at least 2 characters long.",
   }),
   last_name: z.string().min(2, {
-    message: "Lastname must be at least 2 characters.",
+    message: "Last name must be at least 2 characters long.",
   }),
-  gender: z.string().min(2, {
-    message: "Select your Gender",
+  gender: z.string().min(1, {
+    message: "Please select your gender.",
   }),
-  marital_status: z.string().min(2, {
-    message: "Select your Marital Status",
+  marital_status: z.string().min(1, {
+    message: "Please select your marital status.",
   }),
-  blood_group: z.string().min(2, {
-    message: "Select your Blood Group",
+  blood_group: z.string().min(1, {
+    message: "Please select your blood group.",
   }),
-  date_of_birth: z.string().min(2, {
-    message: "Select your Date of Birth",
+  date_of_birth: z.string().nonempty({
+    message: "Date of birth is required.",
   }),
-  phone_number: z.string().min(10, {
-    message: "Enter your phone number",
-  }),
-  alternative_email: z.string().min(5, {
-    message: "Enter your email",
-  }),
-  emergency_number: z.string().min(10, {
-    message: "Enter your emergency number",
-  }),
+  phone_number: z
+    .string()
+    .min(10, { message: "Phone number must be at least 10 digits." })
+    .max(15, { message: "Phone number must be at most 15 digits." })
+    .regex(/^\d+$/, { message: "Phone number must contain only digits." }),
+  alternative_email: z
+    .string()
+    .email({ message: "Please enter a valid email address." }),
+  emergency_number: z
+    .string()
+    .min(10, { message: "Emergency number must be at least 10 digits." })
+    .max(15, { message: "Emergency number must be at most 15 digits." })
+    .regex(/^\d+$/, { message: "Emergency number must contain only digits." }),
   address: z.string().min(10, {
-    message: "Enter your address",
+    message: "Address must be at least 10 characters long.",
   }),
   bank_name: z.string().min(2, {
-    message: "Enter your bank name",
+    message: "Bank name must be at least 2 characters long.",
   }),
-  bank_number: z.string().min(2, {
-    message: "Enter your bank number",
-  }),
-  ifsc_number: z.string().min(2, {
-    message: "Enter your ifsc number",
-  }),
-  pan_number: z.string().min(2, {
-    message: "Enter your pan number",
-  }),
-  pf_number: z.string().min(2, {
-    message: "Enter your pf number",
-  }),
-})
+  bank_number: z
+    .string()
+    .min(6, { message: "Bank account number must be at least 6 digits." })
+    .regex(/^\d+$/, { message: "Bank account number must contain only digits." }),
+  ifsc_number: z
+    .string()
+    .regex(/^[A-Z]{4}0[A-Z0-9]{6}$/, {
+      message: "Enter a valid IFSC code (e.g., ABCD0123456).",
+    }),
+  pan_number: z
+    .string()
+    .regex(/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/, {
+      message: "Enter a valid PAN number (e.g., ABCDE1234F).",
+    }),
+  pf_number: z
+    .string()
+    .min(4, { message: "PF number must be at least 4 characters long." }),
+});
+
 
 

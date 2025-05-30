@@ -4,7 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import OrganizationEmployees from './OrganizationEmployees'
 import AddNewEmp from './AddNewEmp'
 import RequestedLeaves from './RequestedLeaves'
-import AddHolidays from './AddHolidays'
+import CompanyHolidays from './profile-edit/CompanyHolidays'
 
 const Organization = () => {
   return (
@@ -22,7 +22,7 @@ const Organization = () => {
               Requested Leaves
             </TabsTrigger>
             <TabsTrigger value="addholiday"  className="text-sm font-medium font-sans rounded-md w-full py-2 transition-all duration-200 bg-white hover:bg-gray-100 border border-gray-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
-              Add Holidays
+              Official Holidays
             </TabsTrigger>
           </TabsList>
           <TabsContent value="employees">
@@ -42,7 +42,7 @@ const Organization = () => {
           </TabsContent>
           <TabsContent value="addholiday">
             <div className='border  rounded-sm p-3 border-[#E5E5E5] w-full'>
-              <AddHolidays />
+              <CompanyHolidays/>
             </div>
           </TabsContent>
         </Tabs>

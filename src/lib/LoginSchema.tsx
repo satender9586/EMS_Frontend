@@ -1,10 +1,6 @@
 import { z } from "zod";
 import { BasicInputFieldsInterface } from "@/types/inputField";
 
-
-
-
-
 export const LoginBasicInputFields: BasicInputFieldsInterface[] = [
    {
      name: "email",
