@@ -24,14 +24,10 @@ const MarkAttendence = () => {
           <AttendencePunchCards />
         </div>
 
-        <div className="bg-white rounded-xl shadow-md border border-gray-200 p-4 hover:shadow-lg transition-shadow duration-300">
-          <ShowMonthAttendenceCart />
-        </div>
-
-        {/* Optional Leave Summary (Add back when needed) */}
         {/* <div className="bg-white rounded-xl shadow-md border border-gray-200 p-4 hover:shadow-lg transition-shadow duration-300">
-          <LeaveSummaryCart />
+          <ShowMonthAttendenceCart />
         </div> */}
+
       </div>
     </Layout>
   );

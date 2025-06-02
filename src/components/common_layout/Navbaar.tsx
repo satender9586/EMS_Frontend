@@ -6,7 +6,7 @@ const Navbaar = () => {
   return (
     <div className='z-10 min-h-[62px] max-h-[62px] grid grid-cols-1 sticky top-0 left-0 bg-[#FAFAFA] border-b border-[#E5E5E5] px-5'>
       <div className=' flex justify-between sm:justify-between md:justify-between lg:justify-end    items-center gap-3 w-100%'>
-        <UserNotifcationMenu />
+        {/* <UserNotifcationMenu /> */}
         <UserDropdownMenu />
       </div>
     </div>

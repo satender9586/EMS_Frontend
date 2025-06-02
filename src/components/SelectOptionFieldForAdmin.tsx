@@ -31,6 +31,7 @@ const SelectOptionFieldForAdmin: React.FC<ActionFieldInterface> = ({ callback, i
           <SelectLabel>Status</SelectLabel>
           <SelectItem value="Approved">Approved</SelectItem>
           <SelectItem value="Rejected">Rejected</SelectItem>
+          <SelectItem value="Cancelled">Cancelled</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>

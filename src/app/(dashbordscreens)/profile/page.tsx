@@ -4,6 +4,7 @@ import {Tabs,TabsContent,TabsList,TabsTrigger,} from "@/components/ui/tabs";
 import MyProfiles from "./MyProfiles";
 import MyAttendence from "./MyAttendence";
 import MyLeaves from "./MyLeaves";
+import MyHolidays from "./MyHolidays";
 
 
 const Profile = () => {
@@ -11,7 +12,7 @@ const Profile = () => {
     <Layout>
       <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
         <Tabs defaultValue="account" className="w-full">
-          <TabsList className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6 mb-6 bg-white">
+          <TabsList className="grid grid-cols-1 sm:grid-cols-4 gap-3 sm:gap-6 mb-6 bg-white">
             <TabsTrigger
               value="account"
               className="text-sm font-medium font-sans rounded-md w-full py-2 transition-all duration-200 bg-white hover:bg-gray-100 border border-gray-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
@@ -29,6 +30,12 @@ const Profile = () => {
               className="text-sm font-medium font-sans rounded-md w-full py-2 transition-all duration-200 bg-white hover:bg-gray-100 border border-gray-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
             >
               My Leaves
+            </TabsTrigger>
+            <TabsTrigger
+              value="holidays"
+              className="text-sm font-medium font-sans rounded-md w-full py-2 transition-all duration-200 bg-white hover:bg-gray-100 border border-gray-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+            >
+              Official Holidays
             </TabsTrigger>
           </TabsList>
 
@@ -48,6 +55,11 @@ const Profile = () => {
           <TabsContent value="leaves">
             <div className="bg-white shadow-md rounded-lg p-5 border border-gray-200">
               <MyLeaves />
+            </div>
+          </TabsContent>
+          <TabsContent value="holidays">
+            <div className="bg-white shadow-md rounded-lg p-5 border border-gray-200">
+              <MyHolidays />
             </div>
           </TabsContent>
         </Tabs>

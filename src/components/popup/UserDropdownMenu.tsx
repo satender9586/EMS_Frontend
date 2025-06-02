@@ -11,10 +11,12 @@ import { clearLocalStorage, getLocalStrageData } from "@/utils/methods"
 import { deleteToken } from "@/utils/cookies"
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from "react"
+import Link from "next/link"
+
 
 export function UserDropdownMenu() {
     const router = useRouter()
-    
+
     const [userData, setUserData] = useState<any>(null)
 
 
@@ -65,16 +67,14 @@ export function UserDropdownMenu() {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                    <DropdownMenuItem>
-                        <User />
-                        <span>Profile</span>
-                        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                        <Settings />
-                        <span>Settings</span>
-                        <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                    </DropdownMenuItem>
+                    <Link href={"/profile"}>
+                        <DropdownMenuItem>
+                            <User />
+                            <span>Profile</span>
+                            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                        </DropdownMenuItem>
+                    </Link>
+
                 </DropdownMenuGroup>
 
                 <DropdownMenuSeparator />

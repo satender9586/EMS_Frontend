@@ -10,7 +10,8 @@ export interface myLeavesInterface {
     reason : string,
     request_date : string,
     start_date: string,
-    status : string
+    status : string,
+    total_days:string
 }
 
 
