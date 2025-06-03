@@ -17,9 +17,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/', request.url));
   }
 
-  if (pathname.startsWith('/about')) {
-    return NextResponse.rewrite(new URL('/about-2', request.url));
-  }
+
 
   return NextResponse.next();
 }
