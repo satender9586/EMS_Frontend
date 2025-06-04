@@ -6,7 +6,6 @@ const Auth_Base = "/auth"
 const Atten_Base = "/attendence"
 const Holiday_Base = "/holiday"
 
-
 // create new user API     
 export const AddNewUserApi = async (payloadData:addNewUserPayload) => {
     const response = await instance.post(`${Auth_Base}/register`,payloadData);
@@ -60,7 +59,6 @@ export const AttendenceTableApi  = async ()=>{
     return response;
 }
 
-
 // update complete profile 
 export const EmployeeProfileAddUpdateApi = async (payloadData:EmployeeProfilePayload) => {
     const response = await instance.post(`${Auth_Base}/completeProfile`, payloadData);
@@ -79,6 +77,7 @@ export const LeaveRequestApi = async (payloadData:leaveRequestPayload) => {
     return response;
 };
 
+// take leave action 
 export const LeaveActionApi = async (payloadData:leaveActionPayload) => {
     const response = await instance.post(`${Leave_Base}/approve-leave/${payloadData?.leaveId}`,{action:payloadData.action});
     if (response.status !== 200) {
@@ -86,6 +85,8 @@ export const LeaveActionApi = async (payloadData:leaveActionPayload) => {
     }
     return response;
 };
+
+// add company holiday 
 export const AddCompanyHolidayApi = async (payloadData:addOfficialHolidayPayload) => {
     const response = await instance.post(`${Holiday_Base}/addHolidays`,payloadData);
     if (response.status !== 200) {

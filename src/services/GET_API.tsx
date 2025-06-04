@@ -1,5 +1,4 @@
 import { instance } from "@/lib/Axios.interceptor";
-import axios from "axios";
 const Auth_Base = "/auth"
 const Atten_Base = "/attendence"
 const leave_Base = "leave"

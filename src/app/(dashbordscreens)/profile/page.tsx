@@ -10,7 +10,7 @@ import MyHolidays from "./MyHolidays";
 const Profile = () => {
   return (
     <Layout>
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full ">
         <Tabs defaultValue="account" className="w-full">
           <TabsList className="grid grid-cols-1 sm:grid-cols-4 gap-3 sm:gap-6 mb-6 bg-white">
             <TabsTrigger

@@ -1,6 +1,6 @@
 'use client'
 
-import { LogOut, Settings, User, ChevronDown } from "lucide-react"
+import { LogOut,  User, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
     DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
@@ -11,10 +11,11 @@ import { clearLocalStorage, getLocalStrageData } from "@/utils/methods"
 import { deleteToken } from "@/utils/cookies"
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from "react"
+import Link from "next/link"
+
 
 export function UserDropdownMenu() {
     const router = useRouter()
-    
     const [userData, setUserData] = useState<any>(null)
 
 
@@ -26,19 +27,19 @@ export function UserDropdownMenu() {
                 const parsedData = JSON.parse(storedData)
                 setUserData(parsedData)
             } catch (error) {
-                console.error("Error parsing user data from localStorage", error)
+                console.error("Error  from localStorage", error)
             }
         }
     }, [])
 
 
-    const loggedOutHandler = async () => {
+const loggedOutHandler = async () => {
         try {
             const response = await loggedOutApi()
             clearLocalStorage("user")
             deleteToken("accessToken")
             deleteToken("refreshToken")
-            router.push("/dashboard")
+            router.push("/")
         } catch (error) {
             console.log("something went wrong!")
         }
@@ -65,18 +66,14 @@ export function UserDropdownMenu() {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                    <DropdownMenuItem>
-                        <User />
-                        <span>Profile</span>
-                        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                        <Settings />
-                        <span>Settings</span>
-                        <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                    </DropdownMenuItem>
+                    <Link href={"/profile"}>
+                        <DropdownMenuItem>
+                            <User />
+                            <span>Profile</span>
+                            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                        </DropdownMenuItem>
+                    </Link>
                 </DropdownMenuGroup>
-
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => loggedOutHandler()}>
                     <LogOut />

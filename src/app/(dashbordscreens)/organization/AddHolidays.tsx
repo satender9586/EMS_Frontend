@@ -9,7 +9,7 @@ import SelectOptionField from "@/components/SelectOptionField"
 import { AddCompanyHolidayApi } from "@/services/POST_API"
 import { FcInfo } from "react-icons/fc";
 import { toast } from "react-toastify"
-import { AddCompanyHolidayInputField, HolidayFieldFormSchema } from "@/lib/AddHolidays"
+import { AddCompanyHolidayInputField, HolidayFieldFormSchema } from "@/lib/AddHolidaysSchema"
 
 
 

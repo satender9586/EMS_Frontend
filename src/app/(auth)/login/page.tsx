@@ -17,7 +17,6 @@ import InputTextField from "@/components/InputTextField";
 
 const Login = () => {
   const router = useRouter();
-
   const form = useForm({
     resolver: zodResolver(LoginFormSchema),
     defaultValues: {
@@ -47,16 +46,19 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen pt-[400px]">
-      <div className="flex w-full max-w-3xl p-8 space-x-8 bg-white rounded-lg shadow-lg">
+      <div className="flex w-full max-w-3xl p-8 space-x-8 bg-white rounded-lg shadow-md">
         {/* Form Section */}
         <div className="w-full max-w-md space-y-8">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
-              <h2 className="text-3xl font-semibold text-center text-gray-800  pb-5">
-                Paytel-EMS
+              <h2 className="text-3xl font-semibold text-center text-gray-800  pb-2">
+                Paytel-HRMS
               </h2 >
+              <h1 className="text-1xl font-semibold text-center text-gray-800 pb-2">
+                Paytel-HRMS
+              </h1 >
               <div className="">
-                {LoginBasicInputFields.map(({ name, label, placeholder, type }) => (
+                {LoginBasicInputFields?.map(({ name, label, placeholder, type }) => (
                   <InputTextField
                     key={name}
                     form={form}

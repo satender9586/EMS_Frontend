@@ -6,13 +6,11 @@ import { authInfoInterface } from '@/types/profile';
 import { authInfoStateData } from '@/utils/defaultStateValues';
 import { useParams } from 'next/navigation';
 import Layout from '@/components/common_layout/Layout';
-import { toast } from "react-toastify"
+
 
 const EmployeeDetails = () => {
       const [authInfo, setAuthInfo] = useState<authInfoInterface>({ ...authInfoStateData });
       const { empId } = useParams()
-
-
 
       const EmployeeProfileHandler = async (empId:string) => {
         try {

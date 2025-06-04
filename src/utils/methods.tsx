@@ -28,7 +28,18 @@ export const getMonthStartAndEndDates = () => {
     };
 };
 
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> GET DIFF BETWEEN TWO DATS
+
+export const getDiffInTwoDates = (start: string, end: string): number => {
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    const timeDiff = endDate.getTime() - startDate.getTime();
+    const diffInDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+    return diffInDays;
+};
+
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+
 export const storeAuthInLocalStorage = (data: UserAuthPayload) => {
     const { email, status, role,employee_id } = data;
     const userData = { email, status, role ,employee_id};
@@ -47,13 +58,3 @@ export const getLocalStrageData = (key: string): any => {
 export const clearLocalStorage = (key:string)=>{
     window.localStorage.removeItem(key)
 }
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> GET DIFF BETWEEN TWO DATS
-
-export const getDiffInTwoDates = (start: string, end: string): number => {
-    const startDate = new Date(start);
-    const endDate = new Date(end);
-    const timeDiff = endDate.getTime() - startDate.getTime();
-    const diffInDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-    return diffInDays;
-};

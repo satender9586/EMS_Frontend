@@ -35,7 +35,6 @@ export const authInfoStateData = {
 
 //******************************** DEFAULT ORGANIZAITON > EDIT PROFILE DEFAULT FORM 
 
-
 export const editProfileDeautlFormField = {
     first_name: "",
     last_name: "",

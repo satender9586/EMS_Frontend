@@ -76,7 +76,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </Sidebar>
       <main className="w-full h-full">
         <Navbaar />
-        <div className="p-0 md:p-3">
+        <div className="p-0 md:p-4">
           <div className=" sm:border rounded-sm border-[#E5E5E5] p-2 md:p-3">
             {children}
           </div>
