@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '@/components/common_layout/Layout'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -14,17 +14,35 @@ import { useRouter } from 'next/navigation'
 import { leaveRequestDefaultSchema } from '@/utils/defaultStateValues'
 import { leaveRequestInputFields, LeaveRequestFormSchema } from "@/lib/ApplyLeaveSchema"
 import { LeaveRequestApi } from '@/services/POST_API'
+import { allocatedLeaveBalanceSummaryApi } from '@/services/GET_API'
+
 
 const LeaveRequest = () => {
-
+  const [leaveBalaceData, setLeaveBalaceData]=useState<any>({remaining:0,leave_name:""})
   const router = useRouter()
   const form = useForm<z.infer<typeof LeaveRequestFormSchema>>({
     resolver: zodResolver(LeaveRequestFormSchema),
     defaultValues: { ...leaveRequestDefaultSchema },
   })
-
+  const selectedLeaveType = form.watch("leave_type");
   const { reset } = form;
   
+
+  // check your leave balance 
+  const checkYourLeaveBalanceHandler = async (leaveType:string)=>{
+    try {
+        const response = await  allocatedLeaveBalanceSummaryApi(leaveType)
+        const responseData = response?.data?.data;
+        const {remaining,leave_name}=responseData;
+        setLeaveBalaceData({...leaveBalaceData,remaining, leave_name})
+
+    } catch (error) {
+      console.log("some thing error while leave balace api",error)
+    }
+  }
+
+  
+
   const onSubmit = async (data: z.infer<typeof LeaveRequestFormSchema>) => {
     const { leave_type, start_date, end_date, reason } = data;
     try {
@@ -39,6 +57,14 @@ const LeaveRequest = () => {
       console.error("Error updating employee info:", error);
     }
   }
+
+
+  useEffect(()=>{
+    if(selectedLeaveType && selectedLeaveType.length > 0){
+        checkYourLeaveBalanceHandler(selectedLeaveType)
+    }
+  },[selectedLeaveType])
+
 
 
   return (
@@ -79,8 +105,15 @@ const LeaveRequest = () => {
                 }
               </div>
             </div>
-            <div className="mt-2.5 gap-2 flex" >
-              <Button type={"submit"} className="bg-blue-500 hover:bg-none">Submit </Button>
+            <div className="mt-2.5 gap-2 flex items-center" >
+              <Button disabled={leaveBalaceData?.remaining===0} type={"submit"} className="bg-blue-500 hover:bg-none">Submit </Button>
+              { 
+                leaveBalaceData?.remaining> 0 && leaveBalaceData?.leave_name ? 
+                <p className='text-green-600'> Your {leaveBalaceData?.leave_name} leave balance is {leaveBalaceData?.remaining} </p>
+                : leaveBalaceData?.remaining==0 && leaveBalaceData?.leave_name ?
+                <p className='text-red-500'> You have no more {leaveBalaceData?.leave_name} leave balance is {leaveBalaceData?.remaining} </p>
+                  : null
+              }
             </div>
           </form>
         </Form>

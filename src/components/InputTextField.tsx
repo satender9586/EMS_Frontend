@@ -18,7 +18,7 @@ const InputTextField :React.FC<InputFieldProps> = ({form, name,placeholder="",ty
             control={form.control}
             name={name}
             render={({ field }) => (
-                <FormItem>
+                <FormItem >
                     <FormLabel>{label}</FormLabel>
                     <FormControl>
                         <Input placeholder={placeholder} type={type} {...field} />

@@ -45,19 +45,22 @@ const Login = () => {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen pt-[400px]">
-      <div className="flex w-full max-w-3xl p-8 space-x-8 bg-white rounded-lg shadow-md">
+    <div className="flex w-full h-[100vh] justify-center items-center">
+      <div className="flex  p-5 min-w-[400px] space-x-8 bg-white rounded-lg shadow-lg">
+
         {/* Form Section */}
-        <div className="w-full max-w-md space-y-8">
+        <div className="w-full max-w-md">
+          <div>
+            <h2 className="text-[25px] font-semibold text-center text-gray-800 ">
+              Welcome to Paytel-HRMS
+            </h2 >
+            <h1 className="text-[12px] font-semibold text-center text-gray-800 mt-1">
+              Your secure gateway to employee management.
+            </h1 >
+          </div>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-              <h2 className="text-3xl font-semibold text-center text-gray-800  pb-2">
-                Paytel-HRMS
-              </h2 >
-              <h1 className="text-1xl font-semibold text-center text-gray-800 pb-2">
-                Paytel-HRMS
-              </h1 >
-              <div className="">
+            <form className="p-4 flex flex-col gap-4" onSubmit={form.handleSubmit(onSubmit)}>
+              <div >
                 {LoginBasicInputFields?.map(({ name, label, placeholder, type }) => (
                   <InputTextField
                     key={name}
@@ -69,7 +72,7 @@ const Login = () => {
                   />
                 ))}
               </div>
-              <Button type="submit" className="mt-4">
+              <Button type="submit" >
                 Submit
               </Button>
             </form>

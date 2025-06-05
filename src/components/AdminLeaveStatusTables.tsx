@@ -42,7 +42,7 @@ const AdminLeaveStatusTables: React.FC<myLeavesProps> = ({ leaveDataProps, callb
               </TableCell>
 
               <TableCell className="flex justify-end w-full">
-                <SelectOptionFieldForAdmin callback={callback} id={leave?.leave_request_id} />
+                <SelectOptionFieldForAdmin isAdmin={true} callback={callback} id={leave?.leave_request_id} status={leave?.status}/>
               </TableCell>
             </TableRow>
           ))}

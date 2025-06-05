@@ -9,8 +9,8 @@ import CompanyHolidays from './profile-edit/CompanyHolidays'
 const Organization = () => {
   return (
     <Layout>
-      <div className='grid h-full'>
-        <Tabs defaultValue="employees" className="w-full">
+      <div className='h-screen'>
+        <Tabs defaultValue="employees" className="w-full h-[100%]">
           <TabsList className="grid grid-cols-1 sm:grid-cols-4 gap-3 sm:gap-6 mb-6 bg-white">
             <TabsTrigger value="employees"  className="text-sm font-medium font-sans rounded-md w-full py-2 transition-all duration-200 bg-white hover:bg-gray-100 border border-gray-300 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
               Employees
@@ -26,22 +26,22 @@ const Organization = () => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="employees">
-            <div className='border bg-[#F2F3F6] rounded-sm p-3 border-[#E5E5E5] w-full'>
+            <div className='border min-h-full  rounded-sm p-3 border-[#E5E5E5]'>
               <OrganizationEmployees />
             </div>
           </TabsContent>
           <TabsContent value="addnewemp">
-            <div className='border bg-[#F2F3F6] rounded-sm p-3 border-[#E5E5E5] w-full'>
+            <div className='border min-h-full  rounded-sm p-3 border-[#E5E5E5]'>
               <AddNewEmp />
             </div>
           </TabsContent>
           <TabsContent value="leaves">
-            <div className='border  rounded-sm p-3 border-[#E5E5E5] w-full'>
+            <div className='border min-h-full  rounded-sm p-3 border-[#E5E5E5]'>
               <RequestedLeaves />
             </div>
           </TabsContent>
           <TabsContent value="addholiday">
-            <div className='border  rounded-sm p-3 border-[#E5E5E5] w-full'>
+            <div className='border min-h-full  rounded-sm p-3 border-[#E5E5E5]'>
               <CompanyHolidays/>
             </div>
           </TabsContent>

@@ -13,9 +13,11 @@ import {
 interface ActionFieldInterface {
   callback: (id: string, value: string) => void;
   id: string;
+  isAdmin: any,
+  status:string
 }
 
-const SelectOptionFieldForAdmin: React.FC<ActionFieldInterface> = ({ callback, id }) => {
+const SelectOptionFieldForAdmin: React.FC<ActionFieldInterface> = ({ callback, id, isAdmin,status }) => {
 
   const changeHandler = (value: string) => {
     callback(id, value);
@@ -28,10 +30,15 @@ const SelectOptionFieldForAdmin: React.FC<ActionFieldInterface> = ({ callback, i
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel>Status</SelectLabel>
-          <SelectItem value="Approved">Approved</SelectItem>
-          <SelectItem value="Rejected">Rejected</SelectItem>
-          <SelectItem value="Cancelled">Cancelled</SelectItem>
+          <SelectLabel >Status</SelectLabel>
+          {
+            isAdmin ? <>
+              <SelectItem  value="rejected">Rejected</SelectItem>
+               <SelectItem value="approved">Approved</SelectItem>   
+            </> :<SelectItem   value="cancelled">Cancelled</SelectItem>
+          } 
+
+
         </SelectGroup>
       </SelectContent>
     </Select>

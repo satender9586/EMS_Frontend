@@ -7,7 +7,6 @@ import { Form } from "@/components/ui/form"
 import InputTextField from "@/components/InputTextField"
 import SelectOptionField from "@/components/SelectOptionField"
 import { AddCompanyHolidayApi } from "@/services/POST_API"
-import { FcInfo } from "react-icons/fc";
 import { toast } from "react-toastify"
 import { AddCompanyHolidayInputField, HolidayFieldFormSchema } from "@/lib/AddHolidaysSchema"
 
@@ -51,8 +50,6 @@ const AddHolidays:React.FC<holidayInterface> = ({setOpen}) => {
       console.error("Error in Holiday API:", error);
     }
   }
-
-
 
 
   return (

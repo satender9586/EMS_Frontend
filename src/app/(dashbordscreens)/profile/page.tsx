@@ -10,8 +10,8 @@ import MyHolidays from "./MyHolidays";
 const Profile = () => {
   return (
     <Layout>
-      <div className="w-full ">
-        <Tabs defaultValue="account" className="w-full">
+      <div className="min-h-[100vh]">
+        <Tabs defaultValue="account" className="w-full h-[100%]">
           <TabsList className="grid grid-cols-1 sm:grid-cols-4 gap-3 sm:gap-6 mb-6 bg-white">
             <TabsTrigger
               value="account"
@@ -41,24 +41,24 @@ const Profile = () => {
 
           {/* Tab Content */}
           <TabsContent value="account">
-            <div className="bg-white shadow-md rounded-lg p-5 border border-gray-200">
+            <div className="border min-h-full  rounded-sm p-3 border-[#E5E5E5]">
               <MyProfiles />
             </div>
           </TabsContent>
 
           <TabsContent value="attendence">
-            <div className="bg-white shadow-md rounded-lg p-5 border border-gray-200">
+            <div className="border min-h-full  rounded-sm p-3 border-[#E5E5E5]">
               <MyAttendence />
             </div>
           </TabsContent>
 
           <TabsContent value="leaves">
-            <div className="bg-white shadow-md rounded-lg p-5 border border-gray-200">
+            <div className="border min-h-full  rounded-sm p-3 border-[#E5E5E5]">
               <MyLeaves />
             </div>
           </TabsContent>
           <TabsContent value="holidays">
-            <div className="bg-white shadow-md rounded-lg p-5 border border-gray-200">
+            <div className="border min-h-full  rounded-sm p-3 border-[#E5E5E5]">
               <MyHolidays />
             </div>
           </TabsContent>

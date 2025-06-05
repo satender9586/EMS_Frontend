@@ -50,6 +50,15 @@ export const retriveMyLeavesApi  = async ()=>{
     }
     return response;
 }
+
+export const allocatedLeaveBalanceSummaryApi  = async (paramsId : string)=>{
+    const response = await instance.get(`/${leave_Base}/leave-balance/leave_name?leave_name=${paramsId}`)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
+
 export const retriveEmployeeProfilesApi  = async (paramsId : string)=>{
     const response = await instance.get(`/${Admin_Base}/retriveEmployeeProfile/${paramsId}`)
     if(response.status !==200){
