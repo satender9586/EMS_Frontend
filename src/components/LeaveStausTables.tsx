@@ -31,10 +31,10 @@ const LeaveStausTables:React.FC<myLeavesProps> = ({leaveDataProps,callback}) => 
               <TableCell className="font-medium">{leave?.leave_type}</TableCell>
               <TableCell>{leave?.start_date?.split("T")[0]}</TableCell>
               <TableCell>{leave?.end_date?.split("T")[0]}</TableCell>
-              <TableCell className="text-center">{leave?.total_days}</TableCell>
+              <TableCell className="text-center min-w-[200px]">{leave?.total_days}</TableCell>
               <TableCell className={ leave?.status === "approved" ? "text-[#018AFF] text-center" : leave?.status=="rejected" ? "text-red-500 text-center": "text-black text-center" }>{leave?.status}</TableCell>
-              <TableCell className="text-center">{leave?.action_by}</TableCell>
-              <TableCell className="text-center">
+              <TableCell className="text-center min-w-[150px]">{leave?.action_by}</TableCell>
+              <TableCell className="flex justify-center">
                 <SelectOptionFieldForAdmin isAdmin={false} callback={callback} id={leave?.leave_request_id} status={leave?.status}/>
               </TableCell>
             </TableRow>

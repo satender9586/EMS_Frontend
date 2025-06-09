@@ -10,7 +10,7 @@ export const leaveRequestInputFields: BasicInputFieldsInterface[] = [
     label: "Leave Types",
     placeholder: "Select your leave",
     type: "select",
-    options: ["Sick", "Casual"],
+    options: ["Sick"],
   },
   {
     name: "start_date",

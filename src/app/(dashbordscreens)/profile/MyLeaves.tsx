@@ -31,8 +31,10 @@ const MyLeaves = () => {
        toast.success(response.data.message,{autoClose:500})
        retriveMyLeaves()
        console.log("API response:", response);
-     } catch (error) {
-       console.error("Error while performing leave action:", error);
+     } catch (error:any) {
+        const message = error?.response?.data?.message;
+        toast.error(message,{autoClose:1000})
+        console.error("Error while performing leave action:", error);
      }
    };
 
