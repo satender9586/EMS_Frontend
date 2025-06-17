@@ -1,7 +1,7 @@
 import axios from "axios"
 import { getCookies, setCookies, clearCookies } from "@/utils/cookies"
 import { refreshTokenGenerateApi } from "../services/POST_API"
-import { clearLocalStorage } from "@/utils/methods";
+
 
 const dbUrl = process.env.NEXT_PRODUCTION_API_URL;
 
@@ -36,6 +36,7 @@ instance.interceptors.response.use(
 
       try {
         const refreshToken = await getCookies("refreshToken");
+      
         if (!refreshToken) throw new Error("Missing refresh token");
 
         const tokenApi = await refreshTokenGenerateApi(refreshToken);
@@ -49,15 +50,13 @@ instance.interceptors.response.use(
      
         instance.defaults.headers['Authorization'] = `Bearer ${accessToken}`;
         originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
-
         return instance(originalRequest);
 
       } catch (tokenRefreshError) {
         console.error("Token refresh failed:", tokenRefreshError);
         await clearCookies("accessToken");
         await clearCookies("refreshToken");
-        clearLocalStorage("user")
-        window.location.href = '/';
+        await clearCookies("auth");
         return Promise.reject(tokenRefreshError);
       }
     }

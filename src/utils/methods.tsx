@@ -40,21 +40,23 @@ export const getDiffInTwoDates = (start: string, end: string): number => {
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
 
-export const setLocalStorage = (data: UserAuthPayload) => {
-    const { email, status, role,employee_id } = data;
-    const userData = { email, status, role ,employee_id};
-    window.localStorage.setItem("user", JSON.stringify(userData));
+export const clearLocalStorage = (key: string) => {
+  if (typeof window !== 'undefined') {
+    window.localStorage.removeItem(key);
+  }
 };
 
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+export const setLocalStorage = (data: UserAuthPayload) => {
+  if (typeof window !== 'undefined') {
+    const { email, status, role, employee_id } = data;
+    const userData = { email, status, role, employee_id };
+    window.localStorage.setItem("user", JSON.stringify(userData));
+  }
+};
+
 export const getLocalStorage = (key: string): any => {
   if (typeof window === "undefined") {
-    return null; 
+    return null;
   }
   return window.localStorage.getItem(key);
 };
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
-export const clearLocalStorage = (key:string)=>{
-    window.localStorage.removeItem(key)
-}

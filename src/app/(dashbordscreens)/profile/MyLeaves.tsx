@@ -43,7 +43,7 @@ const MyLeaves = () => {
     }, [])
     return (
         <div>
-            <LeaverequestCardsTables leaveDataProps={leavesData} callback={leaveActionHandlerCallback}/>
+            <LeaverequestCardsTables showAction={true} leaveDataProps={leavesData} callback={leaveActionHandlerCallback}/>
         </div>
     )
 }
