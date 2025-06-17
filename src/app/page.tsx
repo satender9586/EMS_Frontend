@@ -3,7 +3,7 @@ import Login from './(auth)/login/page'
 
 const Home = () => {
   return (
-    <div className="">
+    <div>
       <Login/>
     </div>
   )

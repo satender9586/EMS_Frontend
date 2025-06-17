@@ -1,5 +1,4 @@
 
-
 //******************************** LOGGED USER DEFAULT STATE OBJECT FOR PROFILE PAGE > MY PROFILE TAB  */
 
 export const authInfoStateData = {

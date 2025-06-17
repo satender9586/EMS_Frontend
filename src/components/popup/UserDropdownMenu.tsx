@@ -7,8 +7,8 @@ import {
     DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { loggedOutApi } from "@/services/POST_API"
-import { clearLocalStorage, getLocalStrageData } from "@/utils/methods"
-import { deleteToken } from "@/utils/cookies"
+import { clearLocalStorage, getLocalStorage } from "@/utils/methods"
+import { clearCookies } from "@/utils/cookies"
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from "react"
 import Link from "next/link"
@@ -21,7 +21,7 @@ export function UserDropdownMenu() {
 
 
     useEffect(() => {
-        const storedData = getLocalStrageData("user")
+        const storedData = getLocalStorage("user")
         if (storedData) {
             try {
                 const parsedData = JSON.parse(storedData)
@@ -37,8 +37,9 @@ const loggedOutHandler = async () => {
         try {
             const response = await loggedOutApi()
             clearLocalStorage("user")
-            deleteToken("accessToken")
-            deleteToken("refreshToken")
+            clearCookies("auth")
+            clearCookies("accessToken")
+            clearCookies("refreshToken")
             router.push("/")
         } catch (error) {
             console.log("something went wrong!")

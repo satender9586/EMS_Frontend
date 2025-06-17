@@ -5,13 +5,12 @@ import { z } from "zod";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { loginApi } from "@/services/POST_API";
-import { setToken } from "@/utils/cookies";
-import { storeAuthInLocalStorage } from "@/utils/methods";
+import { setCookies } from "@/utils/cookies";
+import { setLocalStorage } from "@/utils/methods";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { LoginBasicInputFields, LoginFormSchema } from "@/lib/LoginSchema";
 import InputTextField from "@/components/InputTextField";
-
 
 
 
@@ -32,11 +31,13 @@ const Login = () => {
         const accessToken = response?.data?.accessToken;
         const refreshToken = response?.data?.refreshToken;
         const auth = response?.data?.data;
-        storeAuthInLocalStorage(auth);
-        await setToken("accessToken", accessToken);
-        await setToken("refreshToken", refreshToken);
+        setLocalStorage(auth);
+        await setCookies("auth",JSON.stringify({role:auth?.role,employeeId:auth?.employee_id}))
+        await setCookies("accessToken", accessToken);
+        await setCookies("refreshToken", refreshToken);
         toast.success("Login Successfully!", { autoClose: 500 });
-        router.push("/dashboard");
+        const defaultPath = auth?.role==="Super_Admin" || auth?.role==="Admin" ? "/dashboard" : "/attendence"
+        router.push(defaultPath);
       }
     } catch (error: any) {
       const message = error?.response?.data?.message || "Login failed";

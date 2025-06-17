@@ -1,5 +1,5 @@
 import axios from "axios"
-import { getToken, setToken, deleteToken } from "@/utils/cookies"
+import { getCookies, setCookies, clearCookies } from "@/utils/cookies"
 import { refreshTokenGenerateApi } from "../services/POST_API"
 import { clearLocalStorage } from "@/utils/methods";
 
@@ -14,7 +14,7 @@ export const instance = axios.create({
 
 instance.interceptors.request.use(
   async (config) => {
-    const token = await getToken("accessToken")
+    const token = await getCookies("accessToken")
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
@@ -35,7 +35,7 @@ instance.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        const refreshToken = await getToken("refreshToken");
+        const refreshToken = await getCookies("refreshToken");
         if (!refreshToken) throw new Error("Missing refresh token");
 
         const tokenApi = await refreshTokenGenerateApi(refreshToken);
@@ -43,8 +43,8 @@ instance.interceptors.response.use(
         const { accessToken, newRefreshToken } = tokenApi.data;
 
 
-        await setToken("accessToken", accessToken);
-        await setToken("refreshToken", newRefreshToken);
+        await setCookies("accessToken", accessToken);
+        await setCookies("refreshToken", newRefreshToken);
 
      
         instance.defaults.headers['Authorization'] = `Bearer ${accessToken}`;
@@ -54,8 +54,8 @@ instance.interceptors.response.use(
 
       } catch (tokenRefreshError) {
         console.error("Token refresh failed:", tokenRefreshError);
-        await deleteToken("accessToken");
-        await deleteToken("refreshToken");
+        await clearCookies("accessToken");
+        await clearCookies("refreshToken");
         clearLocalStorage("user")
         window.location.href = '/';
         return Promise.reject(tokenRefreshError);

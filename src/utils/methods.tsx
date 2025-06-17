@@ -40,14 +40,14 @@ export const getDiffInTwoDates = (start: string, end: string): number => {
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
 
-export const storeAuthInLocalStorage = (data: UserAuthPayload) => {
+export const setLocalStorage = (data: UserAuthPayload) => {
     const { email, status, role,employee_id } = data;
     const userData = { email, status, role ,employee_id};
     window.localStorage.setItem("user", JSON.stringify(userData));
 };
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
-export const getLocalStrageData = (key: string): any => {
+export const getLocalStorage = (key: string): any => {
   if (typeof window === "undefined") {
     return null; 
   }

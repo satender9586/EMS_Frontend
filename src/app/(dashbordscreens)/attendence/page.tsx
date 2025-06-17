@@ -1,14 +1,13 @@
+"use client"
 import React from 'react';
 import Layout from '@/components/common_layout/Layout';
 import AttendencePunchCards from './AttendencePunchCards';
 import ShowMonthAttendenceCart from './ShowMonthAttendenceCart';
-import LeaveSummaryCart from '../leave/LeaveSummaryCart'; 
 import { LuPartyPopper } from "react-icons/lu";
 
 const MarkAttendence = () => {
   return (
     <Layout>
-     
       <div className="mb-4">
         <h1 className="text-sm sm:text-base font-medium tracking-wide flex items-center gap-3 text-gray-800">
           <LuPartyPopper className="text-[#EDA02B]" size={32} />
@@ -24,7 +23,6 @@ const MarkAttendence = () => {
         <div>
           <ShowMonthAttendenceCart />
         </div>
-
       </div>
     </Layout>
   );
