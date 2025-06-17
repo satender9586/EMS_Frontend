@@ -26,16 +26,14 @@ const ShowLeaveStaus = () => {
     return (
         <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200 h-full max-h-[300px] overflow-hidden">
          
-            <div className="flex items-center px-4 py-3 border-b gap-2">
+            <div className="flex items-center px-4 py-2 border-b gap-2">
                 <RiErrorWarningFill className="text-[#008AFF] text-xl" />
                 <h2 className="text-[#008AFF] font-semibold text-lg font-sans">
                     Leave Request
                 </h2>
             </div>
-
-         
-            <div className="max-h-[240px] overflow-y-auto px-4 py-3 scrollbar-thin scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-400">
-                <LeaverequestCardsTables leaveDataProps={leavesData} />
+            <div className="max-h-[240px] overflow-y-auto px-4 py-1 scrollbar-thin scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-400">
+                <LeaverequestCardsTables showAction={false} callback={false} leaveDataProps={leavesData} />
             </div>
         </div>
     );

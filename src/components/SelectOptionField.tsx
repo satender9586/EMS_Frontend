@@ -35,7 +35,7 @@ const SelectOptionField: React.FC<InputFieldProps> = ({
             </FormControl>
             <SelectContent>
               {options?.map((data) => (
-                <SelectItem key={data} value={data}>
+                <SelectItem key={data} value={data} >
                   {data}
                 </SelectItem>
               ))}

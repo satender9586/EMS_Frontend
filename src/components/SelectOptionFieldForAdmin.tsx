@@ -33,12 +33,13 @@ const SelectOptionFieldForAdmin: React.FC<ActionFieldInterface> = ({ callback, i
           <SelectLabel >Status</SelectLabel>
           {
             isAdmin ? <>
-              <SelectItem  value="rejected">Rejected</SelectItem>
+              {/* <SelectItem    value="rejected">Rejected</SelectItem>
                <SelectItem value="approved">Approved</SelectItem>   
-            </> :<SelectItem   value="cancelled">Cancelled</SelectItem>
+            </> :<SelectItem   value="cancelled">Cancelled</SelectItem> */}
+              <SelectItem  disabled={status==="cancelled"  || status==="approved"}  value="rejected">Rejected</SelectItem>
+               <SelectItem disabled={status==="cancelled"  || status==="approved"} value="approved">Approved</SelectItem>   
+            </> :<SelectItem disabled={status==="cancelled" || status==="approved"}  value="cancelled">Cancelled</SelectItem>
           } 
-
-
         </SelectGroup>
       </SelectContent>
     </Select>

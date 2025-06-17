@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { retriveMyLeavesApi } from '@/services/GET_API';
+import { retriveAllRequestedLeavesApi } from '@/services/GET_API';
 import { myLeavesInterface } from '@/types/applyLeave';
 import AdminLeaveStatusTables from '@/components/AdminLeaveStatusTables';
 import { LeaveActionApi } from '@/services/POST_API';
@@ -10,10 +10,9 @@ import { toast } from 'react-toastify';
 const RequestedLeaves = () => {
 
   const [leavesData, setLeavesData] = useState<myLeavesInterface[]>([])
-
   const retriveMyLeaves = async () => {
     try {
-      const response = await retriveMyLeavesApi()
+      const response = await retriveAllRequestedLeavesApi()
       const data = response?.data?.data?.reverse()
       setLeavesData(data)
     } catch (error) {

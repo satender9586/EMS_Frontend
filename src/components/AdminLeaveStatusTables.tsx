@@ -1,6 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table"
 import { myLeavesInterface } from "@/types/applyLeave"
 import SelectOptionFieldForAdmin from "./SelectOptionFieldForAdmin";
+import { getDiffInTwoDates } from "@/utils/methods";
 
 interface myLeavesProps {
   leaveDataProps: myLeavesInterface[];
@@ -28,9 +29,9 @@ const AdminLeaveStatusTables: React.FC<myLeavesProps> = ({ leaveDataProps, callb
             <TableRow key={leave?.leave_request_id}>
               <TableCell className="font-medium">{leave?.employee_id}</TableCell>
               <TableCell className="font-medium">{leave?.leave_type}</TableCell>
-              <TableCell>{leave?.start_date?.split("T")[0]}</TableCell>
-              <TableCell>{leave?.end_date?.split("T")[0]}</TableCell>
-              <TableCell className="text-center">{leave?.total_days}</TableCell>
+              <TableCell>{leave?.start_date}</TableCell>
+              <TableCell>{leave?.end_date}</TableCell>
+              <TableCell className="text-center">{getDiffInTwoDates(leave?.start_date,leave?.end_date)}</TableCell>
               <TableCell className={
                 leave?.status === "approved"
                   ? "text-[#32b751] text-end"
@@ -40,7 +41,6 @@ const AdminLeaveStatusTables: React.FC<myLeavesProps> = ({ leaveDataProps, callb
               }>
                 {leave?.status}
               </TableCell>
-
               <TableCell className="flex justify-end w-full">
                 <SelectOptionFieldForAdmin isAdmin={true} callback={callback} id={leave?.leave_request_id} status={leave?.status}/>
               </TableCell>

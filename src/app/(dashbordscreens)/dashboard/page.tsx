@@ -8,29 +8,20 @@ import TopCards from "./TopCards";
 const Dashboard = () => {
   return (
     <Layout>
-     
-      <div className="mb-4">
+      <div>
         <TopCards />
       </div>
-
-    
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-       
-        <div className="lg:col-span-4 space-y-4">
-          <div className="bg-white p-5 border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-3 mt-3">
+        <div className="lg:col-span-4 space-y-3">
+          <div className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition">
             <AnnouncementsCards />
           </div>
-
-          <div className="bg-white p-5 border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition">
+          <div>
             <ShowLeaveStaus />
           </div>
         </div>
-
-     
-        <div className="lg:col-span-1 space-y-4">
-          <div className="bg-white p-5 border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition">
+        <div>
             <DashbordCelibrationCards />
-          </div>
         </div>
       </div>
     </Layout>

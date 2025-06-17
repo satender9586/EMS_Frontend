@@ -9,7 +9,6 @@ import { leaveActionPayload } from '@/types/leave';
 
 const MyLeaves = () => {
     const [leavesData, setLeavesData] = useState<myLeavesInterface[]>([])
-
     const retriveMyLeaves = async () => {
         try {
             const response = await retriveMyLeavesApi()

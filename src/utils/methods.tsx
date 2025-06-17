@@ -34,7 +34,7 @@ export const getDiffInTwoDates = (start: string, end: string): number => {
     const startDate = new Date(start);
     const endDate = new Date(end);
     const timeDiff = endDate.getTime() - startDate.getTime();
-    const diffInDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+    const diffInDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24))+1;
     return diffInDays;
 };
 

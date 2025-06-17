@@ -1,15 +1,16 @@
-import {Table,TableBody,TableCell,TableHead,TableHeader,TableRow,} from "@/components/ui/table"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table"
 import { myLeavesInterface } from "@/types/applyLeave"
 import SelectOptionFieldForAdmin from "./SelectOptionFieldForAdmin";
 
 
 
 interface myLeavesProps {
-  leaveDataProps: myLeavesInterface[]; 
-  callback :any
+  leaveDataProps: myLeavesInterface[];
+  callback: any,
+  showAction: boolean
 }
 
-const LeaveStausTables:React.FC<myLeavesProps> = ({leaveDataProps,callback}) => {
+const LeaveStausTables: React.FC<myLeavesProps> = ({ leaveDataProps, callback, showAction }) => {
 
   return (
     <div className="overflow-x-auto">
@@ -22,7 +23,12 @@ const LeaveStausTables:React.FC<myLeavesProps> = ({leaveDataProps,callback}) => 
             <TableHead className="text-center">Days</TableHead>
             <TableHead className="text-center">Status</TableHead>
             <TableHead className="text-center"> Action By</TableHead>
-            <TableHead className="text-center"> Action </TableHead>
+            {
+              showAction && <>
+
+                <TableHead className="text-center"> Action </TableHead>
+              </>
+            }
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -32,11 +38,16 @@ const LeaveStausTables:React.FC<myLeavesProps> = ({leaveDataProps,callback}) => 
               <TableCell>{leave?.start_date?.split("T")[0]}</TableCell>
               <TableCell>{leave?.end_date?.split("T")[0]}</TableCell>
               <TableCell className="text-center min-w-[200px]">{leave?.total_days}</TableCell>
-              <TableCell className={ leave?.status === "approved" ? "text-[#018AFF] text-center" : leave?.status=="rejected" ? "text-red-500 text-center": "text-black text-center" }>{leave?.status}</TableCell>
+              <TableCell className={leave?.status === "approved" ? "text-[#018AFF] text-center" : leave?.status == "rejected" ? "text-red-500 text-center" : "text-black text-center"}>{leave?.status}</TableCell>
               <TableCell className="text-center min-w-[150px]">{leave?.action_by}</TableCell>
-              <TableCell className="flex justify-center">
-                <SelectOptionFieldForAdmin isAdmin={false} callback={callback} id={leave?.leave_request_id} status={leave?.status}/>
-              </TableCell>
+              {
+                showAction && <>
+                  <TableCell className="flex justify-center">
+                    <SelectOptionFieldForAdmin isAdmin={false} callback={callback} id={leave?.leave_request_id} status={leave?.status} />
+                  </TableCell>
+                </>
+              }
+
             </TableRow>
           ))}
         </TableBody>
