@@ -1,5 +1,5 @@
 'use client';
-import type { SidebarItem } from "@/utils/sidebaar.functions";
+import type { SidebarItem } from "@/lib/sidebaar.functions";
 import { useEffect, useState } from "react";
 import logo from "../../assests/dashboard/Logo.webp";
 import {
@@ -10,8 +10,8 @@ import {
 import Image from "next/image";
 import Navbaar from "./Navbaar";
 import Link from "next/link";
-import { getCookies } from "@/utils/cookies";
-import { ROLE_ITEMS } from "@/utils/sidebaar.functions";
+import { getCookies } from "@/utils/Cookies";
+import { ROLE_ITEMS } from "@/lib/sidebaar.functions";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [role, setRole] = useState("Employee");

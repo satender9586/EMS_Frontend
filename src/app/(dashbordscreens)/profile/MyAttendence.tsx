@@ -13,7 +13,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Eye } from "lucide-react";
 import { retriveAttendenceApi } from '@/services/GET_API';
-import { getMonthStartAndEndDates } from '@/utils/methods';
+import { getMonthStartAndEndDates } from '@/utils/Methods';
 import { MyAttendenceResponseInterface } from '@/types/attendence';
 import Link from 'next/link';
 

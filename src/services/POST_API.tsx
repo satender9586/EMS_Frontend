@@ -1,10 +1,7 @@
-import { instance } from "@/lib/Axios.interceptor";
+import { instance } from "@/utils/Axios";
 import { EmployeeProfilePayload, LoginPayload,addNewUserPayload } from "@/types/auth";
 import { leaveActionPayload, leaveRequestPayload, addOfficialHolidayPayload } from "@/types/leave";
-const Leave_Base = "leave"
-const Auth_Base = "/auth"
-const Atten_Base = "/attendence"
-const Holiday_Base = "/holiday"
+import { Leave_Base,Auth_Base,Atten_Base,Holiday_Base, Admin_Base } from "@/utils/Constant";
 
 // create new user API     
 export const AddNewUserApi = async (payloadData:addNewUserPayload) => {
@@ -86,9 +83,18 @@ export const LeaveActionApi = async (payloadData:leaveActionPayload) => {
     return response;
 };
 
-// add company holiday 
+// Add company Holidays 
 export const AddCompanyHolidayApi = async (payloadData:addOfficialHolidayPayload) => {
     const response = await instance.post(`${Holiday_Base}/addHolidays`,payloadData);
+    if (response.status !== 200) {
+        throw new Error("Something is wrong!");
+    }
+    return response;
+};
+
+// Add announcement
+export const AddAnnouncementApi = async (payloadData:any) => {
+    const response = await instance.post(`${Admin_Base}/announcement`,payloadData);
     if (response.status !== 200) {
         throw new Error("Something is wrong!");
     }

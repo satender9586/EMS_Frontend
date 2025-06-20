@@ -1,7 +1,7 @@
-import { instance } from "@/lib/Axios.interceptor";
-const Atten_Base = "/attendence"
-const Admin_Base = "/admin"
-const Leave_Base = "/leave"
+import { instance } from "@/utils/Axios";
+import {Admin_Base,Atten_Base} from "@/utils/Constant";
+
+
 
 export const punchOutApi = async () => {
     const response = await instance.patch(`${Atten_Base}/check_out`);

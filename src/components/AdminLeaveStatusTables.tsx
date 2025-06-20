@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table"
 import { myLeavesInterface } from "@/types/applyLeave"
 import SelectOptionFieldForAdmin from "./SelectOptionFieldForAdmin";
-import { getDiffInTwoDates } from "@/utils/methods";
+import { getDiffInTwoDates } from "@/utils/Methods";
 
 interface myLeavesProps {
   leaveDataProps: myLeavesInterface[];

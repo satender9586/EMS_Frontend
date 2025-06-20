@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { punchInApi } from "@/services/POST_API";
 import { punchingStatusApi } from "@/services/GET_API";
 import { punchOutApi } from "@/services/PATCH_API";
-import { currentDateAndTime } from "@/utils/methods";
+import { currentDateAndTime } from "@/utils/Methods";
 import { PlaneTakeoff } from "lucide-react";
 import Link from "next/link";
 import { toast } from "react-toastify";

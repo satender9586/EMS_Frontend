@@ -1,7 +1,7 @@
-import { getCookies } from './utils/cookies';
+import { getCookies } from './utils/Cookies';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { clearLocalStorage } from './utils/methods';
+import { clearLocalStorage } from './utils/Methods';
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

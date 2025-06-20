@@ -7,7 +7,7 @@ export const currentDateAndTime = (): string => {
     return data.toLocaleString().split(" ").slice(0,4).join(" "); 
 }
 
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Start and End date of month
 export const getMonthStartAndEndDates = () => {
     const now = new Date();
     const currentData = new Date()
@@ -38,13 +38,8 @@ export const getDiffInTwoDates = (start: string, end: string): number => {
     return diffInDays;
 };
 
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
-
-export const clearLocalStorage = (key: string) => {
-  if (typeof window !== 'undefined') {
-    window.localStorage.removeItem(key);
-  }
-};
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> local storage store data
+// convert karna hai es method ko generics main reusable banane ke liye
 
 export const setLocalStorage = (data: UserAuthPayload) => {
   if (typeof window !== 'undefined') {
@@ -54,9 +49,35 @@ export const setLocalStorage = (data: UserAuthPayload) => {
   }
 };
 
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> retrive local storage data
 export const getLocalStorage = (key: string): any => {
   if (typeof window === "undefined") {
     return null;
   }
   return window.localStorage.getItem(key);
 };
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Clear Local Storage
+
+export const clearLocalStorage = (key: string) => {
+  if (typeof window !== 'undefined') {
+    window.localStorage.removeItem(key);
+  }
+};
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> dashbord>birthday date formate Clear Local Storage
+ export const birthDayDateFormate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return new Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: 'numeric',
+    }).format(date); // e.g., Jun 21
+  };
+
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>First Charector uppercase ex -> raju : Raju
+
+export const wordCapitalize = (key:string)=>{
+  const incommingString = key;
+  return incommingString.charAt(0).toUpperCase()+incommingString.slice(1)
+}

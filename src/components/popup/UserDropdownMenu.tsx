@@ -7,8 +7,8 @@ import {
     DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { loggedOutApi } from "@/services/POST_API"
-import { clearLocalStorage, getLocalStorage } from "@/utils/methods"
-import { clearCookies } from "@/utils/cookies"
+import { clearLocalStorage, getLocalStorage } from "@/utils/Methods"
+import { clearCookies } from "@/utils/Cookies"
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from "react"
 import Link from "next/link"

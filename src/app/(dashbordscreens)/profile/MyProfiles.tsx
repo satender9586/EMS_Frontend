@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { loggedInfoApi } from "@/services/GET_API";
 import { authInfoInterface } from "@/types/profile";
-import { authInfoStateData } from "@/utils/defaultStateValues";
+import { authInfoStateData } from "@/lib/DefaultStateValues";
 import ProfilesCards from "@/components/ProfilesCards";
 
 const MyProfiles = () => {

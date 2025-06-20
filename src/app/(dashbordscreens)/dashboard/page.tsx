@@ -13,7 +13,7 @@ const Dashboard = () => {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-3 mt-3">
         <div className="lg:col-span-4 space-y-3">
-          <div className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition">
+          <div className="">
             <AnnouncementsCards />
           </div>
           <div>

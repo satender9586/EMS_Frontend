@@ -14,8 +14,8 @@ import { toast } from "react-toastify"
 import { useRouter } from 'next/navigation'
 import { retriveEmployeeProfilesApi } from "@/services/GET_API"
 import { useEffect } from "react"
-import { editProfileSetDeafultFormData } from "@/utils/Organization.funtions"
-import { editProfileDeautlFormField } from "@/utils/defaultStateValues"
+import { editProfileSetDeafultFormData } from "@/lib/Organization.funtions"
+import { editProfileDeautlFormField } from "@/lib/DefaultStateValues"
 import { EmployeeProfileAddUpdateApi } from "@/services/POST_API"
 
 
