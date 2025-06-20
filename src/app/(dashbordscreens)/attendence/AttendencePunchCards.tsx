@@ -132,14 +132,14 @@ const punchInHandler = async () => {
                 !!punchingData?.punch_out &&
                 punchingData.punch_out !== "00:00:00"
               }
-              className="w-full rounded-sm  bg-red-500"
+              className="w-full rounded-sm font-sans bg-red-500"
               onClick={punchOutHandler}
             >
               Punch Out
             </Button>
           ) : (
             <Button
-              className="w-full rounded-sm bg-green-600"
+              className="w-full rounded-sm font-sans bg-green-600"
               onClick={punchInHandler}
             >
               Punch In
@@ -149,10 +149,10 @@ const punchInHandler = async () => {
 
         <div className="mt-6 p-6 bg-gradient-to-r from-white via-blue-50 to-blue-100 rounded-2xl shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="flex-1">
-            <h2 className="text-2xl font-bold text-gray-800 mb-1">
+            <h2 className="text-2xl font-serif font-bold text-gray-800 mb-1">
               Request Time Off
             </h2>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 font-sans">
               Easily plan and submit your leave requests. Keep your schedule
               transparent and ensure smooth workflow coordination with your
               team.
@@ -160,7 +160,7 @@ const punchInHandler = async () => {
           </div>
 
           <Link href="/leave" passHref>
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-3 rounded-xl flex items-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg">
+            <Button className="bg-blue-400 font-serif hover:bg-blue-700 text-white font-semibold px-5 py-3 rounded-xl flex items-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg">
               <PlaneTakeoff className="w-5 h-5" />
               Apply for Leave
             </Button>

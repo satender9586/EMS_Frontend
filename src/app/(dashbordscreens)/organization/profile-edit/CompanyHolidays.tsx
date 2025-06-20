@@ -50,23 +50,23 @@ useEffect(() => {
 }, [open,isDeletedHoliday]);
 
   return (
-    <div>
+    <div className="relative">
       <div className="flex justify-end ">
         <div>
           <AlertDialog open={open}>
             <AlertDialogTrigger asChild>
               <Button
                 variant="outline"
-                className={"bg-[#165DFB] text-white" }
+                className={"fixed bottom-5 right-8 rounded-full p-5  bg-gradient-to-r from-[#008AFF] to-[#00C6FF]" }
                 onClick={() => setOpen(true)}
               >
-               New Holiday <IoAddSharp className="text-white"/>
+                <IoAddSharp className="text-white"/>
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent>
+            <AlertDialogContent className="">
               <AlertDialogHeader>
-                <AlertDialogTitle>Offical Holiday</AlertDialogTitle>
-                <AlertDialogDescription>
+                <AlertDialogTitle className="font-serif">Holiday</AlertDialogTitle>
+                <AlertDialogDescription className="font-sans">
                   Fill out the form below to add a  company offical holiday.
                 </AlertDialogDescription>
               </AlertDialogHeader>

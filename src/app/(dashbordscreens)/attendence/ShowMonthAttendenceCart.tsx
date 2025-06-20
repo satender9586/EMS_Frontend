@@ -26,7 +26,7 @@ const ShowMonthAttendenceCart = () => {
   return (
     <div className='bg-[#F2F3F6]   hover:shadow-xl border border-[#E5E5E5] rounded-lg p-3 '>
       <div className='flex justify-between'>
-        <h1 className="font-semibold text-sm  tracking-wide flex items-center space-x-2">
+        <h1 className="font-serif text-sm  tracking-wide flex items-center space-x-2">
           Month Summary
         </h1>
 
@@ -35,33 +35,33 @@ const ShowMonthAttendenceCart = () => {
         <div>
           <div className='py-2 grid grid-cols-2 '>
             <div className='flex flex-col items-center border-r border-[#E5E5E5]'>
-              <h1 className='font-[500] font-sans text-green-500'>Present</h1>
-              <div className="text-3xl font-sans text-[#7A7A7A]">{attendanceData?.Present || 0}</div>
+              <h1 className='font-[500] font-serif text-green-500'>Present</h1>
+              <div className="text-3xl font-serif text-[#7A7A7A]">{attendanceData?.Present || 0}</div>
              
             </div>
             <div className='flex flex-col items-center '>
-              <h1 className='font-[500] font-sans text-red-500'>Absent</h1>
-              <h1 className='text-3xl font-sans text-[#7A7A7A]'>{attendanceData?.Absent || 0}</h1>
+              <h1 className='font-[500] font-serif text-red-500'>Absent</h1>
+              <h1 className='text-3xl font-serif text-[#7A7A7A]'>{attendanceData?.Absent || 0}</h1>
              
             </div>
             <div className='flex border-t flex-col items-center border-r border-[#E5E5E5]'>
-              <h1 className='font-[500] font-sans text-blue-400 mt-2'>Leave</h1>
-              <h1 className='text-3xl font-sans text-[#7A7A7A]'>{attendanceData?.Leave || 0}</h1>
+              <h1 className='font-[500] font-serif text-blue-400 mt-2'>Leave</h1>
+              <h1 className='text-3xl font-serif text-[#7A7A7A]'>{attendanceData?.Leave || 0}</h1>
              
             </div>
             <div className='flex flex-col border-t items-center  '>
-              <h1 className='font-[500] font-sans text-pink-300 mt-2'>Office Holiday</h1>
-              <h1 className='text-3xl font-sans text-[#7A7A7A]'>{attendanceData?.OfficialHoliday || 0}</h1>
+              <h1 className='font-[500] font-serif text-pink-300 mt-2'>Office Holiday</h1>
+              <h1 className='text-3xl font-serif text-[#7A7A7A]'>{attendanceData?.OfficialHoliday || 0}</h1>
              
             </div>
             <div className='flex border-t flex-col items-center border-r border-[#E5E5E5]'>
-              <h1 className='font-[500] font-sans text-blue-400 mt-2'>Weekend</h1>
-              <h1 className='text-3xl font-sans text-[#7A7A7A]'>{attendanceData?.Weekend || 0}</h1>
+              <h1 className='font-[500] font-serif text-blue-400 mt-2'>Weekend</h1>
+              <h1 className='text-3xl font-serif text-[#7A7A7A]'>{attendanceData?.Weekend || 0}</h1>
              
             </div>
             <div className='flex flex-col border-t items-center  '>
-              <h1 className='font-[500] font-sans text-pink-300 mt-2'>Halfday</h1>
-              <h1 className='text-3xl font-sans text-[#7A7A7A]'>{attendanceData?.Halfday || 0}</h1>
+              <h1 className='font-[500] font-serif text-pink-300 mt-2'>Halfday</h1>
+              <h1 className='text-3xl font-serif text-[#7A7A7A]'>{attendanceData?.Halfday || 0}</h1>
              
             </div>
           </div>

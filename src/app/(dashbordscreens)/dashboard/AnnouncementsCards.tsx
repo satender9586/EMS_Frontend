@@ -31,7 +31,7 @@ const AnnouncementsCards = () => {
 
     return (
         <div className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-lg transition">
-            <div className="flex items-center gap-2 px-4 py-2 border-b rounded-t-2xl r bg-gradient-to-r from-[#008AFF] to-[#00C6FF]">
+            <div className="flex items-center gap-2 px-4 py-2 border-b rounded-t-2xl  bg-gradient-to-r from-[#008AFF] to-[#00C6FF]">
                 <GrAnnounce className=" text-white text-xl" />
                 <h2 className=" text-white font-semibold text-lg font-sans">
                     Announcements

@@ -33,6 +33,7 @@ export function UserDropdownMenu() {
     }, [])
 
 
+
 const loggedOutHandler = async () => {
         try {
             const response = await loggedOutApi()
@@ -57,7 +58,7 @@ const loggedOutHandler = async () => {
                         <User />
                     </div>
                     {/* Use the role from localStorage if available */}
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-1 font-serif">
                         {userData ? userData.role : 'Loading...'}
                         <ChevronDown />
                     </span>

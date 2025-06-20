@@ -15,33 +15,33 @@ const AdminLeaveStatusTables: React.FC<myLeavesProps> = ({ leaveDataProps, callb
       <Table className="min-w-full">
         <TableHeader>
           <TableRow>
-            <TableHead>EmployeeId</TableHead>
-            <TableHead>Leave Type</TableHead>
-            <TableHead>Start Date</TableHead>
-            <TableHead>End Date</TableHead>
-            <TableHead className="text-center">Days</TableHead>
-            <TableHead className="text-end pr-5">Status</TableHead>
-            <TableHead className="text-end pr-15">Action</TableHead>
+            <TableHead className="font-serif">EmployeeId</TableHead>
+            <TableHead className="font-serif">Leave Type</TableHead>
+            <TableHead className="font-serif">Start Date</TableHead>
+            <TableHead className="font-serif">End Date</TableHead>
+            <TableHead className="text-center font-serif">Days</TableHead>
+            <TableHead className="text-end pr-5 font-serif">Status</TableHead>
+            <TableHead className="text-end pr-15 font-serif">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {leaveDataProps?.map((leave) => (
             <TableRow key={leave?.leave_request_id}>
-              <TableCell className="font-medium">{leave?.employee_id}</TableCell>
-              <TableCell className="font-medium">{leave?.leave_type}</TableCell>
-              <TableCell>{leave?.start_date}</TableCell>
-              <TableCell>{leave?.end_date}</TableCell>
-              <TableCell className="text-center">{getDiffInTwoDates(leave?.start_date,leave?.end_date)}</TableCell>
+              <TableCell className="font-sans">{leave?.employee_id}</TableCell>
+              <TableCell className="font-sans">{leave?.leave_type}</TableCell>
+              <TableCell className="font-sans">{leave?.start_date}</TableCell>
+              <TableCell className="font-sans">{leave?.end_date}</TableCell>
+              <TableCell className="text-center font-sans">{getDiffInTwoDates(leave?.start_date,leave?.end_date)}</TableCell>
               <TableCell className={
                 leave?.status === "approved"
-                  ? "text-[#32b751] text-end"
+                  ? "text-[#32b751] text-end font-sans"
                   : (leave?.status === "rejected" || leave?.status === "cancelled")
-                    ? "text-red-500 text-end"
-                    : "text-black text-end"
+                    ? "text-red-500 text-end font-sans"
+                    : "text-black text-end font-sans"
               }>
                 {leave?.status}
               </TableCell>
-              <TableCell className="flex justify-end w-full">
+              <TableCell className="flex justify-end w-full font-sans">
                 <SelectOptionFieldForAdmin isAdmin={true} callback={callback} id={leave?.leave_request_id} status={leave?.status}/>
               </TableCell>
             </TableRow>

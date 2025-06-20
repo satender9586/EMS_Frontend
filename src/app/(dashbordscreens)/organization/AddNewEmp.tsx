@@ -12,56 +12,51 @@ import { FcInfo } from "react-icons/fc";
 import { toast } from "react-toastify"
 
 
-
-
-const AddNewEmp = () => {
-  const form = useForm<z.infer<typeof NewEmployeeFormSchema>>({
-  resolver: zodResolver(NewEmployeeFormSchema),
-  defaultValues: {
-    email: "",
-    password: "",
-    department: "",
-    role: "",
-  },
-});
-
-const { reset } = form; 
-
-async function onSubmit(data: z.infer<typeof NewEmployeeFormSchema>) {
-  try {
-    const response = await AddNewUserApi(data);
-    const status = response?.status;
-    console.log("Response status:", status);
-    toast.success("User created successfully", { autoClose: 1000 });
-    reset();
-  } catch (error: any) {
-    const status = error?.response?.status;
-    const message = error?.response?.data?.message || "Something went wrong";
-    if (status === 400) {
-      toast.warning(message, { autoClose: 1000 });
-    } else {
-      toast.error("Failed to create user. Please try again.");
-    }
-    console.error("Error in create new user API:", error);
-  }
+interface addNewEmployeeInterface {
+  setOpen: (open: boolean) => void,
 }
 
+const AddNewEmp: React.FC<addNewEmployeeInterface> = ({ setOpen }) => {
+  const form = useForm<z.infer<typeof NewEmployeeFormSchema>>({
+    resolver: zodResolver(NewEmployeeFormSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      department: "",
+      role: "",
+    },
+  });
 
+  const { reset } = form;
+
+  async function onSubmit(data: z.infer<typeof NewEmployeeFormSchema>) {
+    try {
+      const response = await AddNewUserApi(data);
+      const status = response?.status;
+      console.log("Response status:", status);
+      setOpen(false)
+      toast.success("User created successfully", { autoClose: 1000 });
+      reset();
+    } catch (error: any) {
+      const status = error?.response?.status;
+      const message = error?.response?.data?.message || "Something went wrong";
+      if (status === 400) {
+        toast.warning(message, { autoClose: 1000 });
+      } else {
+        toast.error("Failed to create user. Please try again.");
+      }
+      console.error("Error in create new user API:", error);
+    }
+  }
 
 
   return (
-
     <div className="w-full">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} >
           <div className="border bg-white rounded-sm border-[#E5E5E5] p-3">
-            <div className="flex items-start space-x-2">
-              <FcInfo size={20} />
-              <span className='font-sans text-sm'>
-                Basic Infomation
-              </span>
-            </div>
-            <div className="grid mt-2 grid-cols-3 gap-4">
+
+            <div className="grid  grid-cols-2 gap-4">
               {
                 NewEmployeeInputFields?.map(({ name, label, placeholder, type, options }) =>
                   type === "text" || type == "date" || type == "number" || type == "email" || type == "password" ? (
@@ -87,7 +82,10 @@ async function onSubmit(data: z.infer<typeof NewEmployeeFormSchema>) {
               }
             </div>
           </div>
-          <Button type="submit" className="mt-2 ">Submit</Button>
+          <div className="flex gap-2 mt-2">
+            <Button variant={"outline"} onClick={() => setOpen(false)} type="button" className="mt-2 font-sans">Cancel</Button>
+            <Button type="submit" className="mt-2 font-sans " >Submit</Button>
+          </div>
         </form>
       </Form>
     </div>

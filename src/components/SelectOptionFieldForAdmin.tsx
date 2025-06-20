@@ -25,20 +25,17 @@ const SelectOptionFieldForAdmin: React.FC<ActionFieldInterface> = ({ callback, i
 
   return (
     <Select onValueChange={changeHandler}>
-      <SelectTrigger className="w-[140px] text-center">
-        <SelectValue placeholder="Take action" />
+      <SelectTrigger className="w-[140px] text-center font-sans">
+        <SelectValue placeholder="Take action" className="font-sans" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel >Status</SelectLabel>
+          <SelectLabel className="font-sans">Status</SelectLabel>
           {
             isAdmin ? <>
-              {/* <SelectItem    value="rejected">Rejected</SelectItem>
-               <SelectItem value="approved">Approved</SelectItem>   
-            </> :<SelectItem   value="cancelled">Cancelled</SelectItem> */}
-              <SelectItem  disabled={status==="cancelled"  || status==="approved"}  value="rejected">Rejected</SelectItem>
-               <SelectItem disabled={status==="cancelled"  || status==="approved"} value="approved">Approved</SelectItem>   
-            </> :<SelectItem disabled={status==="cancelled" || status==="approved"}  value="cancelled">Cancelled</SelectItem>
+               <SelectItem  className="font-sans" disabled={status==="cancelled"  || status==="approved"}  value="rejected">Rejected</SelectItem>
+               <SelectItem className="font-sans" disabled={status==="cancelled"  || status==="approved"} value="approved">Approved</SelectItem>   
+            </> :<SelectItem className="font-sans" disabled={status==="cancelled" || status==="approved"}  value="cancelled">Cancelled</SelectItem>
           } 
         </SelectGroup>
       </SelectContent>

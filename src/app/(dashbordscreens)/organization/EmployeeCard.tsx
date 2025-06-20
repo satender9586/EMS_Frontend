@@ -18,10 +18,10 @@ import { toast } from 'react-toastify';
 
 interface EmployeeCardPropsInterface {
     cardData: authInfoInterface
-    empListcallbackhandler:any
+    empListcallbackhandler: any
 }
 
-const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData,empListcallbackhandler }) => {
+const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData, empListcallbackhandler }) => {
 
     const { user_info, personal_info, bank_info, contact_info } = cardData
     const { department, email, employee_id, role, status } = user_info;
@@ -34,11 +34,11 @@ const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData,empListca
             const resposne = await activeInctiveApi({ employeeId: employee_id })
             console.log("resposne", resposne?.data?.data?.status)
             const status = resposne?.data?.data?.status
-            toast.success( `update status : ${status}`,{autoClose:1000})
+            toast.success(`update status : ${status}`, { autoClose: 1000 })
             empListcallbackhandler()
-        } catch (error:any) {
+        } catch (error: any) {
             console.log("error", error)
-             toast.error(error,{autoClose:1000})
+            toast.error(error, { autoClose: 1000 })
         }
     }
 
@@ -50,16 +50,16 @@ const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData,empListca
                     <div className="bg-[#CCCCCC] w-full min-h-[40px] rounded-full"></div>
                 </div>
                 <div className="w-[160px]">
-                    <h1 className="font-[popplins] text-sm font-bold">{personal_info?.first_name + " " + personal_info?.last_name}</h1>
-                    <h1 className="text-[#777777] text-[13px] font-[400] leading-[16px] break-words">
+                    <h1 className="text-sm font-serif">{personal_info?.first_name + " " + personal_info?.last_name}</h1>
+                    <h1 className="text-[#777777] text-[13px] font-[400] leading-[16px] break-words font-sans">
                         {user_info?.department}
                     </h1>
-                    <h1 className="font-bold text-[#777777] text-[13px] leading-[16px] break-words">
+                    <h1 className="font-bold text-[#777777] text-[13px] leading-[16px] break-words font-sans">
                         Frontend Developer
                     </h1>
                 </div>
                 <div className="flex-1 flex items-end flex-col">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 font-sans">
                         <div><TiPin className="text-[20px]" /></div>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
@@ -91,18 +91,17 @@ const EmployeeCard: React.FC<EmployeeCardPropsInterface> = ({ cardData,empListca
                         </DropdownMenu>
                     </div>
                     <div className="flex items-center mt-2 gap-2">
-
-                        <h1 className={`bg-[#D9EDDA] rounded-full ${status == "active" ? "text-green-600" : "text-red-600"}  p-1 px-3 text-[12px] font-[500]`}>
+                        <h1 className={`bg-[#D9EDDA] font-sans rounded-full ${status == "active" ? "text-green-600" : "text-red-600"}  p-1 px-3 text-[12px] font-[500]`}>
                             {status}
                         </h1>
                     </div>
                 </div>
             </div>
             <div className="mt-4">
-                <h1 className="text-[#777777] text-[14px] font-[500] leading-[14px] break-words">
+                <h1 className="text-[#777777] font-sans text-[14px] font-[500] leading-[14px] break-words">
                     {employee_id}
                 </h1>
-                <h1 className="mt-1.5 text-[#777777] text-[14px] font-[500] leading-[14px] break-words">
+                <h1 className="mt-1.5 font-sans text-[#777777] text-[14px] font-[500] leading-[14px] break-words">
                     {email}
                 </h1>
             </div>

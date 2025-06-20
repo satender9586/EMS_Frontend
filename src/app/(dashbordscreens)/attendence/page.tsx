@@ -11,7 +11,7 @@ const MarkAttendence = () => {
       <div className="mb-4">
         <h1 className="text-sm sm:text-base font-medium tracking-wide flex items-center gap-3 text-gray-800">
           <LuPartyPopper className="text-[#EDA02B]" size={32} />
-          <span className="font-sans">
+          <span className="font-serif">
             Every great day starts with a single punch. Let&apos;s make today count!
           </span>
         </h1>

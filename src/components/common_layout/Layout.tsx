@@ -49,7 +49,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               <SidebarMenu>
                 {items.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton className="hover:text-[#008AFF]" asChild>
+                    <SidebarMenuButton className="hover:text-[#008AFF] font-serif" asChild>
                       <Link href={item.url}>
                         <item.icon />
                         <span>{item.title}</span>
