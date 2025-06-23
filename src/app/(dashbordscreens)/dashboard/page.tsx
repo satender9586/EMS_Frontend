@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "@/components/common_layout/Layout";
+import Layout from "@/components/Layout";
 import AnnouncementsCards from "./AnnouncementsCards";
 import ShowLeaveStaus from "./ShowLeaveStaus";
 import DashbordCelibrationCards from "./DashbordCelibrationCards";

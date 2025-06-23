@@ -1,7 +1,7 @@
 'use client';
 import type { SidebarItem } from "@/lib/sidebaar.functions";
 import { useEffect, useState } from "react";
-import logo from "../../assests/dashboard/Logo.webp";
+import logo from "../assests/dashboard/Logo.webp";
 import {
   SidebarProvider, Sidebar, SidebarContent, SidebarGroup,
   SidebarGroupContent, SidebarMenu, SidebarMenuItem,

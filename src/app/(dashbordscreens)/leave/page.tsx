@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import Layout from '@/components/common_layout/Layout'
+import Layout from '@/components/Layout'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -69,7 +69,7 @@ const LeaveRequest = () => {
 
   return (
     <Layout>
-      <div >
+      <div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} >
             <div className="border  rounded-sm border-[#E5E5E5] p-3">

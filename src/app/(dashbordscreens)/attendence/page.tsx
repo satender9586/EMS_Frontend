@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import Layout from '@/components/common_layout/Layout';
+import Layout from '@/components/Layout';
 import AttendencePunchCards from './AttendencePunchCards';
 import ShowMonthAttendenceCart from './ShowMonthAttendenceCart';
 import { LuPartyPopper } from "react-icons/lu";

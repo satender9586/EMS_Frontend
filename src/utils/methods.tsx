@@ -74,7 +74,6 @@ export const clearLocalStorage = (key: string) => {
     }).format(date); // e.g., Jun 21
   };
 
-
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>First Charector uppercase ex -> raju : Raju
 
 export const wordCapitalize = (key:string)=>{

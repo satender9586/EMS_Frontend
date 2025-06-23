@@ -1,6 +1,6 @@
 import React from 'react'
-import { UserDropdownMenu } from '../popup/UserDropdownMenu'
-import { UserNotifcationMenu } from '../popup/UserNotifcationMenu'
+import { UserDropdownMenu } from './popup/UserDropdownMenu'
+import { UserNotifcationMenu } from './popup/UserNotifcationMenu'
 
 const Navbaar = () => {
   return (

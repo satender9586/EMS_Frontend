@@ -5,7 +5,7 @@ import { retriveEmployeeProfilesApi } from '@/services/GET_API'
 import { authInfoInterface } from '@/types/profile';
 import { authInfoStateData } from '@/lib/DefaultStateValues';
 import { useParams } from 'next/navigation';
-import Layout from '@/components/common_layout/Layout';
+import Layout from '@/components/Layout';
 
 
 const EmployeeDetails = () => {

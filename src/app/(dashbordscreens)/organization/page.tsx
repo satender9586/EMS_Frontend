@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from '@/components/common_layout/Layout'
+import Layout from '@/components/Layout'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import OrganizationEmployees from './OrganizationEmployees'
 import RequestedLeaves from './RequestedLeaves'

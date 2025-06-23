@@ -32,7 +32,7 @@ const ShowLeaveStaus = () => {
                     Leave Request
                 </h2>
             </div>
-            <div className="max-h-[240px] overflow-y-auto px-4 py-1 scrollbar-thin scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-400">
+            <div className="max-h-[123px] overflow-y-auto px-4 py-1 scrollbar-thin scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-400">
                 <LeaverequestCardsTables showAction={false} callback={false} leaveDataProps={leavesData} />
             </div>
         </div>
