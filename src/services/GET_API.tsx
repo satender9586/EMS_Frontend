@@ -91,4 +91,11 @@ export const retriveCelebrationApi  = async ()=>{
     }
     return response;
 }
+export const retriveBasicSummaryApi  = async ()=>{
+    const response = await instance.get(`${Admin_Base}/basicsummary`)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
 
