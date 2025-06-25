@@ -1,44 +1,47 @@
 'use client'
 
-import { LogOut, Settings, User, ChevronDown } from "lucide-react"
+import { LogOut,  User, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
     DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
     DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { loggedOutApi } from "@/services/POST_API"
-import { clearLocalStorage, getLocalStrageData } from "@/utils/methods"
-import { deleteToken } from "@/utils/cookies"
+import { clearLocalStorage, getLocalStorage } from "@/utils/Methods"
+import { clearCookies } from "@/utils/Cookies"
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from "react"
+import Link from "next/link"
+
 
 export function UserDropdownMenu() {
     const router = useRouter()
-    
     const [userData, setUserData] = useState<any>(null)
 
 
 
     useEffect(() => {
-        const storedData = getLocalStrageData("user")
+        const storedData = getLocalStorage("user")
         if (storedData) {
             try {
                 const parsedData = JSON.parse(storedData)
                 setUserData(parsedData)
             } catch (error) {
-                console.error("Error parsing user data from localStorage", error)
+                console.error("Error  from localStorage", error)
             }
         }
     }, [])
 
 
-    const loggedOutHandler = async () => {
+
+const loggedOutHandler = async () => {
         try {
             const response = await loggedOutApi()
             clearLocalStorage("user")
-            deleteToken("accessToken")
-            deleteToken("refreshToken")
-            router.push("/dashboard")
+            clearCookies("auth")
+            clearCookies("accessToken")
+            clearCookies("refreshToken")
+            router.push("/")
         } catch (error) {
             console.log("something went wrong!")
         }
@@ -55,7 +58,7 @@ export function UserDropdownMenu() {
                         <User />
                     </div>
                     {/* Use the role from localStorage if available */}
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-1 font-serif">
                         {userData ? userData.role : 'Loading...'}
                         <ChevronDown />
                     </span>
@@ -65,18 +68,14 @@ export function UserDropdownMenu() {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                    <DropdownMenuItem>
-                        <User />
-                        <span>Profile</span>
-                        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                        <Settings />
-                        <span>Settings</span>
-                        <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                    </DropdownMenuItem>
+                    <Link href={"/profile"}>
+                        <DropdownMenuItem>
+                            <User />
+                            <span>Profile</span>
+                            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                        </DropdownMenuItem>
+                    </Link>
                 </DropdownMenuGroup>
-
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => loggedOutHandler()}>
                     <LogOut />

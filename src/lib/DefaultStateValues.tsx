@@ -1,5 +1,4 @@
 
-
 //******************************** LOGGED USER DEFAULT STATE OBJECT FOR PROFILE PAGE > MY PROFILE TAB  */
 
 export const authInfoStateData = {
@@ -34,7 +33,6 @@ export const authInfoStateData = {
 }
 
 //******************************** DEFAULT ORGANIZAITON > EDIT PROFILE DEFAULT FORM 
-
 
 export const editProfileDeautlFormField = {
     first_name: "",

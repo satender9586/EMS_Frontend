@@ -1,11 +1,5 @@
-import { instance } from "@/lib/Axios.interceptor";
-import axios from "axios";
-const Auth_Base = "/auth"
-const Atten_Base = "/attendence"
-const leave_Base = "leave"
-const Admin_Base = "admin"
-const Holiday_Base = "/holiday"
-
+import { instance } from "@/utils/Axios";
+import { Leave_Base,Atten_Base,Holiday_Base ,Admin_Base} from "@/utils/Constant";
 
 export const punchingStatusApi  = async ()=>{
     const response = await instance.get(`${Atten_Base}/punchstatus`)
@@ -45,22 +39,31 @@ export const loggedInfoApi  = async ()=>{
 }
 
 export const retriveMyLeavesApi  = async ()=>{
-    const response = await instance.get(`/${leave_Base}/myleaves`)
-    if(response.status !==200){
-        throw new Error("something is wrong!")
-    }
-    return response;
-}
-export const retriveEmployeeProfilesApi  = async (paramsId : string)=>{
-    const response = await instance.get(`/${Admin_Base}/retriveEmployeeProfile/${paramsId}`)
+    const response = await instance.get(`${Leave_Base}/myleaves`)
     if(response.status !==200){
         throw new Error("something is wrong!")
     }
     return response;
 }
 
-export const retriveAllRequestedLeavesApi  = async (paramsId : string)=>{
-    const response = await instance.get(`/${leave_Base}/allleaves/${paramsId}`)
+export const allocatedLeaveBalanceSummaryApi  = async (paramsId : string)=>{
+    const response = await instance.get(`${Leave_Base}/leave-balance/leave_name?leave_name=${paramsId}`)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
+
+export const retriveEmployeeProfilesApi  = async (paramsId : string)=>{
+    const response = await instance.get(`${Admin_Base}/retriveEmployeeProfile/${paramsId}`)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
+
+export const retriveAllRequestedLeavesApi  = async ()=>{
+    const response = await instance.get(`${Leave_Base}/allleaves`)
     if(response.status !==200){
         throw new Error("something is wrong!")
     }
@@ -69,6 +72,27 @@ export const retriveAllRequestedLeavesApi  = async (paramsId : string)=>{
 
 export const retriveAllOfficalHolidaysApi  = async (paramsyear : string)=>{
     const response = await instance.get(`${Holiday_Base}/retriveHolidays/${paramsyear}`)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
+export const retriveAnnoucementsApi  = async ()=>{
+    const response = await instance.get(`${Admin_Base}/retriveannouncement`)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
+export const retriveCelebrationApi  = async ()=>{
+    const response = await instance.get(`${Admin_Base}/celebration`)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
+export const retriveBasicSummaryApi  = async ()=>{
+    const response = await instance.get(`${Admin_Base}/basicsummary`)
     if(response.status !==200){
         throw new Error("something is wrong!")
     }

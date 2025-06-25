@@ -2,7 +2,7 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import { retriveAttendenceSummaryApi } from '@/services/GET_API';
-import { getMonthStartAndEndDates } from '@/utils/methods';
+import { getMonthStartAndEndDates } from '@/utils/Methods';
 
 
 const LeaveSummaryCart = () => {

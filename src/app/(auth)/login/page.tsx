@@ -5,8 +5,8 @@ import { z } from "zod";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { loginApi } from "@/services/POST_API";
-import { setToken } from "@/utils/cookies";
-import { storeAuthInLocalStorage } from "@/utils/methods";
+import { setCookies } from "@/utils/Cookies";
+import { setLocalStorage } from "@/utils/Methods";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { LoginBasicInputFields, LoginFormSchema } from "@/lib/LoginSchema";
@@ -14,10 +14,8 @@ import InputTextField from "@/components/InputTextField";
 
 
 
-
 const Login = () => {
   const router = useRouter();
-
   const form = useForm({
     resolver: zodResolver(LoginFormSchema),
     defaultValues: {
@@ -33,11 +31,13 @@ const Login = () => {
         const accessToken = response?.data?.accessToken;
         const refreshToken = response?.data?.refreshToken;
         const auth = response?.data?.data;
-        storeAuthInLocalStorage(auth);
-        await setToken("accessToken", accessToken);
-        await setToken("refreshToken", refreshToken);
+        setLocalStorage(auth);
+        await setCookies("auth",JSON.stringify({role:auth?.role,employeeId:auth?.employee_id}))
+        await setCookies("accessToken", accessToken);
+        await setCookies("refreshToken", refreshToken);
         toast.success("Login Successfully!", { autoClose: 500 });
-        router.push("/dashboard");
+        const defaultPath = auth?.role==="Super_Admin" || auth?.role==="Admin" ? "/dashboard" : "/attendence"
+        router.push(defaultPath);
       }
     } catch (error: any) {
       const message = error?.response?.data?.message || "Login failed";
@@ -46,17 +46,23 @@ const Login = () => {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen pt-[400px]">
-      <div className="flex w-full max-w-3xl p-8 space-x-8 bg-white rounded-lg shadow-lg">
+    <div className="flex w-full h-[100vh] justify-center items-center">
+      <div className="flex  p-5 min-w-[400px] space-x-8 bg-white rounded-lg shadow-lg">
+
         {/* Form Section */}
-        <div className="w-full max-w-md space-y-8">
+        <div className="w-full max-w-md">
+          <div>
+            <h2 className="text-[25px] font-semibold text-center text-gray-800 ">
+              Welcome to Paytel-HRMS
+            </h2 >
+            <h1 className="text-[12px] font-semibold text-center text-gray-800 mt-1">
+              Your secure gateway to employee management.
+            </h1 >
+          </div>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-              <h2 className="text-3xl font-semibold text-center text-gray-800  pb-5">
-                Paytel-EMS
-              </h2 >
-              <div className="">
-                {LoginBasicInputFields.map(({ name, label, placeholder, type }) => (
+            <form className="p-4 flex flex-col gap-4" onSubmit={form.handleSubmit(onSubmit)}>
+              <div >
+                {LoginBasicInputFields?.map(({ name, label, placeholder, type }) => (
                   <InputTextField
                     key={name}
                     form={form}
@@ -67,7 +73,7 @@ const Login = () => {
                   />
                 ))}
               </div>
-              <Button type="submit" className="mt-4">
+              <Button type="submit" >
                 Submit
               </Button>
             </form>

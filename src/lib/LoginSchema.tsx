@@ -16,8 +16,6 @@ export const LoginBasicInputFields: BasicInputFieldsInterface[] = [
    },
 ];
 
-
-
 export const LoginFormSchema = z.object({
   email: z
     .string()

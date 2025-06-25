@@ -26,16 +26,16 @@ const SelectOptionField: React.FC<InputFieldProps> = ({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
+          <FormLabel className="w-full font-sans">{label}</FormLabel>
           <Select value={field.value} onValueChange={field.onChange}  defaultValue={field.value} >
             <FormControl>
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full font-sans">
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
             </FormControl>
             <SelectContent>
               {options?.map((data) => (
-                <SelectItem key={data} value={data}>
+                <SelectItem key={data} value={data} >
                   {data}
                 </SelectItem>
               ))}

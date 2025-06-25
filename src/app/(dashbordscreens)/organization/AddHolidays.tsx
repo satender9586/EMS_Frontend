@@ -7,15 +7,13 @@ import { Form } from "@/components/ui/form"
 import InputTextField from "@/components/InputTextField"
 import SelectOptionField from "@/components/SelectOptionField"
 import { AddCompanyHolidayApi } from "@/services/POST_API"
-import { FcInfo } from "react-icons/fc";
 import { toast } from "react-toastify"
-import { AddCompanyHolidayInputField, HolidayFieldFormSchema } from "@/lib/AddHolidays"
+import { AddCompanyHolidayInputField, HolidayFieldFormSchema } from "@/lib/AddHolidaysSchema"
 
 
 
 interface holidayInterface{
   setOpen:(open: boolean) => void,
-  
 }
 
 const AddHolidays:React.FC<holidayInterface> = ({setOpen}) => {
@@ -35,7 +33,6 @@ const AddHolidays:React.FC<holidayInterface> = ({setOpen}) => {
   async function onSubmit(data: z.infer<typeof HolidayFieldFormSchema>) {
     try {
       const response = await AddCompanyHolidayApi(data);
-      const status = response?.status;
       toast.success("Holiday add successfully!..", { autoClose: 1000 });
       setOpen(false)
       reset();
@@ -51,8 +48,6 @@ const AddHolidays:React.FC<holidayInterface> = ({setOpen}) => {
       console.error("Error in Holiday API:", error);
     }
   }
-
-
 
 
   return (
@@ -88,8 +83,8 @@ const AddHolidays:React.FC<holidayInterface> = ({setOpen}) => {
             </div>
           </div>
           <div className="flex gap-1">
-            <Button variant={"outline"} onClick={()=>setOpen(false)} type="button" className="mt-2 ">Cancel</Button>
-            <Button type="submit" className="mt-2 ">Submit</Button>
+            <Button variant={"outline"} onClick={()=>setOpen(false)} type="button" className="mt-2 font-sans ">Cancel</Button>
+            <Button type="submit" className="mt-2 font-sans">Submit</Button>
           </div>
         </form>
       </Form>

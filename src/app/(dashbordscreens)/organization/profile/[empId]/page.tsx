@@ -3,16 +3,14 @@ import React,{useEffect, useState} from 'react'
 import ProfilesCards from '@/components/ProfilesCards'
 import { retriveEmployeeProfilesApi } from '@/services/GET_API'
 import { authInfoInterface } from '@/types/profile';
-import { authInfoStateData } from '@/utils/defaultStateValues';
+import { authInfoStateData } from '@/lib/DefaultStateValues';
 import { useParams } from 'next/navigation';
-import Layout from '@/components/common_layout/Layout';
-import { toast } from "react-toastify"
+import Layout from '@/components/Layout';
+
 
 const EmployeeDetails = () => {
       const [authInfo, setAuthInfo] = useState<authInfoInterface>({ ...authInfoStateData });
       const { empId } = useParams()
-
-
 
       const EmployeeProfileHandler = async (empId:string) => {
         try {

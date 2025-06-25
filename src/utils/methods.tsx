@@ -7,7 +7,7 @@ export const currentDateAndTime = (): string => {
     return data.toLocaleString().split(" ").slice(0,4).join(" "); 
 }
 
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Start and End date of month
 export const getMonthStartAndEndDates = () => {
     const now = new Date();
     const currentData = new Date()
@@ -28,32 +28,55 @@ export const getMonthStartAndEndDates = () => {
     };
 };
 
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
-export const storeAuthInLocalStorage = (data: UserAuthPayload) => {
-    const { email, status, role,employee_id } = data;
-    const userData = { email, status, role ,employee_id};
-    window.localStorage.setItem("user", JSON.stringify(userData));
-};
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
-export const getLocalStrageData = (key: string): any => {
-  if (typeof window === "undefined") {
-    return null; 
-  }
-  return window.localStorage.getItem(key);
-};
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
-export const clearLocalStorage = (key:string)=>{
-    window.localStorage.removeItem(key)
-}
-
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> GET DIFF BETWEEN TWO DATS
 
 export const getDiffInTwoDates = (start: string, end: string): number => {
     const startDate = new Date(start);
     const endDate = new Date(end);
     const timeDiff = endDate.getTime() - startDate.getTime();
-    const diffInDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+    const diffInDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24))+1;
     return diffInDays;
 };
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> local storage store data
+// convert karna hai es method ko generics main reusable banane ke liye
+
+export const setLocalStorage = (data: UserAuthPayload) => {
+  if (typeof window !== 'undefined') {
+    const { email, status, role, employee_id } = data;
+    const userData = { email, status, role, employee_id };
+    window.localStorage.setItem("user", JSON.stringify(userData));
+  }
+};
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> retrive local storage data
+export const getLocalStorage = (key: string): any => {
+  if (typeof window === "undefined") {
+    return null;
+  }
+  return window.localStorage.getItem(key);
+};
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Clear Local Storage
+
+export const clearLocalStorage = (key: string) => {
+  if (typeof window !== 'undefined') {
+    window.localStorage.removeItem(key);
+  }
+};
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> dashbord>birthday date formate Clear Local Storage
+ export const birthDayDateFormate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return new Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: 'numeric',
+    }).format(date); // e.g., Jun 21
+  };
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>First Charector uppercase ex -> raju : Raju
+
+export const wordCapitalize = (key:string)=>{
+  const incommingString = key;
+  return incommingString.charAt(0).toUpperCase()+incommingString.slice(1)
+}

@@ -30,7 +30,7 @@ const MyHolidays = () => {
 
     return (
         <div>
-            <OfficialHolidaysTables officialHolidays={officialHolidays} />
+            <OfficialHolidaysTables deleteHolidayHandler={false}  officialHolidays={officialHolidays} isAdminTable={false} />
         </div>
     )
 }

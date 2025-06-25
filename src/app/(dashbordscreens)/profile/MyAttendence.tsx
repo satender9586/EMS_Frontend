@@ -13,7 +13,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Eye } from "lucide-react";
 import { retriveAttendenceApi } from '@/services/GET_API';
-import { getMonthStartAndEndDates } from '@/utils/methods';
+import { getMonthStartAndEndDates } from '@/utils/Methods';
 import { MyAttendenceResponseInterface } from '@/types/attendence';
 import Link from 'next/link';
 
@@ -42,31 +42,31 @@ const MyAttendence = () => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[80px]">S.no</TableHead>
-            <TableHead className="w-[200px]">Date</TableHead>
-            <TableHead>CheckIn</TableHead>
-            <TableHead>CheckOut</TableHead>
-            <TableHead className=" text-center w-[100px]">Hours</TableHead>
-            <TableHead className="text-center w-[200px]">Status</TableHead>
+            <TableHead className="w-[80px] font-serif">S.no</TableHead>
+            <TableHead className="w-[200px] font-serif">Date</TableHead>
+            <TableHead className='font-serif'>CheckIn</TableHead>
+            <TableHead className='font-serif'>CheckOut</TableHead>
+            <TableHead className=" text-center w-[100px] font-serif">Hours</TableHead>
+            <TableHead className="text-center w-[200px] font-serif">Status</TableHead>
          
           </TableRow>
         </TableHeader>
         <TableBody>
           {myAttendence?.map((invoice, index) => (
             <TableRow key={index} >
-              <TableCell className="font-medium">{index+1}</TableCell>
-              <TableCell className="font-medium">{invoice?.date}</TableCell>
-              <TableCell>{invoice?.punch_in || "..."}</TableCell>
-              <TableCell>{invoice?.punch_out || "..."}</TableCell>
-              <TableCell className="text-center">{invoice?.hours_worked || "..."}</TableCell>
+              <TableCell className="font-medium font-sans">{index+1}</TableCell>
+              <TableCell className="font-medium font-sans">{invoice?.date}</TableCell>
+              <TableCell className='font-sans'>{invoice?.punch_in || "..."}</TableCell>
+              <TableCell className='font-sans'>{invoice?.punch_out || "..."}</TableCell>
+              <TableCell className="text-center font-sans">{invoice?.hours_worked || "..."}</TableCell>
               <TableCell
-                className={`text-center ${invoice?.status === "Present"
+                className={`text-center font-sans ${invoice?.status === "Present"
                   ? "text-green-500"
                   : invoice?.status === "Absent"
-                    ? "text-red-600"
+                    ? "text-red-600 font-sans"
                     : ["Weekend", "Leave", "Holiday"].includes(invoice?.status)
-                      ? "text-blue-500"
-                      : "text-gray-500"
+                      ? "text-blue-500 font-sans"
+                      : "text-gray-500 font-sans"
                   }`}
               >
                 {invoice?.status || "..."}

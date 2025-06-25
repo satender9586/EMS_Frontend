@@ -1,11 +1,8 @@
 "use client"
 import {
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
@@ -17,12 +14,12 @@ import { IoAddSharp } from "react-icons/io5";
 import OfficialHolidaysTables from "@/components/OfficialHolidaysTables"
 import { retriveAllOfficalHolidaysApi } from "@/services/GET_API";
 import { officialHolidayInterface } from "@/types/holiday"
-
-
+import { deleteHolidayApi } from "@/services/DELETE_API"
 
 
 const CompanyHolidays = () => {
   const [open, setOpen] = useState<boolean>(false)
+  const [isDeletedHoliday, setIsDeletedHoliday]=useState(false)
   const [officialHolidays, setOfficialHolidays]=useState<officialHolidayInterface []>([])
 
 
@@ -31,8 +28,18 @@ const CompanyHolidays = () => {
       const response = await retriveAllOfficalHolidaysApi(`year?year=${year}`)
       const data = response?.data?.data
       setOfficialHolidays(data)
+      setIsDeletedHoliday(false)
     } catch (error) {
       console.log("error",error)
+    }
+  }
+
+  const deleteHolidayHandler = async (id:string)=>{
+    try {
+        const response = deleteHolidayApi(id)
+        setIsDeletedHoliday(true)
+    } catch (error) {
+        console.log("some is error in delete holidya api ",error)
     }
   }
 
@@ -40,27 +47,26 @@ const CompanyHolidays = () => {
 useEffect(() => {
   const year = new Date().getFullYear().toString();
   retriveOfficialHolidaysHandler(year);
-}, [open]);
+}, [open,isDeletedHoliday]);
 
   return (
-    <div>
+    <div className="relative">
       <div className="flex justify-end ">
         <div>
           <AlertDialog open={open}>
             <AlertDialogTrigger asChild>
               <Button
                 variant="outline"
-                className={"bg-[#165DFB] text-white" }
+                className={"fixed bottom-5 right-8 rounded-full p-5  bg-gradient-to-r from-[#008AFF] to-[#00C6FF]" }
                 onClick={() => setOpen(true)}
               >
-               New Holiday <IoAddSharp className="text-white"/>
+                <IoAddSharp className="text-white"/>
               </Button>
-
             </AlertDialogTrigger>
-            <AlertDialogContent>
+            <AlertDialogContent className="">
               <AlertDialogHeader>
-                <AlertDialogTitle>Offical Holiday</AlertDialogTitle>
-                <AlertDialogDescription>
+                <AlertDialogTitle className="font-serif">Holiday</AlertDialogTitle>
+                <AlertDialogDescription className="font-sans">
                   Fill out the form below to add a  company offical holiday.
                 </AlertDialogDescription>
               </AlertDialogHeader>
@@ -71,7 +77,7 @@ useEffect(() => {
           </AlertDialog>
         </div>
       </div>
-      <OfficialHolidaysTables officialHolidays={officialHolidays}/>
+      <OfficialHolidaysTables officialHolidays={officialHolidays} deleteHolidayHandler={deleteHolidayHandler} isAdminTable ={true}/>
     </div>
   )
 }
