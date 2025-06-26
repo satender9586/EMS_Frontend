@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { RiErrorWarningFill } from "react-icons/ri";
 import LeaverequestCardsTables from '../../../components/LeaveStausTables';
-import { retriveMyLeavesApi } from '@/services/GET_API';
+import { retriveLeaveRequestApi } from '@/services/GET_API';
 import { myLeavesInterface } from '@/types/applyLeave';
 
 const ShowLeaveStaus = () => {
@@ -11,7 +11,7 @@ const ShowLeaveStaus = () => {
 
     const retriveMyLeaves = async () => {
         try {
-            const response = await retriveMyLeavesApi();
+            const response = await retriveLeaveRequestApi();
             const data = response?.data?.data?.reverse() || [];
             setLeavesData(data);
         } catch (error) {
@@ -33,7 +33,10 @@ const ShowLeaveStaus = () => {
                 </h2>
             </div>
             <div className="max-h-[123px] overflow-y-auto px-4 py-1 scrollbar-thin scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-400">
-                <LeaverequestCardsTables showAction={false} callback={false} leaveDataProps={leavesData} />
+         {leavesData.length === 0 ? (
+          <div className="text-gray-500 text-sm font-sans">No more leave Request</div>
+        ) : <LeaverequestCardsTables showAction={false} callback={false} leaveDataProps={leavesData} /> }
+
             </div>
         </div>
     );

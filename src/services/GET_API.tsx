@@ -45,6 +45,13 @@ export const retriveMyLeavesApi  = async ()=>{
     }
     return response;
 }
+export const retriveLeaveRequestApi  = async ()=>{
+    const response = await instance.get(`${Leave_Base}/fetchLeavesByStatus`)
+    if(response.status !==200){
+        throw new Error("something is wrong!")
+    }
+    return response;
+}
 
 export const allocatedLeaveBalanceSummaryApi  = async (paramsId : string)=>{
     const response = await instance.get(`${Leave_Base}/leave-balance/leave_name?leave_name=${paramsId}`)
